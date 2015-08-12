@@ -21,7 +21,7 @@
 <body>
 <label id="ready" for="slider2">Flip switch:</label>
 <select name="slider2" id="slider2" data-role="slider">
-    <option value="off">Off</option>
+    <option value="off">OFF</option>
     <option value="on">On</option>
 </select>
 
