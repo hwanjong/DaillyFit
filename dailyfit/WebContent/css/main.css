@@ -1,1 +1,23 @@
 @CHARSET "UTF-8";
+
+#headBar{
+	background-color: #6ECDE1;
+	width:100%;
+	height: 40px;
+	vertical-align: middle;
+	
+	font-size: 18px;
+  color: rgb(255, 255, 255);
+  font-weight: normal;
+  text-align: center;
+  line-height: 2.4em;
+  font-family: HanSans;
+}
+
+.left{
+	float:left;
+	height: 40px;
+  left: 10px;
+  top: 8px;
+  
+}
