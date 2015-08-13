@@ -4,17 +4,27 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 
-<link href="css/main.css" rel="stylesheet" type="text/css">
+<!-- <link href="css/main.css" rel="stylesheet" type="text/css"> -->
 
+<!--  Bootstrap -->
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/dailyfit/css/main.css" rel="stylesheet">
+<script src="js/bootstrap.min.js"></script>
+
+
+<!--  JQuery UI_Mobile  -->
 <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
 <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
-<meta charset="UTF-8">
+
+
 <title>Dailyfit</title>
+
 <script>
 	$(document).ready(function() { // 해당 페이지 Loading 후,
-		$("#ready").html("준비됬다");
+		$("#ready").html("Server on");
 	});
 </script>
 </head>
@@ -33,7 +43,6 @@
         <option value="4">The 4th Option</option>
     </select>
 </div>
-
 
 </body>
 </html>
