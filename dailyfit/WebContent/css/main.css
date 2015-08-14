@@ -1,23 +1,167 @@
 @CHARSET "UTF-8";
-
-#headBar{
-	background-color: #6ECDE1;
-	width:100%;
-	height: 40px;
-	vertical-align: middle;
+body{
+	width: 100%;
+	height: 100%;
+}
+#contents {
+	font-family: HanSans;
+	font-size: 14px;
+	height: 100%;
 	
+}
+.m1{
+	margin: 1px;
+}
+.f18{
 	font-size: 18px;
-  color: rgb(255, 255, 255);
-  font-weight: normal;
-  text-align: center;
-  line-height: 2.4em;
-  font-family: HanSans;
+}
+.f17{
+	font-size: 17px;
+}
+.f16{
+	font-size: 16px;
+}
+.f15{
+	font-size: 15px;
+}
+.f14{
+	font-size: 14px;
+}
+.b{
+	font-weight: bold;
+}
+#headBar {
+	position:fixed;
+	z-index:9;
+	background-color: #6ECDE1;
+	width: 100%;
+	height: 40px;
+	font-size: 18px;
+	color: rgb(255, 255, 255);
+	font-weight: normal;
+	text-align: center;
+	line-height: 2.4em;
+	font-family: HanSans;
 }
 
-.left{
-	float:left;
-	height: 40px;
-  left: 10px;
-  top: 8px;
-  
+.left {
+	float: left;
+	margin: 0 10px;
+	line-height: 40px;
+	padding-right: 15px;
+}
+.right {
+	margin:0 10px;
+	float: right;
+	line-height: 40px;
+}
+.activeBar {
+	border-bottom:5px solid #6ECDE1; 
+}
+.tabWrap{
+	white-space: nowrap;
+	line-height: 0.5em;
+}
+.eachTab{
+	width: 50%;
+	line-height: 2.4em;
+	vertical-align: top;
+	text-align: center;
+	font-size: 16px;
+	font-weight:600;
+	font-family: HanSans;
+	display: inline-block;
+	white-space: normal;
+}
+.eachTab:hover{
+	cursor: pointer;
+}
+
+
+
+.item{
+	position:relative;
+	clear: both;
+	margin-bottom: 15px;
+	margin-top: 1px;
+}
+.item img{
+	width: 100%;
+	height: 150px;
+}
+.shop{
+	clear:both;
+	height:65px;
+	vertical-align:middle;
+	text-align: left;
+	text-indent : 30px;
+	font-weight: 600;
+	font-size: 17px;
+	padding: 5px;
+	background-image: url('/dailyfit/img/shop_back.PNG');
+	width: 100%;
+}
+.shop span{
+	text-indent:0px;
+	margin-left: 4px;
+}
+.premium{
+	width:100%;
+	position:relative;
+	height:180px;
+	font-size: 17px;
+	background-size: 100% 100%;
+	color: black;
+}
+.premium p{
+	position:relative;
+	color: white;
+	line-height:20px;
+	text-align: center;
+	padding: 0px 10px;
+	margin: 0 10px;
+	bottom:50px;
+}
+.itemTitle{
+	padding-left: 40px;
+	font-size: 19px;
+	font-weight: bolder;
+}
+.subTitle{
+	padding: 0px;
+	font-size: 14px;
+}
+.distance{
+	font-size:15px;
+	font-weight:bold;
+	float:right;
+	position:absolute;
+	right:20px;
+	bottom:30px;
+	width:80px;
+	height:80px;
+	background-color:rgb(242, 242, 242);
+	border-top-left-radius: 50px;
+	border-top-right-radius: 50px;
+	border-bottom-left-radius: 50px;
+	border-bottom-right-radius: 50px;
+	line-height:80px;
+	text-align: center;
+}
+.post{
+	position:absolute;
+	float:right;
+	left:70%;
+	margin-right: 20px;
+	font-size: 14px;
+}
+
+#footer{
+	white-space: nowrap;
+	width: 100%;
+}
+#footer img{
+	width:15%;
+	margin: 0 5%;
+	white-space: normal;
 }
