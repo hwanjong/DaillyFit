@@ -33,7 +33,7 @@ body{
 	font-weight: bold;
 }
 .line{
-	margin:5px 2em;
+	margin:3px 2em;
 	border-bottom: 1px groove;
 }
 #headBar {
@@ -80,7 +80,7 @@ body{
 	display: inline-block;
 	white-space: normal;
 }
-.three{
+.tripleTab{
 	width: 33.33%;
 }
 .eachTab:hover{

@@ -63,6 +63,14 @@
 		window.location.href='main.ap';
 	}
 		
+	function pageChange(pageNum) {
+		$(".eachTab").removeClass("activeBar");
+		
+		$(".eachContents").hide();
+		$("#"+pageNum).fadeIn(200);
+
+		$("."+pageNum).addClass("activeBar");
+	}
 	$(document).ready(function() {
 		var heightFooter = $("#footer").css("height");
 		$("#cart").css("bottom", heightFooter);
@@ -119,12 +127,12 @@
 
 	<!--Tab area -->
 	<div class="tabWrap">
-		<div class="eachTab three one activeBar " onclick="one()">판매상품</div>
-		<div class="eachTab three two" onclick="two()">업체정보</div>
-		<div class="eachTab three three " onclick="three()">Q&A</div>
+		<div class="eachTab tripleTab one activeBar " onclick="pageChange('one')">판매상품</div>
+		<div class="eachTab tripleTab two" onclick="pageChange('two')">업체정보</div>
+		<div class="eachTab tripleTab three " onclick="pageChange('three')">Q&A</div>
 	</div>
 	<div id="contents">
-		<div id="one">
+		<div id="one" class="eachContents">
 			<ul class="saleList">
 				<li class="saleItem" onclick="addBuy('Premium 1회 이용권','7900')">Premium
 					1회 이용권<span class="glyphicon glyphicon-chevron-right right lh45"></span><span class="right lh45">원</span><span
@@ -140,7 +148,7 @@
 
 			</ul>
 
-			<p style="font-size: 16px; padding: 2em 2em 0em 2em;">유의사항</p>
+			<p style="font-size: 16px; padding: 0em 2em 0em 2em;">유의사항</p>
 			<p class="line"></p>
 
 			<p style="padding: 0em 3em;">
@@ -149,8 +157,15 @@
 				구매 금액의 85%가 캐시로 환급됩니다<br /> - 사용 중 불편한 사항은 데일리핏 고객센터로 문의주세요<br />
 			</p>
 		</div>
-		<div id="two"></div>
-		<div id="three"></div>
+		<div id="two" class="eachContents" style="display: none;">
+		작업중입니다.<br/>
+			*운영시간 및 제공사항<br/>
+			(지도View)<br/>
+			주소:*****************<br/>
+			연락처:112-112<br/></div>
+		<div id="three" class="eachContents" style="display: none;">
+			준비중입니다.<br/>
+		</div>
 		<div id="void"></div>
 	</div>
 	<div id="cart">
