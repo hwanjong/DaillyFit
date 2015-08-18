@@ -16,5 +16,11 @@ public class RootController {
 		return mv;
 		
 	}
+	@Mapping(url="/shop.ap")
+	ModelView getShopPage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/shop");
+		return mv;
+		
+	}
 
 }
