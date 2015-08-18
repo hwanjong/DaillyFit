@@ -7,6 +7,8 @@ body{
 	font-family: HanSans;
 	font-size: 14px;
 	height: 100%;
+	font-family: HanSans;
+	text-shadow: none;
 	
 }
 .m1{
@@ -30,6 +32,10 @@ body{
 .b{
 	font-weight: bold;
 }
+.line{
+	margin:5px 2em;
+	border-bottom: 1px groove;
+}
 #headBar {
 	position:fixed;
 	z-index:9;
@@ -38,10 +44,11 @@ body{
 	height: 40px;
 	font-size: 18px;
 	color: rgb(255, 255, 255);
-	font-weight: normal;
+	font-weight: bold;
 	text-align: center;
 	line-height: 2.4em;
 	font-family: HanSans;
+	text-shadow: none;
 }
 
 .left {
@@ -73,6 +80,9 @@ body{
 	display: inline-block;
 	white-space: normal;
 }
+.three{
+	width: 33.33%;
+}
 .eachTab:hover{
 	cursor: pointer;
 }
@@ -84,6 +94,20 @@ body{
 	clear: both;
 	margin-bottom: 15px;
 	margin-top: 1px;
+}
+.saleList{
+	padding :3px 10px;
+	list-style-type: none;
+	line-height: 45px;
+}
+.saleItem{
+	padding:0px 10px;
+	position:relative;
+	clear: both;
+	margin : 3px;
+	vertical-align:middle;
+	background-color: rgb(110, 205, 225);
+	color: rgb(255, 255, 255);
 }
 .item img{
 	width: 100%;
@@ -164,4 +188,25 @@ body{
 	width:15%;
 	margin: 0 5%;
 	white-space: normal;
+}
+
+.lh45{
+	line-height: 45px;
+	margin: 0 3px;
+}
+#cart{
+	text-shadow:none;
+	width: 100%;
+	position: fixed;
+	font-family: HanSans;
+	z-index: 16;
+}
+#fold{
+	text-align: center;
+	background-color: gray;
+}
+.myButton{
+	color: #5bc0de;
+	border-color: #46b8da;
+	color: #fff;
 }
