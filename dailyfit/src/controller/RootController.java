@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletResponse;
 @RootURL("/")
 public class RootController {
 	
+	@Mapping(url="/registDevice")
+	ModelView registDevice(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/main");
+		return mv;
+	}
 	@Mapping(url="/main.ap")
 	ModelView getMainPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
