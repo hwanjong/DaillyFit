@@ -18,7 +18,7 @@
 
 <!--  Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
-<link href="/dailyfit/css/main.css" rel="stylesheet">
+<link href="/dailyfit/css/common.css" rel="stylesheet">
 <script src="js/bootstrap.min.js"></script>
 <title>Dailyfit</title>
 <script type="text/javascript">

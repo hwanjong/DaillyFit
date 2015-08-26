@@ -27,5 +27,10 @@ public class RootController {
 		return mv;
 		
 	}
+	@Mapping(url="/join")
+	ModelView getJoinPage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/join");
+		return mv;
+	}
 
 }

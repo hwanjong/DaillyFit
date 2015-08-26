@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link href="/dailyfit/css/main.css" rel="stylesheet">
 <script type="text/javascript">
 	function one() {
 		$("#two").hide();

@@ -1,100 +1,11 @@
 @CHARSET "UTF-8";
 
-body {
-	width: 100%;
-	height: 100%;
-}
 
 #contents {
 	font-size: 14px;
 	height: 100%;
 	font-family: HanSans;
 	text-shadow: none;
-}
-
-.m1 {
-	margin: 1px;
-}
-
-.f18 {
-	font-size: 18px;
-}
-
-.f17 {
-	font-size: 17px;
-}
-
-.f16 {
-	font-size: 16px;
-}
-
-.f15 {
-	font-size: 15px;
-}
-
-.f14 {
-	font-size: 14px;
-}
-
-.b {
-	font-weight: bold;
-}
-
-.line {
-	margin: 3px 2em;
-	border-bottom: 1px groove;
-}
-
-.font {
-	font-family: HanSans;
-	text-shadow: none !important;
-}
-
-#headBar {
-	position: fixed;
-	z-index: 20;
-	background-color: #6ECDE1;
-	width: 100%;
-	height: 40px;
-	font-size: 18px;
-	color: rgb(255, 255, 255);
-	font-weight: bold;
-	text-align: center;
-	line-height: 2.4em;
-	top: 0px;
-	border: none;
-	padding: 0px;
-}
-
-#menuBar {
-	position: fixed;
-	width: 100%;
-	line-height: 4.2em;
-	top: 0em;
-	background-color: #6ECDE1;
-	z-index: 100;
-	white-space: nowrap;
-	background-color: black;
-}
-#menuBar span{
-	color:#fff;
-	white-space: normal;
-	width: 33%;
-	text-align: center;
-	font-size: 20px;
-	line-height: 4.2em;
-}
-.left {
-	float: left;
-	margin: 0 10px;
-	line-height: 40px;
-	padding-right: 15px;
-}
-
-.right {
-	margin: 0 10px;
-	float: right;
-	line-height: 40px;
 }
 
 .activeBar {
@@ -297,3 +208,4 @@ body {
 .shopCustom img {
 	width: 100%;
 }
+

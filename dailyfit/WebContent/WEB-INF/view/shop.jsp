@@ -6,6 +6,7 @@
 <html>
 <head>
 <!--  googleMap -->
+<link href="/dailyfit/css/main.css" rel="stylesheet">
 <script type="text/javascript"
 	src="http://maps.googleapis.com/maps/api/js?signed_in=true&key=AIzaSyBMuk4J8j5JNE1PC0UdEWpIMmze8UKMG_U&sensor=true"></script>
 
