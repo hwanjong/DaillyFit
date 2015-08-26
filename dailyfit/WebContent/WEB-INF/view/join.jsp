@@ -36,7 +36,9 @@ function next(){
 			$("#message").html("비밀번호가 일치하지않아요.");
 			return;
 		}
-		
+		$("#stepOne").hide();
+		$("#stepTwo").show();
+		state=2;
 	}
 }
 </script>
@@ -50,7 +52,7 @@ function next(){
 </div>
 
 <div id="formPage" class="font">
-	<div id="stepOne" style="display:none;">
+	<div id="stepOne">
 		<div class="formGroup" style="margin-top: 25%;">
 			<input id="userId" type="text" placeholder="식별ID">
 			<input id="pw1" type="password" placeholder="비밀번호">
@@ -63,13 +65,10 @@ function next(){
 			<p class ="b" style="text-align: center; text-decoration: underline;"><a href="#popupBasic" data-rel="popup" data-transition="pop" class="font" style="color: white;">더보기</a></p>
 		</div>
 	</div>
-	<div id="stepTwo">
+	<div id="stepTwo" style="display: none;">
 		<div class="formGroup font" style="margin-top: 25%;">
-			<span class="title">성 별</span>
-			<select id="flip-1" name="flip-1" data-role="slider">
-  	     <option value="off">남자</option>
-    	   <option value="on">여자</option>
-	  	</select><br/>
+			<span class="title">성 별</span>  남여(코딩중)
+			<br/>
 			<span class="title">나 이</span><input type="number"><br/>
 			<span class="title">신 장</span><input type="number"><br/>
 			<span class="title">체 중</span><input type="number"><br/>
