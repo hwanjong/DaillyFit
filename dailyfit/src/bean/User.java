@@ -6,12 +6,12 @@ public class User implements Serializable{
 	
 	String userId;
 	String pw;
-	String nicname;
+	String nicName;
 	String gender;
-	int age;
-	int height;
-	int weight;
-	int targetWeight;
+	String age;
+	String height;
+	String weight;
+	String targetWeight;
 	String targetPower;
 	public String getUserId() {
 		return userId;
@@ -19,17 +19,17 @@ public class User implements Serializable{
 	public void setUserId(String userId) {
 		this.userId = userId;
 	}
+	public String getNicName() {
+		return nicName;
+	}
+	public void setNicName(String nicName) {
+		this.nicName = nicName;
+	}
 	public String getPw() {
 		return pw;
 	}
 	public void setPw(String pw) {
 		this.pw = pw;
-	}
-	public String getNicname() {
-		return nicname;
-	}
-	public void setNicname(String nicname) {
-		this.nicname = nicname;
 	}
 	public String getGender() {
 		return gender;
@@ -37,28 +37,28 @@ public class User implements Serializable{
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public int getAge() {
+	public String getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(String age) {
 		this.age = age;
 	}
-	public int getHeight() {
+	public String getHeight() {
 		return height;
 	}
-	public void setHeight(int height) {
+	public void setHeight(String height) {
 		this.height = height;
 	}
-	public int getWeight() {
+	public String getWeight() {
 		return weight;
 	}
-	public void setWeight(int weight) {
+	public void setWeight(String weight) {
 		this.weight = weight;
 	}
-	public int getTargetWeight() {
+	public String getTargetWeight() {
 		return targetWeight;
 	}
-	public void setTargetWeight(int targetWeight) {
+	public void setTargetWeight(String targetWeight) {
 		this.targetWeight = targetWeight;
 	}
 	public String getTargetPower() {
@@ -67,6 +67,5 @@ public class User implements Serializable{
 	public void setTargetPower(String targetPower) {
 		this.targetPower = targetPower;
 	}
-	
 
 }

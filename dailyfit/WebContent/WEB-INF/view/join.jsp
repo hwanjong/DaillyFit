@@ -38,7 +38,7 @@ function next(){
 		$("#title").html("회원가입");
 		state=1;
 	}else if(state==1){
-		if($("#userId").val()=="" || $("#pw1").val()=="" || $("#pw2").val()==""){
+		if($("#userId").val()=="" || $("#pw1").val()=="" || $("#pw2").val()=="" || $("#nicName").val()==""){
 			$("#message").html("모든정보를 기입하세요.");
 			return;
 		}
@@ -50,14 +50,21 @@ function next(){
 			$("#message").html("비밀번호가 일치하지않아요.");
 			return;
 		}
+		//최종적으로 ID중복체크
 		var inputId=$("#userId").val();
-		if(inputId=="test" ||inputId=="1234"||inputId=="1111"){
-			alert("이미가입된 ID입니다.");
-			return;
-		}
-		$("#stepOne").hide();
-		$("#stepTwo").show();
-		state=2;
+		var isRegisted=false;
+		$.post("check/idcheck.ap",{
+			inputId : inputId
+		},function(data){
+			if(data.registed=="yes"){
+				$("#message").html("이미 등록된 ID입니다.");
+			}else{
+				$("#stepOne").hide();
+				$("#stepTwo").show();
+				state=2;
+			}
+		},"json");
+		
 	}else if(state==2){
 		if($("#age").val()=="" || $("#height").val()=="" || $("#weight").val()==""){
 			$("#message").html("모든정보를 기입하세요.");
@@ -73,7 +80,7 @@ function next(){
 			return;
 		}
 		alert("회원가입완료!!");
-		location.href='main.ap';
+		$("#joinForm").submit();
 	}
 }
 </script>
@@ -90,7 +97,7 @@ function next(){
 		<form id="loginForm" action="login.ap" method="post" data-ajax="false">
 			<div class="formGroup" style="margin-top:5%; color: white;">
 				<img src="/dailyfit/img/main_logo.jpg" width="100%" style="margin-bottom: 10%;">
-				<input id="loginId" type="text" readonly="readonly" name="userId" value="(+82)10-2625-3577">
+				<input id="loginId" type="text" name="userId" value="(+82)10-2625-3577">
 				<input id="loginPw" type="password" name="pw" placeholder="비밀번호">
 			</div>
 			<div id="afterBtnPart" class="formGroup" style="margin-top:25%; color: white;">
@@ -99,40 +106,43 @@ function next(){
 			</div>
 		</form>
 	</div>
-	<div id="stepOne" style="display: none;">
-		<div class="formGroup" style="margin-top: 25%;">
-			<input id="userId" type="text" placeholder="식별ID">
-			<input id="pw1" type="password" placeholder="비밀번호">
-			<input id="pw2" type="password" placeholder="비밀번호 확인">
+	<form id="joinForm" action="join.ap" method="post" data-ajax="false">
+		<div id="stepOne" style="display: none;">
+			<div class="formGroup" style="margin-top: 25%;">
+				<input id="userId" type="text" name="userId" placeholder="식별ID">
+				<input id="pw1" type="password" name="pw" placeholder="비밀번호">
+				<input id="pw2" type="password" placeholder="비밀번호 확인">
+				<input id="nicName" name = "nicName" type="text" placeholder="닉네임">
+			</div>
+			<div class="formGroup b" style="margin-top: 10%; color: white;">
+					회원가입을 함으로써 데일리핏의 <span style="color: rgb(110, 205, 225)">서비스 약관</span>, 
+				<span style="color: rgb(110, 205, 225)">개인정보 보호정책</span>, <span style="color: rgb(110, 205, 225)">환불정책</span>, <span style="color: rgb(110, 205, 225)">고객 보호</span> 
+				<span style="color: rgb(110, 205, 225)">프로그램 이용약관</span>에 동의하시게 됩니다.<br/><br/>
+				<p class ="b" style="text-align: center; text-decoration: underline;"><a href="#popupBasic" data-rel="popup" data-transition="pop" class="font" style="color: white;">더보기</a></p>
+			</div>
 		</div>
-		<div class="formGroup b" style="margin-top: 10%; color: white;">
-				회원가입을 함으로써 데일리핏의 <span style="color: rgb(110, 205, 225)">서비스 약관</span>, 
-			<span style="color: rgb(110, 205, 225)">개인정보 보호정책</span>, <span style="color: rgb(110, 205, 225)">환불정책</span>, <span style="color: rgb(110, 205, 225)">고객 보호</span> 
-			<span style="color: rgb(110, 205, 225)">프로그램 이용약관</span>에 동의하시게 됩니다.<br/><br/>
-			<p class ="b" style="text-align: center; text-decoration: underline;"><a href="#popupBasic" data-rel="popup" data-transition="pop" class="font" style="color: white;">더보기</a></p>
+		<div id="stepTwo" style="display: none;">
+			<div class="formGroup font" style="margin-top: 25%;">
+				<span class="title">성 별</span>
+				<input id="m" type="radio" style="margin-left: 10px;" data-role="none" name="gender" value="m" checked="checked"><label data-role="none" class="font" for="m" style="display: inline-block; font-size:14px; margin-right: 20px;">남</label>
+				<input id="w" type="radio" data-role="none" name="gender" value="w"><label data-role="none" class="font" for="w" style="display: inline-block; font-size:14px; ">여</label>
+				<br/>
+				<span class="title">나 이</span><input id="age" name="age" type="number"><br/>
+				<span class="title">신 장</span><input id="height" name="height" type="number"><br/>
+				<span class="title">체 중</span><input id="weight" name="weight" type="number"><br/>
+			</div>
+		
 		</div>
-	</div>
-	<div id="stepTwo" style="display: none;">
-		<div class="formGroup font" style="margin-top: 25%;">
-			<span class="title">성 별</span>
-			<input id="m" type="radio" style="margin-left: 10px;" data-role="none" name="gender" value="m" checked="checked"><label data-role="none" class="font" for="m" style="display: inline-block; font-size:14px; margin-right: 20px;">남</label>
-			<input id="w" type="radio" data-role="none" name="gender" value="w"><label data-role="none" class="font" for="w" style="display: inline-block; font-size:14px; ">여</label>
-			<br/>
-			<span class="title">나 이</span><input id="age" type="number"><br/>
-			<span class="title">신 장</span><input id="height" type="number"><br/>
-			<span class="title">체 중</span><input id="weight" type="number"><br/>
+		
+		<div id="stepThree" style="display: none;">
+			<div class="formGroup font" style="margin-top: 25%;">
+				<span class="title">목표 체중</span><input id="targetWeight" name="targetWeight" type="number"><br/>
+				<span class="title">운동 강도</span>
+				<select name="targetPower"><option>강하게</option><option>보통</option><option>약하게</option> </select><br/>
+			</div>
+		
 		</div>
-	
-	</div>
-	
-	<div id="stepThree" style="display: none;">
-		<div class="formGroup font" style="margin-top: 25%;">
-			<span class="title">목표 체중</span><input id="targetWeight" type="number"><br/>
-			<span class="title">운동 강도</span>
-			<select><option>강하게</option><option>보통</option><option>약하게</option> </select><br/>
-		</div>
-	
-	</div>
+	</form>
 	
 	<div id="btnPart" class="formGroup" style="margin-top:10%; color: white; display: none;">
 		<p id="message" style="color : red;"></p>

@@ -9,9 +9,19 @@
 		<id column="target_power" property="targetPower" />
 	</resultMap>
 
-	<select id="getUserInfo" parameterType="String" resultType="User"
+	<select id="getUserInfo" parameterType="User" resultType="User"
 		resultMap="userInfoMap">
 		select * FROM user_list WHERE user_id = #{userId} and pw= #{pw}
 	</select>
+	
+	<select id="checkId" parameterType="String" resultType="User"
+		resultMap="userInfoMap">
+		select * FROM user_list WHERE user_id = #{userId}
+	</select>
+	
+	<insert id="insertUser" parameterType="User" >
+	    insert into user_list
+		values(#{userId},#{pw},#{nicName},#{gender},#{age},#{height},#{weight},#{targetWeight},#{targetPower}) 
+	</insert>
 	
 </mapper>

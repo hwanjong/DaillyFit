@@ -5,6 +5,11 @@
 		<control-class>controller.RootController</control-class>
 	</control>
 	
+	<control>
+		<control-name>check</control-name>
+		<control-class>controller.CheckController</control-class>
+	</control>
+	
 	<view>
 		<prefix>/WEB-INF/view</prefix>
 		<suffix>.jsp</suffix>

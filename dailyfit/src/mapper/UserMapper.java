@@ -8,7 +8,8 @@ import bean.User;
 
 public interface UserMapper {
 	User getUserInfo(User user);
-//	void insertUser(User user);
+	User checkId(String id);
+	void insertUser(User user);
 //	void insertShopUser(User user);
 //	User getUserInfoLogin(User user);
 //	User getUserInfo(String userId);

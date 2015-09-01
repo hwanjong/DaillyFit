@@ -6,7 +6,6 @@ import hello.mv.ModelView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.MidiDevice.Info;
 
 import bean.User;
 
@@ -15,7 +14,7 @@ import dao.InfoDAO;
 @RootURL("/")
 public class RootController {
 	
-	@Mapping(url="/registDevice")
+	@Mapping(url="/registDevice.ap")
 	ModelView registDevice(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
 		return mv;
@@ -33,19 +32,44 @@ public class RootController {
 		return mv;
 		
 	}
-	@Mapping(url="/join")
-	ModelView getJoinPage(HttpServletRequest request,HttpServletResponse response){
-		ModelView mv = new ModelView("/join");
+	@Mapping(url="/mypage")
+	ModelView getMyPage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv=null;
+		User user = (User) request.getSession().getAttribute("user");
+		if(user==null){
+			mv = new ModelView("/join");
+		}else{
+			mv = new ModelView("/mypage");
+		}
+		return mv;
+	}
+	@Mapping(url="/join",method="post",bean="bean.User")
+	ModelView doJoin(HttpServletRequest request,HttpServletResponse response,Object obj){
+		ModelView mv = new ModelView("redirect:/dailyfit/main.ap");
+		User user = (User) obj;
+		InfoDAO infoDao = new InfoDAO();
+		if(infoDao.joinUser(user)){
+			request.getSession().setAttribute("user", user);
+		}
+		
 		return mv;
 	}
 	
 	@Mapping(url="/login",method="post",bean="bean.User")
 	ModelView doLogin(HttpServletRequest request,HttpServletResponse response,Object obj){
-		ModelView mv = new ModelView("/main");
+		ModelView mv = new ModelView("redirect:/dailyfit/main.ap");
 		User user = (User) obj;
-		System.out.println(user.getUserId());
 		InfoDAO infoDao = new InfoDAO();
-		infoDao.getUser(user);
+		User userInfo = infoDao.getUser(user);
+		if(userInfo!=null)	request.getSession().setAttribute("user", userInfo);
+		return mv;
+	}
+	
+	@Mapping(url="/logout.ap")
+	ModelView doLogout(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("로그아웃요청");
+		request.getSession().invalidate();
+		ModelView mv = new ModelView("redirect:/dailyfit/main.ap");
 		return mv;
 	}
 

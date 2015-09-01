@@ -65,6 +65,7 @@
 			onclick="search();"></span>
 
 	</div>
+	
 	<div class="tabWrap">
 		<div class="eachTab one activeBar " onclick="one()">일일권 구매</div>
 		<div class="eachTab two " onclick="two()">주변 헬스장 보기</div>
