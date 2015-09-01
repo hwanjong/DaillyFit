@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.UserMapper">
+	<resultMap type="User" id="userInfoMap">
+		<id column="user_id" property="userId" />
+		<id column="target_weight" property="targetWeight" />
+		<id column="target_power" property="targetPower" />
+	</resultMap>
+
+	<select id="getUserInfo" parameterType="String" resultType="User"
+		resultMap="userInfoMap">
+		select * FROM user_list WHERE user_id = #{userId} and pw= #{pw}
+	</select>
+	
+</mapper>

@@ -1,44 +1,61 @@
 @CHARSET "UTF-8";
 
-#formPage{
-	position:fixed;
-	margin-top:-40px;
-	padding-top:40px;
-	width:100%;
-	height:100%;
+#formPage {
+	position: fixed;
+	margin-top: -40px;
+	padding-top: 40px;
+	width: 100%;
+	height: 100%;
 	background-image: url('/dailyfit/img/background1.jpg');
 	background-repeat: no-repeat;
-	background-size :100% 100%;
+	background-size: 100%;
 	vertical-align: middle;
 }
-.formGroup{
-	width:70%;
+
+.formGroup {
+	width: 70%;
 	margin: 0px 15%;
 }
-.title{
-	color : white;
-	width: 20%;
+
+.title {
+	color: white;
+	width: 120px;
 	text-align: center;
 }
-#stepTwo div div{
-	margin-left:5%;
+
+#stepTwo div div {
+	margin-left: 5%;
 	display: inline-block;
-	width: 75%;
-	
+	width: 65%;
 }
 
-#btn button{
+#afterBtnPart button {
+	background-color: transparent !important;
+	background-image: none !important;
+	border-color: transparent;
+	border: 1px solid;
+	color: #fff;
+}
+
+#btnPart button {
 	background-color: #6ECDE1;
 	color: #fff;
 	border: 0;
 }
+
 body {
 	width: 100%;
 	height: 100%;
 }
+
+label {
+	color: white;
+}
+
 .b {
 	font-weight: bold;
 }
+
 #headBar {
 	position: fixed;
 	z-index: 20;
@@ -54,6 +71,7 @@ body {
 	border: none;
 	padding: 0px;
 }
+
 .font {
 	font-family: HanSans;
 	text-shadow: none !important;

@@ -8,7 +8,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
 <!--  JQuery UI_Mobile  BootStrap에 JQuery가 필요하므로 먼저호출-->
 <link rel="stylesheet"
 	href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css" />
@@ -23,22 +22,58 @@
 <script src="js/bootstrap.min.js"></script>
 <title>Dailyfit</title>
 <script type="text/javascript">
-var state =1;
+var state =0;
+
+function login(){
+	$("#loginForm").submit();
+}
+
 
 function next(){
 	$("#message").html("");
-	if(state==1){
+	if(state==0){
+		$("#stepZero").hide();
+		$("#stepOne").show();
+		$("#btnPart").show();
+		$("#title").html("회원가입");
+		state=1;
+	}else if(state==1){
 		if($("#userId").val()=="" || $("#pw1").val()=="" || $("#pw2").val()==""){
 			$("#message").html("모든정보를 기입하세요.");
+			return;
+		}
+		if($("#userId").val().length<4||$("#pw1").val().length<4){
+			$("#message").html("아이디/비밀번호가 너무짧아요.");
 			return;
 		}
 		if($("#pw1").val() != $("#pw2").val()){
 			$("#message").html("비밀번호가 일치하지않아요.");
 			return;
 		}
+		var inputId=$("#userId").val();
+		if(inputId=="test" ||inputId=="1234"||inputId=="1111"){
+			alert("이미가입된 ID입니다.");
+			return;
+		}
 		$("#stepOne").hide();
 		$("#stepTwo").show();
 		state=2;
+	}else if(state==2){
+		if($("#age").val()=="" || $("#height").val()=="" || $("#weight").val()==""){
+			$("#message").html("모든정보를 기입하세요.");
+			return;
+		}
+		$("#stepTwo").hide();
+		$("#stepThree").show();
+		$("#nextBtn").html("Complete");
+		state=3;
+	}else if(state==3){
+		if($("#targetWeight").val()==""){
+			$("#message").html("모든정보를 기입하세요.");
+			return;
+		}
+		alert("회원가입완료!!");
+		location.href='main.ap';
 	}
 }
 </script>
@@ -47,12 +82,24 @@ function next(){
 <div id="headBar" data-role="header" data-position="fixed"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
-			onclick="javascript:history.go(-1)"></span> <span style="margin-left: -50px;">회원가입</span> 
-			
+			onclick="javascript:history.go(-1)"></span> <span id="title" style="margin-left: -50px;">DAILY FIT</span> 
 </div>
 
 <div id="formPage" class="font">
-	<div id="stepOne">
+	<div id="stepZero">
+		<form id="loginForm" action="login.ap" method="post" data-ajax="false">
+			<div class="formGroup" style="margin-top:5%; color: white;">
+				<img src="/dailyfit/img/main_logo.jpg" width="100%" style="margin-bottom: 10%;">
+				<input id="loginId" type="text" readonly="readonly" name="userId" value="(+82)10-2625-3577">
+				<input id="loginPw" type="password" name="pw" placeholder="비밀번호">
+			</div>
+			<div id="afterBtnPart" class="formGroup" style="margin-top:25%; color: white;">
+				<button type="button" class="font" onclick="login();">Login</button>
+				<button type="button" class="font" onclick="next();">Join</button>
+			</div>
+		</form>
+	</div>
+	<div id="stepOne" style="display: none;">
 		<div class="formGroup" style="margin-top: 25%;">
 			<input id="userId" type="text" placeholder="식별ID">
 			<input id="pw1" type="password" placeholder="비밀번호">
@@ -67,17 +114,29 @@ function next(){
 	</div>
 	<div id="stepTwo" style="display: none;">
 		<div class="formGroup font" style="margin-top: 25%;">
-			<span class="title">성 별</span>  남여(코딩중)
+			<span class="title">성 별</span>
+			<input id="m" type="radio" style="margin-left: 10px;" data-role="none" name="gender" value="m" checked="checked"><label data-role="none" class="font" for="m" style="display: inline-block; font-size:14px; margin-right: 20px;">남</label>
+			<input id="w" type="radio" data-role="none" name="gender" value="w"><label data-role="none" class="font" for="w" style="display: inline-block; font-size:14px; ">여</label>
 			<br/>
-			<span class="title">나 이</span><input type="number"><br/>
-			<span class="title">신 장</span><input type="number"><br/>
-			<span class="title">체 중</span><input type="number"><br/>
+			<span class="title">나 이</span><input id="age" type="number"><br/>
+			<span class="title">신 장</span><input id="height" type="number"><br/>
+			<span class="title">체 중</span><input id="weight" type="number"><br/>
 		</div>
 	
 	</div>
-	<div id="btn" class="formGroup" style="margin-top:10%; color: white;">
+	
+	<div id="stepThree" style="display: none;">
+		<div class="formGroup font" style="margin-top: 25%;">
+			<span class="title">목표 체중</span><input id="targetWeight" type="number"><br/>
+			<span class="title">운동 강도</span>
+			<select><option>강하게</option><option>보통</option><option>약하게</option> </select><br/>
+		</div>
+	
+	</div>
+	
+	<div id="btnPart" class="formGroup" style="margin-top:10%; color: white; display: none;">
 		<p id="message" style="color : red;"></p>
-		<button type="button" class="font" onclick="next();">다음단계</button>
+		<button id="nextBtn" type="button" class="font" onclick="next();">다음단계</button>
 	</div>
 	
 	<div data-role="popup" id="popupBasic">
