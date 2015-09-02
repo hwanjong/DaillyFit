@@ -30,6 +30,8 @@ function menuBar(){
 	    $( "#menuBar" ).hide();
 	  }
 }
+$(document).ready(function(){
+});
 </script>
 </head>
 <body>
