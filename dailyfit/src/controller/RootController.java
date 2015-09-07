@@ -22,6 +22,7 @@ public class RootController {
 	@Mapping(url="/main.ap")
 	ModelView getMainPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
+		System.out.println("main요청");
 		
 		return mv;
 		

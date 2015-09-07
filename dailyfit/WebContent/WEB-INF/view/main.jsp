@@ -51,7 +51,7 @@
 			navigator.geolocation.getCurrentPosition(function(position) {
 				var lat = position.coords.latitude;
 				var lng = position.coords.longitude;
-				alert("현재위치값 찾음!\n위도: "+lat+"\n경도: "+lng);
+				alert("Server Testing\n:현재위치값 찾음!\n위도: "+lat+"\n경도: "+lng);
 				hideLocationLoading();
 			});
 		}else{

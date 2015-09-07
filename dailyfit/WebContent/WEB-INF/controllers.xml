@@ -9,7 +9,10 @@
 		<control-name>check</control-name>
 		<control-class>controller.CheckController</control-class>
 	</control>
-	
+	<control>
+		<control-name>admin</control-name>
+		<control-class>controller.AdminController</control-class>
+	</control>
 	<view>
 		<prefix>/WEB-INF/view</prefix>
 		<suffix>.jsp</suffix>
