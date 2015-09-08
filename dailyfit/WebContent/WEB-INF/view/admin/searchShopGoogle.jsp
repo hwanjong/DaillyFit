@@ -71,7 +71,7 @@
 								var phone = place.formatted_phone_number;
 								$("#wrap")
 										.append(
-												'<input type="text" name="shopName" value="'+name+'">'
+												'<input type="checkbox"> <input type="text" name="shopName" value="'+name+'">'
 														+ '<input type="text" name="shopLat" size="6" value="'+latt+'">'
 														+ '<input type="text" name="shopLng" size="6" value="'+lngg+'">'
 														+ '<input type="text" name="shopAddress" size= "40" value="'+address+'"><br>');
@@ -129,9 +129,9 @@
 		placeholder="Search Box">
 	<div id="map-canvas"></div>
 	<form action="searchGoogle.ap" method="post">
-		<div id="wrap" style="overflow: auto;">
+		<div id="wrap" style="overflow: auto; margin-top: 20px;">
 			<i class="icon-ok"></i> <span style="font-size: 15pt;"> 검색된 헬스장</span>
-			<button type="submit">구글데이터를 데일리핏헬스장으로 등록</button>
+			<button type="button" class="btn">선택된 데이터 데일리핏 등록</button>
 			<hr style="border: 1px solid;">
 		</div>
 	</form>

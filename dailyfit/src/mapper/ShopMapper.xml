@@ -11,7 +11,7 @@
 	</resultMap>
 	
 	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
-		select * FROM shop_list
+		select * FROM shop_list where lat is null
 	</select>
 	
 </mapper>

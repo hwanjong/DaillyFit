@@ -47,7 +47,7 @@ $(document).ready(function(){
 			src="/dailyfit/img/icon_2.png" onclick="menuBar()"> <img
 			src="/dailyfit/img/icon_3.png"> <img
 			src="/dailyfit/img/icon_4.png" onclick="location.href='mypage.ap'">
-	</div>
+</div>
 	<!-- /footer -->
 </body>
 </html>
