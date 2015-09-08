@@ -1,9 +1,5 @@
 package mapper;
 
-import java.util.ArrayList;
-
-import org.apache.ibatis.annotations.Param;
-
 import bean.User;
 
 public interface UserMapper {

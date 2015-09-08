@@ -1,0 +1,14 @@
+@CHARSET "UTF-8";
+
+#adminHeader{
+	padding: 20px;
+}
+#mainLogo{
+	width:100%;
+	margin: auto;
+	padding-bottom: 20px;
+	text-align: center;
+}
+#contents{
+	padding: 0px 20px 0px 20px;
+}
