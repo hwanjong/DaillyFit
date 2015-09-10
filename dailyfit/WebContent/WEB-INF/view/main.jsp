@@ -8,6 +8,7 @@
 <link href="/dailyfit/css/main.css" rel="stylesheet">
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBMuk4J8j5JNE1PC0UdEWpIMmze8UKMG_U&sensor=true"></script>
 <script type="text/javascript">
+var lat,lng;
 	function one() {
 		$("#two").hide();
 		$("#one").fadeIn(200);
@@ -16,11 +17,41 @@
 		$(".two").removeClass("activeBar");
 	}
 	function two() {
+		$("#twoContents").html("");
 		$("#one").hide();
 		$("#two").fadeIn(200);
 
 		$(".two").addClass("activeBar");
 		$(".one").removeClass("activeBar");
+		
+		$.post("rangeShop.ap",{
+			lat : lat,
+			lng : lng
+		},function(data){
+			var shopList = data.shopList;
+			//제휴먼저
+			for (var i in shopList) {
+				if(shopList[i]=="")continue;
+				if(shopList[i].mainImgUrl!=""){
+					//제휴 먼저표시
+					var htmlCode ='<div class="premium" onclick="location.href=' + '\'shop.ap\'' + '><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					$("#twoContents").append(htmlCode);
+				}
+			}
+			//그다음비제휴
+			for (var i in shopList) {
+				if(shopList[i].mainImgUrl==""){
+					//var htmlCode = '<a target="_blank" href="noShop.ap?shopNum='+shopList[i].shopNum+'\'" ><div class="shop">'+shopList[i].shopName;
+					var htmlCode = '<div class="shop" onclick="location.href='+'\'noShop.ap?shopNum='+shopList[i].shopNum+'\'" >'+shopList[i].shopName;
+					if(shopList[i].tel!=""){
+						htmlCode+='<span style="font-size: 13px;"	class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>';
+					}
+					htmlCode+='<p>'+shopList[i].distance+'km</p></div>';
+					$("#twoContents").append(htmlCode);
+				}
+			}
+		},"json");
+		
 		
 		$(".shop").removeClass("ui-screen-hidden");
 		$(".premium").removeClass("ui-screen-hidden");
@@ -49,9 +80,8 @@
 		
 		if (navigator.geolocation) {
 			navigator.geolocation.getCurrentPosition(function(position) {
-				var lat = position.coords.latitude;
-				var lng = position.coords.longitude;
-				alert("Server Testing\n:현재위치값 찾음!\n위도: "+lat+"\n경도: "+lng);
+				lat = position.coords.latitude;
+				lng = position.coords.longitude;
 				hideLocationLoading();
 			});
 		}else{
@@ -168,66 +198,7 @@
 			</div>
 			<div id="two" style="height: 100%; display: none;">
 				<input data-type="search" id="divOfPs-input" onblur="stopSearch();">
-				<div data-filter="true" data-input="#divOfPs-input" data-inset="true" data-children=">div">
-				<div class="premium" onclick="location.href='shop.ap'">
-						<img src="/dailyfit/img/shop3_3.JPG"
-							style="width: 100%; height: 100%;">
-						<p class="left f18">힐스테이트헬스</p>
-						<p class="right bold">7.21km</p>
-					</div>
-					<div class="premium" onclick="location.href='shop.ap'">
-						<img src="/dailyfit/img/shop2_2.jpg"
-							style="width: 100%; height: 100%;">
-						<p class="left f18">보령스피트니스</p>
-						<p class="right bold">13.57km</p>
-					</div>
-					
-					<div class="shop" onclick="location.href='shop.ap'" >
-						트레보스포츠 <span style="font-size: 13px;"
-							class="glyphicon glyphicon-map-marker pull-right"
-							aria-hidden="true"></span> <span style="font-size: 13px;"
-							class="glyphicon glyphicon-camera pull-right" aria-hidden="true"></span>
-						<p>3.93km</p>
-					</div>
-					<div class="shop" onclick="location.href='shop.ap'">
-						엑스포헬스 <span style="font-size: 13px;"
-							class="glyphicon glyphicon-map-marker pull-right"
-							aria-hidden="true"></span> <span style="font-size: 13px;"
-							class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>
-						<span style="font-size: 13px;"
-							class="glyphicon glyphicon-camera pull-right" aria-hidden="true"></span>
-						<p>14.43km</p>
-					</div>
-					<div class="shop" onclick="location.href='shop.ap'">
-						동국대헬스 <span style="font-size: 13px;"
-							class="glyphicon glyphicon-map-marker pull-right"
-							aria-hidden="true"></span> <span style="font-size: 13px;"
-							class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>
-						<span style="font-size: 13px;"
-							class="glyphicon glyphicon-camera pull-right" aria-hidden="true"></span>
-						<p>1.21km</p>
-					</div>
-					<div class="shop" onclick="location.href='shop.ap'">
-						여수밤바다피트니스 <span style="font-size: 13px;"
-							class="glyphicon glyphicon-map-marker pull-right"
-							aria-hidden="true"></span> <span style="font-size: 13px;"
-							class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>
-						<span style="font-size: 13px;"
-							class="glyphicon glyphicon-camera pull-right" aria-hidden="true"></span>
-						<p>25.45km</p>
-					</div>
-					<div class="shop" onclick="location.href='shop.ap'">
-						바디스타(충무로점) <span style="font-size: 13px;"
-							class="glyphicon glyphicon-map-marker pull-right"
-							aria-hidden="true"></span>
-						<p>7.5km</p>
-					</div>
-					<div class="shop" onclick="location.href='shop.ap'">
-						빅오스포츠 <span style="font-size: 13px;"
-							class="glyphicon glyphicon-map-marker pull-right"
-							aria-hidden="true"></span>
-						<p>17.25km</p>
-					</div>
+				<div id="twoContents" data-filter="true" data-input="#divOfPs-input" data-inset="true" data-children=">div">
 				</div>
 			</div>
 		</div>

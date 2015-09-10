@@ -14,4 +14,17 @@
 		select * FROM shop_list where lat is null
 	</select>
 	
+	<update id="updateLocateInfo" parameterType="Shop">
+	    update shop_list set lat=#{lat}, lng=#{lng} where shop_num=#{shopNum}
+	</update>
+	
+	<select id="getRangeShop" resultType="Shop" resultMap="shopInfoMap">
+		select * from shop_list where lat
+		between #{lat}-0.03 and #{lat}+0.03 and lng between #{lng}-0.075
+		and #{lng}+0.075
+	</select>
+	<select id="getShopinfo" resultType="Shop" resultMap="shopInfoMap">
+		select * from shop_list where shop_num = #{shopNum}
+	</select>
+	
 </mapper>

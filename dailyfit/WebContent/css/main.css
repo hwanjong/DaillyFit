@@ -7,7 +7,9 @@
 	font-family: HanSans;
 	text-shadow: none;
 }
-
+a:hover{
+	text-decoration: none;
+}
 .activeBar {
 	border-bottom: 5px solid #6ECDE1;
 }
@@ -76,6 +78,7 @@
 	padding: 5px;
 	background-image: url('/dailyfit/img/shop_back.PNG');
 	width: 100%;
+	color: black;
 }
 
 .shop span {

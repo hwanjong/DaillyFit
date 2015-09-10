@@ -29,21 +29,16 @@ public class AdminController {
 	ModelView getFindGeoLocationPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/admin/findGeoLocation");
 		ShopDAO dao =new ShopDAO();
-		ArrayList<Shop> originShopList = dao.getAllShopInfo();
-		ArrayList<Shop> shopList = new ArrayList<Shop>();
-		for(int i=0;i<500;i++){
-			shopList.add(originShopList.get(i));
-		}
-		
+		ArrayList<Shop> shopList = dao.getAllShopInfo();
 		mv.setModel("shopList", shopList);
-		mv.setModel("size", originShopList.size());
+		mv.setModel("size", shopList.size());
 
 		return mv;
 	}
 	
 	@Mapping(url="/registLocation.ap")
 	ModelView registGeoLocation(HttpServletRequest request,HttpServletResponse response){
-		ModelView mv = new ModelView("/admin/findGeoLocation");
+		ModelView mv = new ModelView("redirect:/dailyfit/admin/geoLocation.ap");
 		ShopDAO dao =new ShopDAO();
 		ArrayList<Shop> shopList = dao.getAllShopInfo();
 
@@ -74,18 +69,20 @@ public class AdminController {
 							lat = mapxml.substring( mapxml.indexOf("<y>")+3, mapxml.indexOf("</y>") ) ; //위도 잘라오기
 							shop.setLat(Double.parseDouble(lat));
 							shop.setLng(Double.parseDouble(lon));
+							
 						}
 					}
 					br.close();  //버퍼리더 닫기
 				}
 				System.out.println(shop.getLat()+", "+shop.getLng()+" : "+shop.getShopName()+", "+shop.getAddress());
-
+				dao.updateLocation(shop);
 
 			}catch(Exception e){
 				e.printStackTrace();
 			}
 		}
 		mv.setModel("shopList", shopList);
+		mv.setModel("size", shopList.size());
 
 		return mv;
 	}
