@@ -138,7 +138,7 @@ function next(){
 			<div class="formGroup font" style="margin-top: 25%;">
 				<span class="title">목표 체중</span><input id="targetWeight" name="targetWeight" type="number"><br/>
 				<span class="title">운동 강도</span>
-				<select name="targetPower"><option>강하게</option><option>보통</option><option>약하게</option> </select><br/>
+				<select name="targetPower"><option>강</option><option>보통</option><option>약</option> </select><br/>
 			</div>
 		
 		</div>

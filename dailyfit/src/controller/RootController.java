@@ -2,9 +2,12 @@ package controller;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
 
 import bean.Shop;
 import bean.User;
@@ -26,15 +29,12 @@ public class RootController {
 	ModelView getMainPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
 		System.out.println("main요청");
-		
 		return mv;
-		
 	}
 	@Mapping(url="/shop.ap")
 	ModelView getShopPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/shop");
 		return mv;
-		
 	}
 	@Mapping(url="/mypage")
 	ModelView getMyPage(HttpServletRequest request,HttpServletResponse response){
@@ -55,7 +55,6 @@ public class RootController {
 		if(infoDao.joinUser(user)){
 			request.getSession().setAttribute("user", user);
 		}
-		
 		return mv;
 	}
 	
@@ -82,9 +81,22 @@ public class RootController {
 			if(dist>0.3) dist-=0.3;
 			shop.setDistance(new DecimalFormat("#.##").format(dist));
 		}
+		Comparator<Shop> comparator = new Comparator<Shop>(){
+
+			@Override
+			public int compare(Shop o1, Shop o2) {
+				// TODO Auto-generated method stub
+				return Double.parseDouble(o1.getDistance()) > Double.parseDouble(o2.getDistance()) ? 1:-1;
+			}
+			
+		};
+		java.util.Collections.sort(shopList, comparator);
+		
 		mv.setModel("shopList", shopList);
+		
 		return mv;
 	}
+	
 	
 	private double rad2deg(double rad){
 		return (rad*180.0/Math.PI);
