@@ -83,6 +83,7 @@ var lat,lng;
 				lat = position.coords.latitude;
 				lng = position.coords.longitude;
 				hideLocationLoading();
+				$("#headBar").show();
 			});
 		}else{
 			alert("위치찾기 실패");
@@ -104,7 +105,7 @@ var lat,lng;
 </script>
 </head>
 <body>
-	<div id="headBar" data-role="header" data-position="fixed"
+	<div id="headBar" data-role="header" data-position="fixed" style="display: none;"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
 			onclick="javascript:history.go(-1)"></span> <span> Daily FIT</span> <span

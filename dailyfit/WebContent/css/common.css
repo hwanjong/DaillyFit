@@ -51,11 +51,11 @@ body {
 	width: 100%;
 	height:100%;
 	color: white;
-	padding-top:20%;
+	top:-40px;
+	padding-top:25%;
 	background-color: #6ECDE1;
 	text-align: center;
 	position: fixed;
-	top: 40px;
 	z-index: 100;
 	font-size:1.3em;
 	font-weight: bold;

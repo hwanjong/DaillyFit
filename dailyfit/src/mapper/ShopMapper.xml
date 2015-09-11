@@ -11,7 +11,7 @@
 	</resultMap>
 	
 	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
-		select * FROM shop_list where lat is null
+		select * FROM shop_list where lat = 0
 	</select>
 	
 	<update id="updateLocateInfo" parameterType="Shop">
