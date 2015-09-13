@@ -187,7 +187,11 @@
 		</div>
 		<div id="two" class="eachContents font f15" style="display: none;">
 			<b>* 최근 이용 고객</b><br/>
-			<img src="/dailyfit/img/user_log.PNG" style="width: 100%; padding: 10px;">			
+			<div style="width: 100%; padding:10px; overflow: auto; white-space: nowrap; ">
+				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+			</div>
+						
 			<b>* 주소 및 위치</b><br/>
 			<div id="map_canvas" style="width: 100%; height: 250px;"></div>
 			
