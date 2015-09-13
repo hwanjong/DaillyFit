@@ -210,7 +210,7 @@ var lat,lng;
 				</div>
 				<div id= "sample" style="display: none;">
 					<div class="premium" onclick="location.href='shop.ap'" >
-						<img src="/dailyfit/img/shop2_2.jpg"
+						<img src="/dailyfit/img/shop3_2.png"
 							style="width: 100%; height: 100%;">
 						<p class="left f18">보령헬스(제휴-상단노출)</p>
 						<p class="right bold">13.57km</p>
