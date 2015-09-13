@@ -18,6 +18,7 @@ var lat,lng;
 	}
 	function two() {
 		$("#twoContents").html("");
+		$("#twoContents").append($("#sample").html());
 		$("#one").hide();
 		$("#two").fadeIn(200);
 
@@ -200,7 +201,22 @@ var lat,lng;
 			<div id="two" style="height: 100%; display: none;">
 				<input data-type="search" id="divOfPs-input" onblur="stopSearch();">
 				<div id="twoContents" data-filter="true" data-input="#divOfPs-input" data-inset="true" data-children=">div">
+				<div class="premium" onclick="location.href='shop.ap'">
+					<img src="/dailyfit/img/shop3_3.JPG"
+						style="width: 100%; height: 100%;">
+					<p class="left f18">힐스테이트헬스</p>
+					<p class="right bold">7.21km</p>
 				</div>
+				</div>
+				<div id= "sample" style="display: none;">
+					<div class="premium" onclick="location.href='shop.ap'" >
+						<img src="/dailyfit/img/shop2_2.jpg"
+							style="width: 100%; height: 100%;">
+						<p class="left f18">보령헬스(제휴-상단노출)</p>
+						<p class="right bold">13.57km</p>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>

@@ -70,7 +70,7 @@
 		var lng = '127.00764'
 		var mapOptions = {
 			center : new google.maps.LatLng(lat, lng),
-			zoom : 13,
+			zoom : 15,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -171,11 +171,23 @@
 	</div>
 	<div id="contents">
 		<div id="one" class="eachContents shopCustom">
+		<b class="f15">* 상품 리스트</b><br/>
+		<ul data-role="listview" style="margin : 0px 0px 10px 0px; ">
+			<li><b class="left f13">1회 이용권</b> <b class="right f17">5500 원</b></li>
+			<li><b class="left f13">10회 이용권</b> <b class="right f17">5500 원</b></li>
+			<li><b class="left f13">3개월 회원권</b> <b class="right f17">5500 원</b></li>
+			<li><b class="left f13">5회 피티권</b> <b class="right f17">5500 원</b></li>
+		</ul>
+		<br>
+		   (헬스장측이 더많은 정보를 원할시 통이미지 제작하여 아래 추가)
+		 <br><br>
 		<img src="/dailyfit/img/sample.jpg">
 		<img src="/dailyfit/img/sample2.jpg">
-		(샘플통짜이미지)
+		
 		</div>
-		<div id="two" class="eachContents font f15" style="width:100%; padding:0 10px; display: none;">
+		<div id="two" class="eachContents font f15" style="display: none;">
+			<b>* 최근 이용 고객</b><br/>
+			<img src="/dailyfit/img/user_log.PNG" style="width: 100%; padding: 10px;">			
 			<b>* 주소 및 위치</b><br/>
 			<div id="map_canvas" style="width: 100%; height: 250px;"></div>
 			
