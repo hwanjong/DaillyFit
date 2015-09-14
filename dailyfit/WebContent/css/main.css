@@ -73,14 +73,14 @@ a:hover{
 
 .shop {
 	clear: both;
-	height: 65px;
+	height: 100px;
 	vertical-align: middle;
 	text-align: left;
-	text-indent: 30px;
 	font-weight: 600;
-	font-size: 17px;
-	padding: 5px;
+	font-size: 20px;
+	padding: 20px;
 	background-image: url('/dailyfit/img/shop_back.PNG');
+	background-size: 100% 100px;
 	width: 100%;
 	color: black;
 }

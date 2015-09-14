@@ -71,6 +71,7 @@
 		var mapOptions = {
 			center : new google.maps.LatLng(lat, lng),
 			zoom : 15,
+			draggable : false,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -161,16 +162,22 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-	</div>
+		<div id="specialItem">
+			1회 이용권 5900원
+		</div>
 
-	<!--Tab area -->
-	<div class="tabWrap">
-		<div class="eachTab tripleTab one activeBar " onclick="pageChange('one')">판매상품</div>
-		<div class="eachTab tripleTab two" onclick="pageChange('two')">업체정보</div>
-		<div class="eachTab tripleTab three " onclick="pageChange('three')">Q&A</div>
-	</div>
-	<div id="contents">
+		<!--Tab area -->
+		<div class="tabWrap">
+			<div class="eachTab tripleTab one activeBar " onclick="pageChange('one')">판매상품</div>
+			<div class="eachTab tripleTab two" onclick="pageChange('two')">업체정보</div>
+			<div class="eachTab tripleTab three " onclick="pageChange('three')">후기</div>
+		</div>
 		<div id="one" class="eachContents shopCustom">
+		<b>* 최근 이용 고객</b><br/>
+			<div style="width: 100%; padding:10px; overflow: auto; white-space: nowrap; ">
+				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+		</div>
 		<b class="f15">* 상품 리스트</b><br/>
 		<ul data-role="listview" style="margin : 0px 0px 10px 0px; ">
 			<li><b class="left f13">1회 이용권</b> <b class="right f17">5500 원</b></li>
@@ -178,6 +185,7 @@
 			<li><b class="left f13">3개월 회원권</b> <b class="right f17">5500 원</b></li>
 			<li><b class="left f13">5회 피티권</b> <b class="right f17">5500 원</b></li>
 		</ul>
+		<b>* 유의사항</b><br/>
 		<br>
 		   (헬스장측이 더많은 정보를 원할시 통이미지 제작하여 아래 추가)
 		 <br><br>
@@ -186,14 +194,10 @@
 		
 		</div>
 		<div id="two" class="eachContents font f15" style="display: none;">
-			<b>* 최근 이용 고객</b><br/>
-			<div style="width: 100%; padding:10px; overflow: auto; white-space: nowrap; ">
-				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
-				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
-			</div>
+			
 						
 			<b>* 주소 및 위치</b><br/>
-			<div id="map_canvas" style="width: 100%; height: 250px;"></div>
+			<div id="map_canvas" style="width: 100%; height: 150px;"></div>
 			
 			<p class="f14">
 			주소 : 서울특별시 중구 장충동 445번지<br/>

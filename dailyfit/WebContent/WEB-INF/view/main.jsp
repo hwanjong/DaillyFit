@@ -9,14 +9,18 @@
 <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBMuk4J8j5JNE1PC0UdEWpIMmze8UKMG_U&sensor=true"></script>
 <script type="text/javascript">
 var lat,lng;
+var state=1;
+var paging = 1;
 	function one() {
 		$("#two").hide();
 		$("#one").fadeIn(200);
 
 		$(".one").addClass("activeBar");
 		$(".two").removeClass("activeBar");
+		state=1;
 	}
 	function two() {
+		state=2;
 		$("#twoContents").html("");
 		$("#twoContents").append($("#sample").html());
 		$("#one").hide();
@@ -42,8 +46,9 @@ var lat,lng;
 			//그다음비제휴
 			for (var i in shopList) {
 				if(shopList[i].mainImgUrl==""){
+					var pageCount = parseInt(i/10)+1;
 					//var htmlCode = '<a target="_blank" href="noShop.ap?shopNum='+shopList[i].shopNum+'\'" ><div class="shop">'+shopList[i].shopName;
-					var htmlCode = '<div class="shop" onclick="location.href='+'\'noShop.ap?shopNum='+shopList[i].shopNum+'\'" >'+shopList[i].shopName;
+					var htmlCode = '<div class="shop '+pageCount+'" style="display:none;" onclick="location.href='+'\'noShop.ap?shopNum='+shopList[i].shopNum+'\'" >'+shopList[i].shopName;
 					if(shopList[i].tel!=""){
 						htmlCode+='<span style="font-size: 13px;"	class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>';
 					}
@@ -51,6 +56,7 @@ var lat,lng;
 					$("#twoContents").append(htmlCode);
 				}
 			}
+			$(".1").show();
 		},"json");
 		
 		
@@ -73,10 +79,26 @@ var lat,lng;
 		$("#loadingDiv").hide();
 		$("#page").css("opacity","1");
 	}
+	
+
 	$(document).ready(function() { // 해당 페이지 Loading 후,
+		//스크롤링 
+		$(window).scroll( function() {
+			console.log($(window).scrollTop()+", "+$(document).height()+", "+$(window).height()+", state: "+state);
+			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+				if(state==2){
+					$("#loadingImg").show();
+					setTimeout(function(){
+						paging++;
+						$("."+paging).show();
+						$("#loadingImg").hide();
+					},1000);
+					
+				}
+			}
+		});
 		
 	
-		var state=1;
 		$(".ui-input-search").hide();
 		
 		if (navigator.geolocation) {
@@ -89,14 +111,6 @@ var lat,lng;
 		}else{
 			alert("위치찾기 실패");
 		}
-		
-		/* swipe 
-		$("html").on("swipe",function(){
-			if(state%2==1)two();
-			else one();
-			state++;
-		});
-		*/
 		
 		var broswerInfo = navigator.userAgent;
 		if(broswerInfo.indexOf("APP_ANDROID")>-1){
@@ -201,12 +215,9 @@ var lat,lng;
 			<div id="two" style="height: 100%; display: none;">
 				<input data-type="search" id="divOfPs-input" onblur="stopSearch();">
 				<div id="twoContents" data-filter="true" data-input="#divOfPs-input" data-inset="true" data-children=">div">
-				<div class="premium" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop3_3.JPG"
-						style="width: 100%; height: 100%;">
-					<p class="left f18">힐스테이트헬스</p>
-					<p class="right bold">7.21km</p>
 				</div>
+				<div id="loadingImg" style="text-align: center; display:none; margin: 10px 0px;">
+					<img src="/dailyfit/img/ajax-loader-basic.gif">
 				</div>
 				<div id= "sample" style="display: none;">
 					<div class="premium" onclick="location.href='shop.ap'" >
