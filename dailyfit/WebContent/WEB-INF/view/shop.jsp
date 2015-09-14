@@ -162,8 +162,8 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-		<div id="specialItem">
-			1회 이용권 5900원
+		<div id="specialItem" style="text-align: right;">
+			<span class="font f12 b">1회 이용권</span> <span class="font f17 b" style="margin: 20px;">5900 원</span>
 		</div>
 
 		<!--Tab area -->
