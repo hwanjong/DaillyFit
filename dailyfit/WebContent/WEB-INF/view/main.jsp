@@ -84,7 +84,6 @@ var paging = 1;
 	$(document).ready(function() { // 해당 페이지 Loading 후,
 		//스크롤링 
 		$(window).scroll( function() {
-			console.log($(window).scrollTop()+", "+$(document).height()+", "+$(window).height()+", state: "+state);
 			if ($(window).scrollTop() == $(document).height() - $(window).height()) {
 				if(state==2){
 					$("#loadingImg").show();
