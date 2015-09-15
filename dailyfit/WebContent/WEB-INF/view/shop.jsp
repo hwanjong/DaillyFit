@@ -214,12 +214,11 @@
 	  			</div>
   				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">옆에서 런닝뛰던 훈훈제복남님 언제오시나요 &gt;_&lt; 보고싶어요♡</div> 
 			</div>
-			
 			<div class="alert alert-info" role="alert">
 				<div style="width: 20%; display: inline-block;">
-	  				<img src="/dailyfit/img/jinny.PNG" width="100%;" class="img-circle">
+	  				<img src="/dailyfit/img/channy.PNG" width="100%;" class="img-circle">
 	  			</div>
-  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">여기 완전 추천!!!!</div> 
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">피티쌤이 정말이쁩니다 헤헷 또가고싶은 헬스장!!!</div> 
 			</div>
 			
 			<div class="alert alert-success" role="alert">
@@ -231,9 +230,9 @@
 			
 			<div class="alert alert-info" role="alert">
 				<div style="width: 20%; display: inline-block;">
-	  				<img src="/dailyfit/img/channy.PNG" width="100%;" class="img-circle">
+	  				<img src="/dailyfit/img/jinny.PNG" width="100%;" class="img-circle">
 	  			</div>
-  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">피티쌤이 정말이쁩니다 헤헷 또가고싶은 헬스장!!!</div> 
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">어제 번호따였음....날좀내버려둬!!!</div> 
 			</div>
 			
 		</div>
