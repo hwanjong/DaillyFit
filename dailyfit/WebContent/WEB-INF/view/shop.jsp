@@ -162,8 +162,10 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-		<div id="specialItem" style="text-align: right;">
-			<span class="font f12 b">1회 이용권</span> <span class="font f17 b" style="margin: 20px;">5900 원</span>
+		<div id="specialItem" style="padding: 10px; text-align: right; border-bottom : groove 1px;">
+			<p class="font f19 b" style="margin-bottom: 3px; margin-left:5px; float: left;">[젊은이가 많은 헬스장]</p>
+			<p class="font f19 b" style="margin-bottom: 3px; float: right;">스포애니(잠실점)</p>
+			<p style="clear: both; margin-bottom: 3px; "><span class="font f12 b" style="color: gray; padding-right: 5px;">1회 이용권</span> <span class="font f17 b" style="color: gray;">5900 원</span></p>
 		</div>
 
 		<!--Tab area -->
