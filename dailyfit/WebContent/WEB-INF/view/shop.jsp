@@ -129,7 +129,7 @@
 			onclick="search();"></span>
 
 	</div>
-	<div id="contents" role="main" style="overflow: auto;">
+	<div id="contents" role="main" style="overflow: hidden;">
 		<div id="carousel-example-generic" class="carousel slide"
 			style="height: 180px; top:-1px;" data-ride="carousel">
 			<!-- Indicators -->
@@ -163,7 +163,7 @@
 			</a>
 		</div>
 		<div id="specialItem" style="padding: 10px; text-align: right; border-bottom : groove 1px;">
-			<p class="font f19 b" style="margin-bottom: 3px; margin-left:5px; float: left;">[젊은이가 많은 헬스장]</p>
+			<p class="font f19 b" style="margin-bottom: 3px; padding-left:5px; float: left;">[젊은이가 많은 헬스장]</p>
 			<p class="font f19 b" style="margin-bottom: 3px; float: right;">스포애니(잠실점)</p>
 			<p style="clear: both; margin-bottom: 3px; "><span class="font f12 b" style="color: gray; padding-right: 5px;">1회 이용권</span> <span class="font f17 b" style="color: gray;">5900 원</span></p>
 		</div>
@@ -207,8 +207,35 @@
 			</p>
 		</div>
 			
-		<div id="three" class="eachContents font f18 b" style="display: none;">
-			이부분 얘기해봐야함 (서버쪽설계문제)<br/>
+		<div id="three" class="eachContents font f12 b" style="display: none;">
+			<div class="alert alert-success" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/sunny.png" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">옆에서 런닝뛰던 훈훈제복남님 언제오시나요 &gt;_&lt; 보고싶어요♡</div> 
+			</div>
+			
+			<div class="alert alert-info" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/jinny.PNG" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">여기 완전 추천!!!!</div> 
+			</div>
+			
+			<div class="alert alert-success" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/junny.png" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">초콜릿 좋아요♥♥♥♥ (다욧트언제하지...)</div> 
+			</div>
+			
+			<div class="alert alert-info" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/channy.PNG" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">피티쌤이 정말이쁩니다 헤헷 또가고싶은 헬스장!!!</div> 
+			</div>
+			
 		</div>
 		<div id="void"></div>
 	</div>
