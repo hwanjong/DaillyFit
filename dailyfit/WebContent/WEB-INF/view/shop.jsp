@@ -232,7 +232,7 @@
 				<div style="width: 20%; display: inline-block;">
 	  				<img src="/dailyfit/img/jinny.PNG" width="100%;" class="img-circle">
 	  			</div>
-  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">어제 번호따였음....날좀내버려둬!!!</div> 
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">어제 여기서 또 번호따였어....남자들아 제발 나좀 내버려둬ㅠㅠㅠㅠ</div> 
 			</div>
 			
 		</div>
