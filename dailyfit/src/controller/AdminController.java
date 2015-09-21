@@ -35,6 +35,16 @@ public class AdminController {
 
 		return mv;
 	}
+	@Mapping(url="/addShop.ap")
+	ModelView getAddShopPage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/addShop");
+		return mv;
+	}
+	@Mapping(url="/delShop.ap")
+	ModelView getDelShopPage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/delShop");
+		return mv;
+	}
 	
 	@Mapping(url="/registLocation.ap")
 	ModelView registGeoLocation(HttpServletRequest request,HttpServletResponse response){

@@ -8,6 +8,7 @@
 		<id column="shop_name" property="shopName" />
 		<id column="product_url" property="productUrl" />
 		<id column="main_img_url" property="mainImgUrl" />
+		<id column="shop_nicname" property="shopNicName" />
 	</resultMap>
 	
 	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
@@ -27,4 +28,11 @@
 		select * from shop_list where shop_num = #{shopNum}
 	</select>
 	
+	<select id="getShopSearchList" resultType="Shop" resultMap="shopInfoMap">
+	    SELECT * FROM shop_list where shop_name like concat('%',#{shopName},'%')
+	</select>
+	
+	<delete id="deleteShop">
+	    delete from shop_list where shop_num=#{shopNum}
+	</delete>
 </mapper>

@@ -11,5 +11,6 @@ public interface ShopMapper {
 	void updateLocateInfo(Shop shop);
 	ArrayList<Shop> getRangeShop(@Param("lat")String lat, @Param("lng")String lng);
 	Shop getShopinfo(@Param("shopNum")String shopNum);
-
+	ArrayList<Shop> getShopSearchList(@Param("shopName")String shopName);
+	void deleteShop(@Param("shopNum")String shopNum);
 }

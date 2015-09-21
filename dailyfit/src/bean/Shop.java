@@ -12,6 +12,8 @@ public class Shop implements Serializable{
 	private String tel;
 	private String mainImgUrl;
 	private String distance;
+	private String shopNicname;
+	
 	public int getShopNum() {
 		return shopNum;
 	}
@@ -65,5 +67,11 @@ public class Shop implements Serializable{
 	}
 	public void setDistance(String distance) {
 		this.distance = distance;
+	}
+	public String getShopNicname() {
+		return shopNicname;
+	}
+	public void setShopNicname(String shopNicname) {
+		this.shopNicname = shopNicname;
 	}
 }

@@ -41,7 +41,6 @@
 			}
 		});
 		$("#totalPrice").text(sum+" 원");
-		
 	}
 	
 	function buyRequest(){
@@ -163,8 +162,8 @@
 			</a>
 		</div>
 		<div id="specialItem" style="padding: 10px; text-align: right; border-bottom : groove 1px;">
-			<p class="font f19 b" style="margin-bottom: 3px; padding-left:5px; float: left;">[젊은이가 많은 헬스장]</p>
-			<p class="font f19 b" style="margin-bottom: 3px; float: right;">스포애니(잠실점)</p>
+			<p class="font f19 b" style="margin-bottom: 3px; padding-left:5px; text-align: left;">[젊은이가 많은 헬스장]</p>
+			<p class="font f19 b" style="margin-bottom: 3px; text-align: right;">스포애니(잠실점)</p>
 			<p style="clear: both; margin-bottom: 3px; "><span class="font f12 b" style="color: gray; padding-right: 5px;">1회 이용권</span> <span class="font f17 b" style="color: gray;">5900 원</span></p>
 		</div>
 
