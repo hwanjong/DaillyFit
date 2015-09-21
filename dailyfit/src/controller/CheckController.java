@@ -41,8 +41,15 @@ public class CheckController {
 		ModelView mv = new ModelView("/jsonView");
 		ShopDAO dao = new ShopDAO();
 		String shopNum = request.getParameter("shopNum");
-		dao.deleteShop(shopNum);
-		return mv;
+		String adminPw = request.getParameter("adminPw");
+		if(adminPw.equals("sunny")){
+			dao.deleteShop(shopNum);
+			mv.setModel("check", "yes");
+			return mv;
+		}else{
+			mv.setModel("check", "no");
+			return mv;
+		}
 	}
 	
 	

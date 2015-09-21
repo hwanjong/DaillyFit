@@ -6,14 +6,23 @@
 <head>
 <script type="text/javascript">
 function delShop(shopNum){
+	var adminPw = prompt("관리자 코드 입력");
 	if(confirm("정말 삭제하시겠습니까?")==true){
-		$("#"+shopNum).remove();
 		showLoading();
 		$.post("/dailyfit/check/delShop.ap",{
+			adminPw:adminPw,
 			shopNum : shopNum
 		},function(data){
+			
+			if(data.registed=="yes"){
+				$("#"+shopNum).remove();
+				alert("서버DB에서 삭제완료");	
+			}else{
+				alert("관리자코드 불일치");	
+			}
+			
 			hideLoading();
-			alert("서버DB에서 삭제완료");
+			
 		},"json");
 	}
 }
