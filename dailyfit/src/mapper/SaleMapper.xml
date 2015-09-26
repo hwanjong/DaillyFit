@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SaleMapper">
+
+	<insert id="addSaleProduct" parameterType="Sale">
+		insert into sale_list(shop_num, sale_type, type_amount, sale_price) values(#{shopNum},#{saleType},#{typeAmount},#{salePrice})
+	</insert>
+	
+</mapper>

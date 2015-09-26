@@ -64,14 +64,15 @@ public class RootController {
 		ShopDAO dao = new ShopDAO();
 		String lat = request.getParameter("lat");
 		String lng = request.getParameter("lng");
+		System.out.println("range request"+lat+", "+lng);
 		ArrayList<Shop> shopList = null;
 		shopList= dao.getRangeShop(lat,lng);
 		for(Shop shop:shopList){
 			double lat1=Double.parseDouble(lat);
 			double lng1=Double.parseDouble(lng);
 			
-			double lat2=shop.getLat();
-			double lng2=shop.getLng();
+			double lat2=Double.parseDouble(shop.getLat());
+			double lng2=Double.parseDouble(shop.getLng());
 			double theta = lng1 - lng2;
 			double dist = Math.sin(deg2rad(lat1)) * Math.sin(deg2rad(lat2))+ Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2))* Math.cos(deg2rad(theta));
 			dist=Math.acos(dist);

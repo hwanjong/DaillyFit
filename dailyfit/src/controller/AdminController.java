@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Sale;
 import bean.Shop;
 import dao.ShopDAO;
 import hello.annotation.Mapping;
@@ -40,12 +41,74 @@ public class AdminController {
 		ModelView mv = new ModelView("/admin/addShop");
 		return mv;
 	}
+	@Mapping(url="/addShop.ap", method="post",bean="bean.Shop")
+	ModelView registShop(HttpServletRequest request,HttpServletResponse response,Object bean){
+		ModelView mv = new ModelView("/admin/addShop");
+		Shop shop = (Shop) bean;
+		ArrayList<Sale> saleList = new ArrayList<Sale>();
+		for(String str : request.getParameterValues("checked")){
+			if(str.equals("option1")){
+				saleList.add(new Sale("D", "1", shop.getDprice()));
+			}else if(str.equals("option2")){
+				saleList.add(new Sale("C", shop.getC(), shop.getCprice()));
+			}else if(str.equals("option3")){
+				saleList.add(new Sale("M", shop.getM(), shop.getMprice()));
+			}else if(str.equals("option4")) {
+				saleList.add(new Sale("P", shop.getP(), shop.getPprice()));
+			}
+		}
+		shop.setSaleList(saleList);
+		ShopDAO dao = new ShopDAO();
+		dao.addShop(shop);
+		return mv;
+	}
+	
 	@Mapping(url="/delShop.ap")
 	ModelView getDelShopPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/admin/delShop");
 		return mv;
 	}
-	
+	@Mapping(url="/requestLoaction.ap", method="post")
+	ModelView getLoation(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/locationJson");
+		String address = request.getParameter("address");
+		//여기부분 registGeoLocation과 중복 나중에처리
+		try {
+			address=URLEncoder.encode(address, "UTF-8");
+			String url = "http://openapi.map.naver.com/api/geocode?key=b5168682c5a10f1e5b7592ae92fbb844&encoding=utf-8&coord=latlng&query="+address;
+			URL mapXmlUrl = new URL(url);  //URL연결하고 받아오고 하는 부분들은 import가 필요하다. java.net.*
+			HttpURLConnection urlConn = (HttpURLConnection)mapXmlUrl.openConnection();
+			urlConn.setDoOutput(true);
+			urlConn.setRequestMethod("POST");
+
+			int len = urlConn.getContentLength();  //받아오는 xml의 길이
+
+			if(len > 0){ 
+				BufferedReader br = new BufferedReader(new InputStreamReader(urlConn.getInputStream(),"utf-8"));
+				String inputLine="";
+				String mapxml = ""; //받아온 xml
+				while((inputLine = br.readLine())!=null){
+					mapxml += inputLine;  //한글자씩 읽어옵니다
+				}
+				if(mapxml != null){
+					if(mapxml.indexOf("</item>") > -1 ){   //item이 있으면 좌표를 받아와야지
+						String lat = "";  //위도
+						String lon = "";  //경도
+						lon = mapxml.substring( mapxml.indexOf("<x>")+3, mapxml.indexOf("</x>") ) ; //경도 잘라오기
+						lat = mapxml.substring( mapxml.indexOf("<y>")+3, mapxml.indexOf("</y>") ) ; //위도 잘라오기
+						mv.setModel("lat", Double.parseDouble(lat));
+						mv.setModel("lng", Double.parseDouble(lon));
+					}
+				}
+				br.close();  //버퍼리더 닫기
+			}
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+		
+		return mv;
+	}
 	@Mapping(url="/registLocation.ap")
 	ModelView registGeoLocation(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("redirect:/dailyfit/admin/geoLocation.ap");
@@ -77,8 +140,8 @@ public class AdminController {
 							String lon = "";  //경도
 							lon = mapxml.substring( mapxml.indexOf("<x>")+3, mapxml.indexOf("</x>") ) ; //경도 잘라오기
 							lat = mapxml.substring( mapxml.indexOf("<y>")+3, mapxml.indexOf("</y>") ) ; //위도 잘라오기
-							shop.setLat(Double.parseDouble(lat));
-							shop.setLng(Double.parseDouble(lon));
+							shop.setLat(lat);
+							shop.setLng(lon);
 							
 						}
 					}

@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import bean.Sale;
 import bean.Shop;
-import bean.User;
+import mapper.SaleMapper;
 import mapper.ShopMapper;
 import mybatis.config.MyBatisManager;
 
@@ -105,5 +106,29 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 		}finally{
 			session.close();
 		}
+	}
+	
+	public boolean addShop(Shop shop){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			mapper.addShop(shop);
+			session.commit();
+			
+			int lastIndexShopNum = mapper.lastIndex();
+			SaleMapper saleMapper = session.getMapper(SaleMapper.class);
+			for(Sale sale : shop.getSaleList()){
+				sale.setShopNum(lastIndexShopNum);
+				saleMapper.addSaleProduct(sale);
+			}
+			
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			session.close();
+		}
+		return true;
 	}
 }

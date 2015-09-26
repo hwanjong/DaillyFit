@@ -8,7 +8,7 @@
 		<id column="shop_name" property="shopName" />
 		<id column="product_url" property="productUrl" />
 		<id column="main_img_url" property="mainImgUrl" />
-		<id column="shop_nicname" property="shopNicName" />
+		<id column="shop_nicname" property="shopNicname" />
 	</resultMap>
 	
 	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
@@ -35,4 +35,12 @@
 	<delete id="deleteShop">
 	    delete from shop_list where shop_num=#{shopNum}
 	</delete>
+	
+	<insert id="addShop" parameterType="Shop">
+		insert into shop_list(shop_name,lat,lng,address,tel,main_img_url,shop_nicname,special_item) values(#{shopName},#{lat},#{lng},#{address},#{tel},#{mainImgUrl},#{shopNicname},#{special})
+	</insert>
+	
+	<select id="lastIndex" resultType="int">
+		select LAST_INSERT_ID()
+	</select>
 </mapper>
