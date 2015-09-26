@@ -6,7 +6,12 @@
 <head>
 <script type="text/javascript">
 function regist(){
-	$("#regist").submit();
+	if( $("#shopName").val()=="" || $("#shopNicname").val()==""|| $("#tel").val()=="" || $("#address").val()=="" || $("#lat").val()==""||$("#dPrice").val()=="" ){
+		alert("필수정보 누락");
+	}else{
+		$("#regist").submit();
+	}
+	
 }
 
 function getLocation(){
@@ -34,19 +39,19 @@ function getLocation(){
 		<div class="form-group">
 			<label class="col-sm-2 control-label">헬스장이름</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" placeholder="트레보" name="shopName">
+				<input type="text" class="form-control" placeholder="트레보" id="shopName" name="shopName">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword" class="col-sm-2 control-label">헬스장별명</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" placeholder="젊은이가많은헬스장" name="shopNicname">
+				<input type="text" class="form-control" placeholder="젊은이가많은헬스장" id="shopNicname" name="shopNicname">
 			</div>
 		</div>
 		<div class="form-group">
 			<label for="inputPassword" class="col-sm-2 control-label">전화번호</label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" placeholder="02-526-4575" name="tel">
+				<input type="text" class="form-control" placeholder="02-526-4575" id="tel" name="tel">
 			</div>
 		</div>
 		<div class="form-group">
