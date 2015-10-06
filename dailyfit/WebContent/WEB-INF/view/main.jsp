@@ -41,7 +41,7 @@ var paging = 1;
 					var imgUrl = shopList[i].mainImgUrl;
 					//제휴 먼저표시
 
-					var htmlCode ='<div class="premium" onclick="location.href=shop.ap"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap\'"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
 
 					$("#twoContents").append(htmlCode);
 				}
