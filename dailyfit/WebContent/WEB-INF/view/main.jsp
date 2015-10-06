@@ -38,8 +38,10 @@ var paging = 1;
 			for (var i in shopList) {
 				if(shopList[i]=="")continue;
 				if(shopList[i].mainImgUrl!=""){
+					var imgUrl = shopList[i].mainImgUrl;
 					//제휴 먼저표시
-					var htmlCode ='<div class="premium" onclick="location.href=' + '\'shop.ap\'' + '><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					var htmlCode ='<div class="premium" onclick="location.href='+"\'shop.ap\'+" '><img src=\'/dailyfit/img/shop3_2.png\' style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					alert(htmlCode);
 					$("#twoContents").append(htmlCode);
 				}
 			}
@@ -47,8 +49,7 @@ var paging = 1;
 			for (var i in shopList) {
 				if(shopList[i].mainImgUrl==""){
 					var pageCount = parseInt(i/10)+1;
-					//var htmlCode = '<a target="_blank" href="noShop.ap?shopNum='+shopList[i].shopNum+'\'" ><div class="shop">'+shopList[i].shopName;
-					var htmlCode = '<div class="shop '+pageCount+'" style="display:none;" onclick="location.href='+'\'noShop.ap?shopNum='+shopList[i].shopNum+'\'" >'+shopList[i].shopName;
+ 					var htmlCode = '<div class="shop '+pageCount+'" style="display:none;" onclick="location.href='+'\'noShop.ap?shopNum='+shopList[i].shopNum+'\'" >'+shopList[i].shopName;
 					if(shopList[i].tel!=""){
 						htmlCode+='<span style="font-size: 13px;"	class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>';
 					}
@@ -214,6 +215,7 @@ var paging = 1;
 			<div id="two" style="height: 100%; display: none;">
 				<input data-type="search" id="divOfPs-input" onblur="stopSearch();">
 				<div id="twoContents" data-filter="true" data-input="#divOfPs-input" data-inset="true" data-children=">div">
+					
 				</div>
 				<div id="loadingImg" style="text-align: center; display:none; margin: 10px 0px;">
 					<img src="/dailyfit/img/ajax-loader-basic.gif">
