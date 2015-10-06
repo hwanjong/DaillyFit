@@ -40,8 +40,12 @@ var paging = 1;
 				if(shopList[i].mainImgUrl!=""){
 					var imgUrl = shopList[i].mainImgUrl;
 					//제휴 먼저표시
+<<<<<<< HEAD
 					var htmlCode ='<div class="premium" onclick="location.href='+"\'shop.ap\'+" '><img src=\'/dailyfit/img/shop3_2.png\' style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
 					alert(htmlCode);
+=======
+					var htmlCode ='<div class="premium" onclick="location.href=shop.ap"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+>>>>>>> e8458fbc9016e2b421eca69ee1f59a8a873c2f36
 					$("#twoContents").append(htmlCode);
 				}
 			}
