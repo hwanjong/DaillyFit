@@ -7,8 +7,7 @@ import java.util.Comparator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils.Collections;
-
+import bean.Sale;
 import bean.Shop;
 import bean.User;
 import dao.InfoDAO;
@@ -31,9 +30,25 @@ public class RootController {
 		System.out.println("main요청");
 		return mv;
 	}
-	@Mapping(url="/shop.ap")
+	@Mapping(url="/shop.ap",method="get")
 	ModelView getShopPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/shop");
+		String shopNum = request.getParameter("shopNum");
+		ShopDAO dao = new ShopDAO();
+		Shop shop = dao.getshopInfo(shopNum);
+		ArrayList<Sale> saleList =dao.getSaleProduct(shopNum);
+		//일일권찾아서Shop에박고, 이름을 매칭시키기
+		for(Sale sale : saleList){
+			if(sale.getSaleType().equals("D")){
+				shop.setDprice(sale.getSalePrice());
+			}
+			if(sale.getSaleType().equals("D")) sale.setSaleName("1회 이용권");
+			else if(sale.getSaleType().equals("C")) sale.setSaleName(sale.getTypeAmount()+"회 이용권");
+			else if(sale.getSaleType().equals("M")) sale.setSaleName(sale.getTypeAmount()+"개월 이용권");
+			else if(sale.getSaleType().equals("P")) sale.setSaleName(sale.getTypeAmount()+"회 피티권");
+		}
+		mv.setModel("shop", shop);
+		mv.setModel("saleList", saleList);
 		return mv;
 	}
 	@Mapping(url="/mypage")
@@ -85,6 +100,18 @@ public class RootController {
 		
 		mv.setModel("shopList", shopList);
 		
+		return mv;
+	}
+	@Mapping(url="/searchShop.ap",method="post")
+	ModelView searchShop(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/shopJson");
+		ShopDAO dao = new ShopDAO();
+		String shopName = request.getParameter("searchText");
+		String lat = request.getParameter("lat");
+		String lng = request.getParameter("lng");
+		ArrayList<Shop> shopList = dao.getShopListByName(shopName);
+		calDistance(shopList, lat, lng);
+		mv.setModel("shopList", shopList);
 		return mv;
 	}
 	

@@ -12,7 +12,9 @@ var lat,lng;
 var state=1;
 var paging = 1;
 	function one() {
+		state=1;
 		$("#two").hide();
+		$("#three").hide();
 		$("#one").fadeIn(200);
 
 		$(".one").addClass("activeBar");
@@ -26,7 +28,7 @@ var paging = 1;
 			var shopList = data.shopList;
 			for (var i in shopList) {
 				if(shopList[i]=="")continue;
-				var htmlCode ='<div class="item" onclick="location.href=\'shop.ap\'"><img src="/dailyfit/img/shop1_item2.jpg"><div class="itemTitle"><p class="m1">'+shopList[i].shopName+'</p><span class="subTitle">1회 이용권 '+shopList[i].dprice+'원</span><span class="post">후기 0개</span></div><div class="distance">'+shopList[i].distance+'km</div></div>"';
+				var htmlCode ='<div class="item" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="/dailyfit/img/shop1_item2.jpg"><div class="itemTitle"><p class="m1">'+shopList[i].shopName+'</p><span class="subTitle">1회 이용권 '+shopList[i].dprice+'원</span><span class="post">후기 0개</span></div><div class="distance">'+shopList[i].distance+'km</div></div>"';
 				$("#daily").append(htmlCode);
 			}
 		},"json");
@@ -34,8 +36,8 @@ var paging = 1;
 	function two() {
 		state=2;
 		$("#twoContents").html("");
-		$("#twoContents").append($("#sample").html());
 		$("#one").hide();
+		$("#three").hide();
 		$("#two").fadeIn(200);
 
 		$(".two").addClass("activeBar");
@@ -53,7 +55,7 @@ var paging = 1;
 					var imgUrl = shopList[i].mainImgUrl;
 					//제휴 먼저표시
 
-					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap\'"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
 					$("#twoContents").append(htmlCode);
 				}
 			}
@@ -76,10 +78,45 @@ var paging = 1;
 		$(".shop").removeClass("ui-screen-hidden");
 		$(".premium").removeClass("ui-screen-hidden");
 	}
+	function three(){
+		state=3;
+		$("#one").hide();
+		$("#two").hide();
+		$("#three").fadeIn(200);
+		$("#searchInput").focus();
+	}
 	function search() {
-		two();
-		$(".ui-input-search").show();
-		$("#divOfPs-input").focus();
+		$("#searchContents").html("");
+		var text = $("#searchInput").val();
+		$.post("searchShop.ap",{
+			searchText : text,
+			lat : lat,
+			lng : lng
+		},function(data){
+			var shopList = data.shopList;
+			//제휴먼저
+			for (var i in shopList) {
+				if(shopList[i]=="")continue;
+				if(shopList[i].mainImgUrl!=""){
+					var imgUrl = shopList[i].mainImgUrl;
+					//제휴 먼저표시
+					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					$("#searchContents").append(htmlCode);
+				}
+			}
+			//그다음비제휴
+			for (var i in shopList) {
+				if(shopList[i].mainImgUrl==""){
+ 					var htmlCode = '<div class="shop" onclick="location.href='+'\'noShop.ap?shopNum='+shopList[i].shopNum+'\'" >'+shopList[i].shopName;
+					if(shopList[i].tel!=""){
+						htmlCode+='<span style="font-size: 13px;"	class="glyphicon glyphicon-earphone pull-right" aria-hidden="true"></span>';
+					}
+					htmlCode+='<p>'+shopList[i].distance+'km</p></div>';
+					$("#searchContents").append(htmlCode);
+				}
+			}
+		},"json");
+		
 	}
 	function stopSearch(){
 		$(".ui-input-search").hide();
@@ -140,7 +177,7 @@ var paging = 1;
 			class="glyphicon glyphicon-option-horizontal right"
 			aria-hidden="true" onclick="alert('거리순&가격순보기준비중입니다.')"></span> <span
 			class="glyphicon glyphicon-search right" aria-hidden="true"
-			onclick="search();"></span>
+			onclick="three();"></span>
 
 	</div>
 	<div id="loadingDiv" class="font">
@@ -192,22 +229,26 @@ var paging = 1;
 				 -->
 			</div>
 			<div id="two" style="height: 100%; display: none;">
-				<input data-type="search" id="divOfPs-input" onblur="stopSearch();">
 				<div id="twoContents" data-filter="true" data-input="#divOfPs-input" data-inset="true" data-children=">div">
 					
 				</div>
 				<div id="loadingImg" style="text-align: center; display:none; margin: 10px 0px;">
 					<img src="/dailyfit/img/ajax-loader-basic.gif">
 				</div>
-				<div id= "sample" style="display: none;">
-					<div class="premium" onclick="location.href='shop.ap'" >
-						<img src="/dailyfit/img/shop3_2.png"
-							style="width: 100%; height: 100%;">
-						<p class="left f18">보령헬스(제휴-상단노출)</p>
-						<p class="right bold">13.57km</p>
-					</div>
-				</div>
 				
+			</div>
+			<div id="three" style="height: 100%; display: none;">
+				 <div class="col-lg-6">
+				    <div class="input-group">
+				      <input type="text" id="searchInput"class="form-control" placeholder="Search for..." onfocus='$("#footer").hide();' onblur='$("#footer").show();'>
+				      <span class="input-group-btn">
+				        <button class="btn btn-default" style="width: 60px;" type="button" onclick="search();"> <span
+			class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+				      </span>
+				    </div><!-- /input-group -->
+				  </div><!-- /.col-lg-6 -->
+				  <div id="searchContents">
+				  </div>
 			</div>
 		</div>
 	</div>

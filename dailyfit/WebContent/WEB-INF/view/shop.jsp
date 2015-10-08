@@ -64,9 +64,10 @@
 	var map;
 	var infoWindow;
 	var markerList = [];
+	var lat,lng;
 	function initialize() {
-		var lat = '37.557549';
-		var lng = '127.00764'
+		lat = '${model.shop.lat}';
+		lng = '${model.shop.lng}';
 		var mapOptions = {
 			center : new google.maps.LatLng(lat, lng),
 			zoom : 15,
@@ -91,9 +92,8 @@
 			anchor : new google.maps.Point(16, 32)
 		};
 		
-		var myLatLng = new google.maps.LatLng("37.557549",
-				"127.00764");
-		var name = "트레보스포츠";
+		var myLatLng = new google.maps.LatLng(lat,
+				lng);
 
 		var marker = new google.maps.Marker({
 			position : myLatLng,
@@ -120,10 +120,11 @@
 </script>
 </head>
 <body>
+<c:set var="shop" value="${model.shop}"/>
 	<div id="headBar" data-role="header" data-position="fixed"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
-			onclick="javascript:history.go(-1)"></span> <span> 스포애니(잠실점)</span> <span
+			onclick="javascript:history.go(-1)"></span> <span> ${shop.shopName}</span> <span
 			class="glyphicon glyphicon-search right" aria-hidden="true"
 			onclick="search();"></span>
 
@@ -162,9 +163,9 @@
 			</a>
 		</div>
 		<div id="specialItem" style="padding: 10px; text-align: right; border-bottom : groove 1px;">
-			<p class="font f19 b" style="margin-bottom: 3px; padding-left:5px; text-align: left;">[젊은이가 많은 헬스장]</p>
-			<p class="font f19 b" style="margin-bottom: 3px; text-align: right;">스포애니(잠실점)</p>
-			<p style="clear: both; margin-bottom: 3px; "><span class="font f12 b" style="color: gray; padding-right: 5px;">1회 이용권</span> <span class="font f17 b" style="color: gray;">5900 원</span></p>
+			<p class="font f19 b" style="margin-bottom: 3px; padding-left:5px; text-align: left;">[${shop.shopNicname }]</p>
+			<p class="font f19 b" style="margin-bottom: 3px; text-align: right;">${shop.shopName }</p>
+			<p style="clear: both; margin-bottom: 3px; "><span class="font f12 b" style="color: gray; padding-right: 5px;">1회 이용권</span> <span class="font f17 b" style="color: gray;">${shop.dprice } 원</span></p>
 		</div>
 
 		<!--Tab area -->
@@ -181,18 +182,14 @@
 		</div>
 		<b class="f15">* 상품 리스트</b><br/>
 		<ul data-role="listview" style="margin : 0px 0px 10px 0px; ">
-			<li><b class="left f13">1회 이용권</b> <b class="right f17">5500 원</b></li>
-			<li><b class="left f13">10회 이용권</b> <b class="right f17">5500 원</b></li>
-			<li><b class="left f13">3개월 회원권</b> <b class="right f17">5500 원</b></li>
-			<li><b class="left f13">5회 피티권</b> <b class="right f17">5500 원</b></li>
+			<c:forEach var="product" items="${model.saleList }">
+			<li>
+				<b class="left f13">${product.saleName }</b>
+				<b class="right f17">${product.salePrice } 원</b></li>
+			</c:forEach>
 		</ul>
 		<b>* 유의사항</b><br/>
 		<br>
-		   (헬스장측이 더많은 정보를 원할시 통이미지 제작하여 아래 추가)
-		 <br><br>
-		<img src="/dailyfit/img/sample.jpg">
-		<img src="/dailyfit/img/sample2.jpg">
-		
 		</div>
 		<div id="two" class="eachContents font f15" style="display: none;">
 			
@@ -201,8 +198,8 @@
 			<div id="map_canvas" style="width: 100%; height: 150px;"></div>
 			
 			<p class="f14">
-			주소 : 서울특별시 중구 장충동 445번지<br/>
-			연락처 : 02) 458-0578<br/>
+			주소 : ${shop.address }<br/>
+			연락처 : ${shop.tel }<br/>
 			</p>
 		</div>
 			
@@ -245,17 +242,15 @@
 			<span class="glyphicon glyphicon-chevron-down"
 				style="line-height: 2em; font-size: 15px; width: 100%; text-align: center; border-top: 1px groove; background-color: #fff;" onclick="orderDown()"></span>
 				<select id="selectOption" onchange="addOption()">
-					<option id="1" value="1">일일권 4400 원</option>
-					<option id="2" value="2">특-일일권 5500 원</option>
-					<option id="3" value="3">한달권 120000 원</option>
-					<option id="4" value="4">연간회원권 400000 원</option>
+				<c:forEach var="product" items="${model.saleList }">
+					<option value="${product.saleId }">${product.saleName} ${product.salePrice} 원</option>
+				</c:forEach>
 				</select>
 			<table class="table" id="buyTable" style="background-color: white; margin: 0px; width: 100%" >
 				<tbody id="buyList">
-					<tr class="1" style="display: none;"><td>일일권 4400 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">4400</td></tr>
-					<tr class="2" style="display: none;"><td>특-일일권 5500 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">5500</td></tr>
-					<tr class="3" style="display: none;"><td>한달권 120000 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">120000</td></tr>
-					<tr class="4" style="display: none;"><td>연간회원권 400000 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">400000</td></tr>
+				<c:forEach var="product" items="${model.saleList }">
+					<tr class="${product.saleId }" style="display: none;"><td>${product.saleName } ${product.salePrice } 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td class="price" style="display:none; ">${product.salePrice }</td></tr>
+				</c:forEach>
 				</tbody>
 				<tfoot>
 				<tr>

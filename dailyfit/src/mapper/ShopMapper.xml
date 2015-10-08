@@ -11,7 +11,10 @@
 		<id column="shop_nicname" property="shopNicname" />
 		<id column="sale_price" property="dprice" />
 	</resultMap>
-	
+	<select id="getShopInfo" resultType="Shop" resultMap="shopInfoMap">
+	    select * from shop_list where shop_num = #{shopNum}
+	    
+	</select>
 	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
 		select * FROM shop_list where lat = 0
 	</select>

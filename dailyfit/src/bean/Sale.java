@@ -8,7 +8,11 @@ public class Sale implements Serializable{
 	String saleType;
 	String typeAmount;
 	String salePrice;
+	String saleName;
 	
+	public Sale(){
+		
+	}
 	public Sale(String saleType,String typeAmount,String salePrice){
 		this.saleType=saleType;
 		this.typeAmount = typeAmount;
@@ -43,6 +47,12 @@ public class Sale implements Serializable{
 	}
 	public void setSalePrice(String salePrice) {
 		this.salePrice = salePrice;
+	}
+	public String getSaleName() {
+		return saleName;
+	}
+	public void setSaleName(String saleName) {
+		this.saleName = saleName;
 	}
 	
 }

@@ -15,7 +15,7 @@ public class Shop implements Serializable{
 	private String distance;
 	private String shopNicname;
 	
-	//Sale 관련
+	//Sale 관련 addShop용
 	private String c,m,p;
 	private String special;
 	private String dprice,cprice,mprice,pprice;

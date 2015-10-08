@@ -15,6 +15,7 @@ public interface ShopMapper {
 	ArrayList<Shop> getShopSearchList(@Param("shopName")String shopName);
 	void deleteShop(@Param("shopNum")String shopNum);
 	void addShop(Shop shop);
+	Shop getShopInfo(@Param("shopNum")String shopNum);
 	int lastIndex();
 	
 }

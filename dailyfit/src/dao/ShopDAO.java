@@ -12,8 +12,38 @@ import mapper.ShopMapper;
 import mybatis.config.MyBatisManager;
 
 public class ShopDAO {
-public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance();
+	public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance();
 	
+	public Shop getShopInfo(String shopNum){
+		SqlSession session = sqlSessionFactory.openSession();
+		Shop shop = null;
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			shop=  mapper.getShopInfo(shopNum);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+		return shop;
+	}
+	public ArrayList<Sale> getSaleProduct(String shopNum){
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<Sale> saleList = null;
+		try{
+			SaleMapper mapper = session.getMapper(SaleMapper.class);
+			saleList = mapper.getSaleList(shopNum);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+		return saleList;
+	}
+	
+
 	public ArrayList<Shop> getAllShopInfo(){
 		SqlSession session = sqlSessionFactory.openSession();
 		ArrayList<Shop> shopList = null;
@@ -29,7 +59,7 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 		}
 		return shopList;
 	}
-	
+
 	public void updateLocation(Shop shop){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
@@ -51,8 +81,8 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 			ShopMapper mapper = session.getMapper(ShopMapper.class);
 			if(product) shopList=  mapper.getRangeProduct(lat,lng);
 			else shopList=  mapper.getRangeShop(lat,lng);
-				
-			
+
+
 			System.out.println("찾은 shop갯수 : "+shopList.size());
 		}catch(Exception e){
 			e.printStackTrace();
@@ -62,7 +92,7 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 		}
 		return shopList;
 	}
-	
+
 	public ArrayList<Shop> getShopListByName(String shopName) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
@@ -94,7 +124,7 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 			session.close();
 		}
 		return shop;
-		
+
 	}
 
 	public void deleteShop(String shopNum) {
@@ -110,21 +140,21 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 			session.close();
 		}
 	}
-	
+
 	public boolean addShop(Shop shop){
 		SqlSession session = sqlSessionFactory.openSession();
 		try{
 			ShopMapper mapper = session.getMapper(ShopMapper.class);
 			mapper.addShop(shop);
 			session.commit();
-			
+
 			int lastIndexShopNum = mapper.lastIndex();
 			SaleMapper saleMapper = session.getMapper(SaleMapper.class);
 			for(Sale sale : shop.getSaleList()){
 				sale.setShopNum(lastIndexShopNum);
 				saleMapper.addSaleProduct(sale);
 			}
-			
+
 			session.commit();
 		}catch(Exception e){
 			e.printStackTrace();
