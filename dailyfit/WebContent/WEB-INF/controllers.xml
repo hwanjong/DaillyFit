@@ -13,6 +13,10 @@
 		<control-name>admin</control-name>
 		<control-class>controller.AdminController</control-class>
 	</control>
+	<control>
+		<control-name>test</control-name>
+		<control-class>controller.TestController</control-class>
+	</control>
 	<view>
 		<prefix>/WEB-INF/view</prefix>
 		<suffix>.jsp</suffix>
