@@ -9,6 +9,7 @@
 		<id column="product_url" property="productUrl" />
 		<id column="main_img_url" property="mainImgUrl" />
 		<id column="shop_nicname" property="shopNicname" />
+		<id column="sale_price" property="dprice" />
 	</resultMap>
 	
 	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
@@ -23,6 +24,11 @@
 		select * from shop_list where lat
 		between #{lat}-0.03 and #{lat}+0.03 and lng between #{lng}-0.075
 		and #{lng}+0.075
+	</select>
+	<select id="getRangeProduct" resultType="Shop" resultMap="shopInfoMap">
+		select * from shop_list natural join sale_list where lat
+		between #{lat}-0.03 and #{lat}+0.03 and lng between #{lng}-0.075
+		and #{lng}+0.075 and sale_type = 'D'
 	</select>
 	<select id="getShopinfo" resultType="Shop" resultMap="shopInfoMap">
 		select * from shop_list where shop_num = #{shopNum}

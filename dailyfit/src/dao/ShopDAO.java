@@ -43,13 +43,16 @@ public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance()
 		}
 	}
 
-	public ArrayList<Shop> getRangeShop(String lat,String lng) {
+	public ArrayList<Shop> getRangeShop(String lat,String lng, boolean product) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		ArrayList<Shop> shopList = null;
 		try{
 			ShopMapper mapper = session.getMapper(ShopMapper.class);
-			shopList=  mapper.getRangeShop(lat,lng);
+			if(product) shopList=  mapper.getRangeProduct(lat,lng);
+			else shopList=  mapper.getRangeShop(lat,lng);
+				
+			
 			System.out.println("찾은 shop갯수 : "+shopList.size());
 		}catch(Exception e){
 			e.printStackTrace();

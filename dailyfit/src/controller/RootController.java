@@ -57,7 +57,21 @@ public class RootController {
 		}
 		return mv;
 	}
-	
+	@Mapping(url="/rangeProduct.ap", method="post")
+	ModelView ajaxRangeProduct(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/shopJson");
+		ShopDAO dao = new ShopDAO();
+		String lat = request.getParameter("lat");
+		String lng = request.getParameter("lng");
+		System.out.println("product요청");
+		ArrayList<Shop> shopList = null;
+		shopList= dao.getRangeShop(lat,lng,true);
+		System.out.println("찾은갯수:"+shopList.size());
+		calDistance(shopList, lat, lng);
+		mv.setModel("shopList", shopList);
+		return mv;
+		
+	}
 	@Mapping(url="/rangeShop.ap",method="post")
 	ModelView ajaxRangeShop(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/shopJson");
@@ -66,7 +80,15 @@ public class RootController {
 		String lng = request.getParameter("lng");
 		System.out.println("range request"+lat+", "+lng);
 		ArrayList<Shop> shopList = null;
-		shopList= dao.getRangeShop(lat,lng);
+		shopList= dao.getRangeShop(lat,lng,false);
+		calDistance(shopList, lat, lng);
+		
+		mv.setModel("shopList", shopList);
+		
+		return mv;
+	}
+	
+	void calDistance(ArrayList<Shop> shopList,String lat,String lng){
 		for(Shop shop:shopList){
 			double lat1=Double.parseDouble(lat);
 			double lng1=Double.parseDouble(lng);
@@ -92,12 +114,7 @@ public class RootController {
 			
 		};
 		java.util.Collections.sort(shopList, comparator);
-		
-		mv.setModel("shopList", shopList);
-		
-		return mv;
 	}
-	
 	
 	private double rad2deg(double rad){
 		return (rad*180.0/Math.PI);

@@ -18,6 +18,18 @@ var paging = 1;
 		$(".one").addClass("activeBar");
 		$(".two").removeClass("activeBar");
 		state=1;
+		$("#daily").html("");
+		$.post("rangeProduct.ap",{
+			lat : lat,
+			lng : lng
+		},function(data){
+			var shopList = data.shopList;
+			for (var i in shopList) {
+				if(shopList[i]=="")continue;
+				var htmlCode ='<div class="item" onclick="location.href=\'shop.ap\'"><img src="/dailyfit/img/shop1_item2.jpg"><div class="itemTitle"><p class="m1">'+shopList[i].shopName+'</p><span class="subTitle">1회 이용권 '+shopList[i].dprice+'원</span><span class="post">후기 0개</span></div><div class="distance">'+shopList[i].distance+'km</div></div>"';
+				$("#daily").append(htmlCode);
+			}
+		},"json");
 	}
 	function two() {
 		state=2;
@@ -39,7 +51,7 @@ var paging = 1;
 				if(shopList[i]=="")continue;
 				if(shopList[i].mainImgUrl!=""){
 					//제휴 먼저표시
-					var htmlCode ='<div class="premium" onclick="location.href=shop.ap"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap\'"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
 					$("#twoContents").append(htmlCode);
 				}
 			}
@@ -106,6 +118,7 @@ var paging = 1;
 				lng = position.coords.longitude;
 				hideLocationLoading();
 				$("#headBar").show();
+				one();
 			});
 		}else{
 			alert("위치찾기 실패");
@@ -150,66 +163,32 @@ var paging = 1;
 				<p id="event" class="m1" style="color: #333; text-align: center;">
 					5만원 정액권 충전하면 10,000포인트 적립?! <img src="/dailyfit/img/temp_money.PNG">
 				</p>
-				<div id="4" class="item" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop1_item1.jpg">
-					<div class=itemTitle>
-						<p class="m1">트레보 스포츠 수원점</p>
-						<span class="subTitle">1회 이용권 7,000원</span> <span class="post">|
-							후기 14개</span>
-					</div>
-					<div class="distance">15.22km</div>
-	
-				</div>
-				<div id="5" class="item" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop1_item2.jpg">
-					<div class=itemTitle>
-						<p class="m1">스포애니(수원점)</p>
-						<span class="subTitle">1회 이용권 5,600원</span> <span class="post">|
-							후기 9개</span>
-					</div>
-					<div class="distance">3.48km</div>
-	
-				</div>
-				<div id="6" class="item" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop2_item1.jpg">
-					<div class=itemTitle>
-						<p class="m1">수원 드래곤힐스파 GYM</p>
-						<span class="subTitle">1회 이용권 4,400원</span> <span class="post">|
-							후기 129개</span>
-					</div>
-					<div class="distance">4.55km</div>
+				<div id="daily">
+					
 				</div>
 				
-				<div id="1" class="item" onclick="location.href='shop.ap'" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop3_1.jpg">
-					<div class=itemTitle>
-						<p class="m1">청룡사우나헬스</p>
-						<span class="subTitle">1회 이용권 8,300원</span> <span class="post">|
-							후기 3개</span>
+					<!-- 
+					<div id="2" class="item" onclick="location.href='shop.ap'">
+						<img src="/dailyfit/img/shop3_2.png">
+						<div class=itemTitle>
+							<p class="m1">레드헷(수원본점)</p>
+							<span class="subTitle">1회 이용권 3,900원</span> <span class="post">|
+								후기 9개</span>
+						</div>
+						<div class="distance">25.98km</div>
 					</div>
-					<div class="distance">13.15km</div>
-				</div>
-				<div id="2" class="item" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop3_2.png">
-					<div class=itemTitle>
-						<p class="m1">레드헷(수원본점)</p>
-						<span class="subTitle">1회 이용권 3,900원</span> <span class="post">|
-							후기 9개</span>
+					
+					<div id="3" class="item" onclick="location.href='shop.ap'">
+						<img src="/dailyfit/img/shop2_item1.jpg">
+						<div class=itemTitle>
+							<p class="m1">드래곤힐스파 GYM</p>
+							<span class="subTitle">1회 이용권 4,400원</span> <span class="post">|
+								후기 129개</span>
+						</div>
+						<div class="distance">4.55km</div>
+		
 					</div>
-					<div class="distance">25.98km</div>
-				</div>
-				
-				<div id="3" class="item" onclick="location.href='shop.ap'">
-					<img src="/dailyfit/img/shop2_item1.jpg">
-					<div class=itemTitle>
-						<p class="m1">드래곤힐스파 GYM</p>
-						<span class="subTitle">1회 이용권 4,400원</span> <span class="post">|
-							후기 129개</span>
-					</div>
-					<div class="distance">4.55km</div>
-	
-				</div>
-	
+				 -->
 			</div>
 			<div id="two" style="height: 100%; display: none;">
 				<input data-type="search" id="divOfPs-input" onblur="stopSearch();">
