@@ -1,0 +1,75 @@
+@CHARSET "UTF-8";
+
+.mySettingContent{
+	height:100%;
+	margin:1em;
+}
+.mySettingContent > div > *{
+	padding:0.3em;
+	margin:0em;	
+}
+.generalInfo{
+	font-size:1.2em;
+}
+.generalInfo > div > span{
+	display: inline-block;
+	width:30%;
+}
+
+.menuFont{
+	font-size : 1.3em;
+	font-weight: bold;
+	border-width:1px;
+	border-top-style: double;
+	border-bottom-style: outset;
+	margin:0em;	
+	padding-top:0.6em;
+	padding-bottom:0.6em;
+}
+.subMenu{
+	font-weight: bold;
+}
+.subInfo{
+	text-align: center;
+}
+.editInfo{
+	text-align: right;	
+}
+
+.editInfo > button{
+	padding : 0px;
+	width : 3em;
+	margin-left:3em;
+	font-weight: normal;
+	height:1.6em;	
+}
+.editImportantInfo{
+	margin-top:1.5em;
+	margin-bottom:1.5em;
+}
+.editImportantInfo > span{
+	display:inline-block;
+	text-align:center;
+	width:49%;
+}
+.editImportantInfo > span > button{
+	font-size: 1em;
+	padding: 0.5em;	
+	padding-left: 0px;
+	padding-right: 0px;
+	width : 7em;
+	margin:auto;
+}
+input{
+	margin:0px !important;
+}
+#pushAlamDiv{
+	float:left;
+	margin-left:2em;
+}
+#vibrateDiv{
+	margin-left:14em;
+}
+.appSettingText{
+	margin-left:3em;
+}
