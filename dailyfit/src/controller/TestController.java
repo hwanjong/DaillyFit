@@ -20,4 +20,10 @@ public class TestController {
 		ModelView mv = new ModelView("/test/upload");
 		return mv;
 	}
+	
+	@Mapping(url="/userView.ap")
+	ModelView userPage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/test/userView");
+		return mv;
+	}
 }

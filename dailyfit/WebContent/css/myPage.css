@@ -1,0 +1,104 @@
+body{	
+	width:100%;
+	height:100%;
+	
+}
+span{
+	display: inline-block;
+}
+span{
+	display: inline-block;
+}
+.dIcon{
+	float:left;
+}
+#dMenuBar{
+	margin:2%;
+}
+#dLogout{
+	margin:2%;
+	margin-right : 5%;
+	float:right;
+}
+
+#profileHeader{	
+	height:2em;
+	font-size: 200%;
+	font-weight:bold;
+	color:#a9abaa;
+	text-align: center;
+	vertical-align: middle;
+}
+
+#profileText{
+	text-align: center;
+}
+
+
+#profileSummury{
+	height:12em;
+	background-color: #e6ebe9;
+}
+#profileImgLayout{
+	float:left;
+}
+#profileImg{
+	width:4em;
+	border-radius:5em;
+	margin:1em;
+	margin-left:3em;	
+}
+
+.profileSummuryFont{
+	color:#606362;
+}
+#basicInfo{
+	height:7em;
+}
+
+
+#usersInfoText{
+	height:inherit;
+	padding-top:1.5em;	
+	margin-left:7.4em;	
+}
+#nickname{
+	padding-bottom:0.3em;
+}
+#usersInfoText > * > i{
+	color:#97d1cc;
+	font-weight: bold;
+	font-size:1.2em;
+}
+#region{
+	margin-left: 1em;
+}
+.etcInfo{
+	font-size:1.7em;
+	text-align: center;	
+}
+.etcInfo > span{
+	border-left-width:1px;
+	border-left-style: groove;
+	width:21%;
+}
+#myPoint{
+	border:none;
+}
+.etcText{
+	text-align: center;
+}
+.etcText > span{
+	width:22%;
+}
+
+#profileContents{
+	margin:5%;
+	font-size:1.2em;
+}
+#profileContents > div{
+	padding-bottom: 0.6em;
+	margin-bottom:0.6em;
+	border-bottom-style: groove;
+	border-bottom-width: 1px;
+}
