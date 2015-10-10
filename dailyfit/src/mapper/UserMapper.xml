@@ -21,7 +21,7 @@
 	
 	<insert id="insertUser" parameterType="User" >
 	    insert into user_list
-		values(#{userId},#{pw},#{nicName},#{gender},#{age},#{height},#{weight},#{targetWeight},#{targetPower}) 
+		values(#{userId},#{pw},#{nicName},#{gender},#{age},#{height},#{weight},#{targetWeight},#{targetPower},#{passCode}) 
 	</insert>
 	
 </mapper>
