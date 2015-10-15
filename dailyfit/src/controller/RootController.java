@@ -159,9 +159,24 @@ public class RootController {
 		mv.setModel("shop", shop);
 		return mv;
 	}
+	
+	@Mapping(url="/buyRequest.ap",method="post")
+	ModelView doBuy(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("redirect:/dailyfit/mypage.ap");
+		String shopNum = request.getParameter("shopNum");
+		
+		String[] saleList = request.getParameterValues("saleList");// 해당 Shop의 리스트가져오기
+		for(String saleId :saleList){
+			String amount=request.getParameter(saleId);
+			System.out.println(amount);
+		}
+		System.out.println("주문내역: "+shopNum);
+		return mv;
+	}
+	
 	@Mapping(url="/login",method="post",bean="bean.User")
 	ModelView doLogin(HttpServletRequest request,HttpServletResponse response,Object obj){
-		ModelView mv = new ModelView("redirect:/dailyfit/main.ap");
+		ModelView mv = new ModelView("redirect:/dailyfit/mypage.ap");
 		User user = (User) obj;
 		InfoDAO infoDao = new InfoDAO();
 		User userInfo = infoDao.getUser(user);

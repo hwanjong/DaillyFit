@@ -33,13 +33,18 @@ function hideLoading() {
 		<ul class="nav nav-tabs nav-justified">
 			<li role="presentation" class="dropdown" class="active"><a
 				class="dropdown-toggle" data-toggle="dropdown" href="#"
-				role="button" aria-expanded="false">초기헬스장등록 <span class="caret"></span>
+				role="button" aria-expanded="false">데이핏운영<span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu" role="menu">
 					<li role="presentation"><a
-						href="/dailyfit/admin/geoLocation.ap">헬스장좌표등록 (EXCEL+좌표->DB)</a></li>
+						href="#">한줄이벤트등록</a></li>
 					<li role="presentation"><a
-						href="/dailyfit/admin/searchGoogle.ap">Google데이터 등록</a></li>
+					href="#">공지사항 관리</a></li>
+					<li role="presentation"><a
+					href="#">1:1문의 답변</a></li>
+					<li role="presentation"><a
+					href="#">광고제휴신청 응답</a></li>
+					
 				</ul></li>
 
 			<li role="presentation" class="dropdown" class="active"><a
@@ -48,7 +53,7 @@ function hideLoading() {
 			</a>
 				<ul class="dropdown-menu" role="menu">
 					<li role="presentation"><a href="/dailyfit/admin/addShop.ap">신규헬스장등록</a></li>
-					<li role="presentation"><a href="#">헬스장정보수정</a></li>
+					<li role="presentation"><a href="#">헬스장사진등록</a></li>
 					<li role="presentation"><a href="/dailyfit/admin/delShop.ap">기존헬스장삭제</a></li>
 				</ul></li>
 			<li role="presentation" class="dropdown" class="active"><a
@@ -62,11 +67,13 @@ function hideLoading() {
 
 			<li role="presentation" class="dropdown" class="active"><a
 				class="dropdown-toggle" data-toggle="dropdown" href="#"
-				role="button" aria-expanded="false">개발자메뉴<span class="caret"></span>
+				role="button" aria-expanded="false">관리자메뉴<span class="caret"></span>
 			</a>
 				<ul class="dropdown-menu" role="menu">
 					<li role="presentation"><a
 						href="/dailyfit/admin/geoLocation.ap">좌표쿼리요청</a></li>
+					<li role="presentation"><a
+					href="/dailyfit/admin/searchGoogle.ap">Google데이터 등록</a></li>
 				</ul></li>
 
 		</ul>

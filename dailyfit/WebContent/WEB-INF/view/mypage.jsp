@@ -89,6 +89,10 @@
 			<span class = "fa fa-users"></span>
 			<span>친구초대하기</span>
 		</div>
+		<div onclick="location.href='/dailyfit/logout.ap'">
+			<span class = "fa fa-lock"></span>
+			<span>로그아웃</span>
+		</div>
 	</div>
 </body>
 </html>

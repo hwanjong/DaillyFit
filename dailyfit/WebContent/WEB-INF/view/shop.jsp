@@ -42,12 +42,6 @@
 		});
 		$("#totalPrice").text(sum+" 원");
 	}
-	
-	function buyRequest(){
-		alert("주문이완료되었습니다.(결제대행사이동)");
-		//window.location.reload(true);
-		window.location.href='main.ap';
-	}
 		
 	function pageChange(pageNum) {
 		$(".eachTab").removeClass("activeBar");
@@ -59,6 +53,16 @@
 		}
 
 		$("."+pageNum).addClass("activeBar");
+	}
+	
+	function buy(){
+		if('${user}' == ''){
+			alert("로그인후이용가능");
+			window.location.href='mypage.ap';
+		}else{
+			alert("주문이완료되었습니다.");
+			$("#buyRequest").submit();
+		}
 	}
 	
 	var map;
@@ -242,14 +246,17 @@
 			<span class="glyphicon glyphicon-chevron-down"
 				style="line-height: 2em; font-size: 15px; width: 100%; text-align: center; border-top: 1px groove; background-color: #fff;" onclick="orderDown()"></span>
 				<select id="selectOption" onchange="addOption()">
+				<option value="-">===========</option>
 				<c:forEach var="product" items="${model.saleList }">
 					<option value="${product.saleId }">${product.saleName} ${product.salePrice} 원</option>
 				</c:forEach>
 				</select>
+			<form id="buyRequest" action="/dailyfit/buyRequest.ap" method="post" data-ajax="false">
+			<input style="display: none;" name="shopNum" value="${shop.shopNum }">
 			<table class="table" id="buyTable" style="background-color: white; margin: 0px; width: 100%" >
 				<tbody id="buyList">
 				<c:forEach var="product" items="${model.saleList }">
-					<tr class="${product.saleId }" style="display: none;"><td>${product.saleName } ${product.salePrice } 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td class="price" style="display:none; ">${product.salePrice }</td></tr>
+					<tr class="${product.saleId }" style="display: none;"><td>${product.saleName } ${product.salePrice } 원<input data-role="none" style="display: none;" name="saleList" value="${product.saleId }"></td><td><select class="amount" name="${product.saleId }" onchange="recalculate()"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td class="price" style="display:none; ">${product.salePrice }</td></tr>
 				</c:forEach>
 				</tbody>
 				<tfoot>
@@ -259,8 +266,9 @@
 				</tr>
 				</tfoot>
 			</table>
+			</form>
 			<button class="btn left font" style="color:#6ECDE1; background-color: #fff; ">장바구니 담기</button>
-			<button class="btn right font" onclick='alert("결제페이지로이동합니다.")'>즉시구매</button>				
+			<button class="btn right font" onclick='buy()'>즉시구매</button>				
 		</div>
 	</div>
 </body>
