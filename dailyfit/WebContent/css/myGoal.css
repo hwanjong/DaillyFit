@@ -1,0 +1,67 @@
+@CHARSET "UTF-8";
+
+#editBtn{
+	width:12%;
+	font-size:5%;
+	margin-right:5%;
+}
+.dates{
+	text-align: center;
+	font-size:120%;
+	color:gray;
+}
+.weight{
+	margin-top:5%;
+}
+
+.weightBG{
+	width:80%;
+}
+.weightNungum{	
+	width:52%;
+}
+.weightNum{
+	margin-top:-33%;
+	font-size:210%;
+	font-weight:bold;
+	font-variant: small-caps;
+	color:white;
+}
+.current{
+	font-size:175%;
+	font-weight: bold;
+	margin-top:-42%;
+	color:lightgray;
+}
+#goalsItemDiv{
+	position:relative;	
+	margin-top:10%;
+}
+#goalsItemDiv > span{
+	display: inline-block;
+}
+.goalsItem{
+	width:40%;	
+	font-size:150%;
+	font-weight : bold;
+	font-variant: small-caps;
+	text-align: center;
+	height:1.5em;
+	vertical-align: middle;
+}
+#goalsItemLabelDiv{
+	position:relative;
+	margin-top:2%;	
+	margin-bottom:10%;
+}
+#goalsItemLabelDiv > span{
+	display: inline-block;
+}
+.goalsItemLabel{
+	width:40%;
+}
+select{
+	padding-left:15%;
+	background-color: white;
+	border-color: rgb(238,238,238);
+}

@@ -66,6 +66,10 @@
 			<span>구매내역</span>
 		</div>
 		<div>
+			<span class = "fa fa-sliders"></span>
+			<span>목표설정</span>
+		</div>		
+		<div>
 			<span class = "fa fa-gear"></span>
 			<span>설정</span>
 		</div>

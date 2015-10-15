@@ -7,13 +7,17 @@
 .mySettingContent > div > *{
 	padding:0.3em;
 	margin:0em;	
+	margin-left:1.5em;
 }
 .generalInfo{
 	font-size:1.2em;
 }
+.generalInfo div{
+	margin-bottom:1em;
+}
 .generalInfo > div > span{
 	display: inline-block;
-	width:30%;
+	width:40%;
 }
 
 .menuFont{
@@ -32,25 +36,13 @@
 .subInfo{
 	text-align: center;
 }
-.editInfo{
-	text-align: right;	
-}
-
-.editInfo > button{
-	padding : 0px;
-	width : 3em;
-	margin-left:3em;
-	font-weight: normal;
-	height:1.6em;	
-}
-.editImportantInfo{
-	margin-top:1.5em;
+.editImportantInfo{	
 	margin-bottom:1.5em;
 }
 .editImportantInfo > span{
 	display:inline-block;
 	text-align:center;
-	width:49%;
+	width:35%;
 }
 .editImportantInfo > span > button{
 	font-size: 1em;
@@ -68,8 +60,53 @@ input{
 	margin-left:2em;
 }
 #vibrateDiv{
-	margin-left:14em;
+	margin-left:14em;	
 }
 .appSettingText{
 	margin-left:3em;
+	margin-bottom:1.5em;
+	margin-top:1em;
 }
+#editInfoPopup{	
+	width:20em;
+	height:23em;
+}
+#generalInfoEdit{
+	width:3em;
+	font-size:0.7em;
+	float:right;
+	margin-right:1.5em;
+}
+.appSettingChild > * > input{
+	margin-top:0.5em !important;
+}
+.editInfo{
+	margin-left:1.1em;
+}
+.editInfo div{
+	margin-bottom : 1em;
+}
+.editInfo >div> .subInfo{
+	float:right;
+}
+.editInfo >div> .subInfo > *{
+	font-size:0.5em;
+	margin:0;
+}
+.ui-select{
+	width:12em;
+} 
+.ui-select .ui-btn {	
+	font-size:0.5em;
+	height:2.4em;
+}
+.ui-input-text input{
+	height:1.5em;
+}
+#generalInfoChangeDiv > span{
+	margin-right:2.3em;
+}
+#generalInfoChangeBtn, #generalInfoCancleBtn{
+	margin-top:1em;
+}
+
