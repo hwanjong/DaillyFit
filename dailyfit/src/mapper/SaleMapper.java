@@ -9,4 +9,5 @@ import bean.Sale;
 public interface SaleMapper {
 	void addSaleProduct(Sale sale);
 	ArrayList<Sale> getSaleList(@Param("shopNum")String shopNum);
+	Sale getSaleItem(String saleId);
 }

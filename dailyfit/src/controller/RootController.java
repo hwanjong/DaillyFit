@@ -44,7 +44,7 @@ public class RootController {
 			}
 			if(sale.getSaleType().equals("D")) sale.setSaleName("1회 이용권");
 			else if(sale.getSaleType().equals("C")) sale.setSaleName(sale.getTypeAmount()+"회 이용권");
-			else if(sale.getSaleType().equals("M")) sale.setSaleName(sale.getTypeAmount()+"개월 이용권");
+			else if(sale.getSaleType().equals("M")) sale.setSaleName(sale.getTypeAmount()+"개월 이용권(세트)");
 			else if(sale.getSaleType().equals("P")) sale.setSaleName(sale.getTypeAmount()+"회 피티권");
 		}
 		mv.setModel("shop", shop);
@@ -159,20 +159,7 @@ public class RootController {
 		mv.setModel("shop", shop);
 		return mv;
 	}
-	
-	@Mapping(url="/buyRequest.ap",method="post")
-	ModelView doBuy(HttpServletRequest request,HttpServletResponse response){
-		ModelView mv = new ModelView("redirect:/dailyfit/mypage.ap");
-		String shopNum = request.getParameter("shopNum");
-		
-		String[] saleList = request.getParameterValues("saleList");// 해당 Shop의 리스트가져오기
-		for(String saleId :saleList){
-			String amount=request.getParameter(saleId);
-			System.out.println(amount);
-		}
-		System.out.println("주문내역: "+shopNum);
-		return mv;
-	}
+
 	
 	@Mapping(url="/login",method="post",bean="bean.User")
 	ModelView doLogin(HttpServletRequest request,HttpServletResponse response,Object obj){

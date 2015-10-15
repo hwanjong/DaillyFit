@@ -17,4 +17,8 @@
 	    select * from sale_list where shop_num = #{shopNum}
 	</select>
 	
+	<select id="getSaleItem" resultType="Sale" resultMap="saleMap">
+	    select * from sale_list where sale_id = #{saleId}
+	</select>
+	
 </mapper>

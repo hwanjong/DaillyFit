@@ -9,6 +9,8 @@ public class Sale implements Serializable{
 	String typeAmount;
 	String salePrice;
 	String saleName;
+	int availability;
+	String userId;
 	
 	public Sale(){
 		
@@ -53,6 +55,18 @@ public class Sale implements Serializable{
 	}
 	public void setSaleName(String saleName) {
 		this.saleName = saleName;
+	}
+	public int getAvailability() {
+		return availability;
+	}
+	public void setAvailability(int availability) {
+		this.availability = availability;
+	}
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 	
 }

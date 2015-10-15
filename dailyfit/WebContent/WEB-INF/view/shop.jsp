@@ -251,7 +251,7 @@
 					<option value="${product.saleId }">${product.saleName} ${product.salePrice} 원</option>
 				</c:forEach>
 				</select>
-			<form id="buyRequest" action="/dailyfit/buyRequest.ap" method="post" data-ajax="false">
+			<form id="buyRequest" action="/dailyfit/user/buyRequest.ap" method="post" data-ajax="false">
 			<input style="display: none;" name="shopNum" value="${shop.shopNum }">
 			<table class="table" id="buyTable" style="background-color: white; margin: 0px; width: 100%" >
 				<tbody id="buyList">

@@ -17,9 +17,9 @@
 	src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
 
 <!--  Bootstrap -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="/dailyfit/css/bootstrap.min.css" rel="stylesheet">
 <link href="/dailyfit/css/common.css" rel="stylesheet">
-<script src="js/bootstrap.min.js"></script>
+<script src="/dailyfit/js/bootstrap.min.js"></script>
 <title>Dailyfit</title>
 <script type="text/javascript">
 function menuBar(){

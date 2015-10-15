@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import bean.Sale;
 import bean.Shop;
+import mapper.BuyMapper;
 import mapper.SaleMapper;
 import mapper.ShopMapper;
 import mybatis.config.MyBatisManager;
@@ -14,6 +15,35 @@ import mybatis.config.MyBatisManager;
 public class ShopDAO {
 	public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance();
 	
+	public void addBuyList(ArrayList<Sale> buyList, String userId){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			BuyMapper mapper = session.getMapper(BuyMapper.class);
+			for(Sale sale : buyList){
+				sale.setUserId(userId);
+				mapper.addBuy(sale);
+			}
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			session.close();
+		}
+	}
+	public Sale getSale(String saleId){
+		SqlSession session = sqlSessionFactory.openSession();
+		Sale sale = null;
+		try{
+			SaleMapper mapper = session.getMapper(SaleMapper.class);
+			sale=  mapper.getSaleItem(saleId);
+		}catch(Exception e){
+			e.printStackTrace();
+			return null;
+		}finally{
+			session.close();
+		}
+		return sale;
+	}
 	public Shop getShopInfo(String shopNum){
 		SqlSession session = sqlSessionFactory.openSession();
 		Shop shop = null;

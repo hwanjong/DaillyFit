@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
+import bean.Sale;
 import bean.Shop;
 
 public interface ShopMapper {
@@ -17,5 +18,4 @@ public interface ShopMapper {
 	void addShop(Shop shop);
 	Shop getShopInfo(@Param("shopNum")String shopNum);
 	int lastIndex();
-	
 }
