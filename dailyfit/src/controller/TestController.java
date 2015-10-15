@@ -32,4 +32,9 @@ public class TestController {
 		ModelView mv = new ModelView("/test/mySetting");
 		return mv;
 	}
+	@Mapping(url="/goal.ap")
+	ModelView myGoal(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/test/myGoal");
+		return mv;
+	}
 }
