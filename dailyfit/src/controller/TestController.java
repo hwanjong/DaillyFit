@@ -41,8 +41,9 @@ public class TestController {
 		if(user != null)
 			return mv;
 		else
-			return new ModelView("/test/mySetting");
+			return new ModelView("login.ap");
 	}
+	
 	
 	@Mapping(url="/userInfoChange.ap", method="post")
 	ModelView ajaxRangeProduct(HttpServletRequest request,HttpServletResponse response){
@@ -67,4 +68,11 @@ public class TestController {
 		return mv;
 		
 	}
+	
+	@Mapping(url="/notice.ap")
+	ModelView notice(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/test/notice");
+		return new ModelView("/test/notice");
+	}
+	
 }
