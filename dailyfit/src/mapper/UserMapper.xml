@@ -24,4 +24,10 @@
 		values(#{userId},#{pw},#{nicName},#{gender},#{age},#{height},#{weight},#{targetWeight},#{targetPower},#{passCode}) 
 	</insert>
 	
+	<update id="updateUserInfo" parameterType="User">
+		update dailyfit.user_list
+		set  HEIGHT = #{height}, WEIGHT=#{weight}, TARGET_WEIGHT = #{targetWeight}, TARGET_POWER= #{targetPower}
+		where user_id =#{userId};
+	</update>
+	
 </mapper>

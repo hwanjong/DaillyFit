@@ -1,11 +1,13 @@
 @CHARSET "UTF-8";
-
+#dwContent{
+	overflow: hidden;
+}
 #editBtn{
 	width:12%;
 	font-size:5%;
 	margin-right:5%;
 }
-.dates{
+#dates{
 	text-align: center;
 	font-size:120%;
 	color:gray;

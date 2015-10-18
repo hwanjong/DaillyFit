@@ -12,7 +12,7 @@
 <link href="/dailyfit/css/myGoal.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="../js/myGoal.js"></script>	
+<script src="../js/myGoal.js"></script>
 
 </head>
 <body>
@@ -24,29 +24,32 @@
 			class="glyphicon glyphicon-option-horizontal right"
 			aria-hidden="true" onclick="alert('거리순&가격순보기준비중입니다.')"></span>
 	</div>
-
+	<div id="dwContent">
 	<div align=right style="margin-top: 3%">
 		<button id="editBtn">수정</button>
 	</div>
-	<div class="dates">10월 12일 (월) 23:04</div>
-	<div class="weight" align="center">
-		<img class="weightBG" id="currentWeightBG" src="../img/bg.png">
-		<p class="weightNum" id="currentWeigth">60.0 kg</p>
-		<img class="weightNungum" id="currentNungum" src="../img/nungum.png">
-		<p class="current">현재</p>
+		<div id="dates">10월 12일 (월) 23:04</div>
+		<div class="weight" align="center">
+			<img class="weightBG" id="currentWeightBG" src="../img/bg.png">
+			<p class="weightNum" id="currentWeigth">${user.weight}kg</p>
+			<img class="weightNungum" id="currentNungum" src="../img/nungum.png">
+			<p class="current">현재</p>
+		</div>
+		<div id="goalsItemDiv" align=center>
+			<span class="goalsItem" id="userHeight">${user.height }</span> <span
+				id="userPower" class="goalsItem">${user.targetPower }</span>
+		</div>
+		<div id="goalsItemLabelDiv" align=center>
+			<span class="goalsItemLabel">키(cm)</span> <span
+				class="goalsItemLabel">운동 강도</span>
+		</div>
+		<div class="weight" align="center">
+			<img class="weightBG" id="goalWeightBG" src="../img/bg.png">
+			<p class="weightNum" id="goalWeight">${user.targetWeight }kg</p>
+			<img class="weightNungum" id="goalNungum" src="../img/nungum.png">
+			<p class="current">목표</p>
+		</div>
 	</div>
-	<div id = "goalsItemDiv" align = center>
-		<span class="goalsItem" id="userHeight">175.0</span> <span id = "userPower" class ="goalsItem">중</span>
-	</div>
-	<div id = "goalsItemLabelDiv" align = center>
-		<span class="goalsItemLabel">키(cm)</span> <span class="goalsItemLabel">운동 강도</span>
-	</div>
-	<div class="weight" align="center">
-		<img class="weightBG" id="goalWeightBG" src="../img/bg.png">
-		<p class="weightNum" id="goalWeight">55.3 kg</p>
-		<img class="weightNungum" id = "goalNungum" src="../img/nungum.png">
-		<p class="current">목표</p>
-	</div>	
 
 </body>
 </html>
