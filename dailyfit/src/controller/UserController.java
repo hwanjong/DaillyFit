@@ -68,22 +68,21 @@ public class UserController {
 		InfoDAO dao = new InfoDAO();
 		User user = dao.getUser(sessionUser);
 		mv.setModel("user", user);
-		return mv;
+		return mv;		
 	}
 	
 	
-	@Mapping(url="/userInfoChange.ap", method="post",bean="bean.User")
-	ModelView ajaxRangeProduct(HttpServletRequest request,HttpServletResponse response,Object obj){
+	@Mapping(url="/infoChange.ap",method="post",bean="bean.User")
+	ModelView setAjaxInfoChange(HttpServletRequest request,HttpServletResponse response,Object obj){
 		System.out.println("userInfoChange 요쳥");
 		ModelView mv = new ModelView("/myinfo/jsonView");
 		InfoDAO dao = new InfoDAO();
-		User updateTarget = (User) obj;
-		System.out.println(updateTarget);
+		User updateTarget =(User)obj;
+		
 		updateTarget.setUserId(((User)request.getSession().getAttribute("user")).getUserId());
 		dao.updateUser(updateTarget);
 		mv.setModel("user", updateTarget);
-		return mv;
-		
+		return mv;		
 	}
 	
 	@Mapping(url="/notice.ap")
