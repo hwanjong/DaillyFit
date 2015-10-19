@@ -65,7 +65,7 @@
 			<span class = "fa fa-cart-arrow-down"></span>
 			<span>구매내역</span>
 		</div>
-		<div>
+		<div onclick="location.href='user/goal.ap'">
 			<span class = "fa fa-sliders"></span>
 			<span>목표설정</span>
 		</div>		
@@ -73,7 +73,7 @@
 			<span class = "fa fa-gear"></span>
 			<span>설정</span>
 		</div>
-		<div>
+		<div onclick="location.href='user/notice.ap'">
 			<span class = "fa fa-question-circle"></span>
 			<span>공지사항</span>
 		</div>

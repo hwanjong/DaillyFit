@@ -15,4 +15,11 @@
     <select id="curEvent" resultMap="boardMap" resultType="Board">
         select * from board where board_type = 'E'
     </select>
+    <select id="noticeList" resultMap="boardMap" resultType="Board">
+    	select * from board where board_type = 'N'
+    </select>
+    <insert id="insertNotice" parameterType="Board">
+    	insert into board (title, contents, write_date, board_type)
+    	values (#{title}, #{contents}, curdate(), 'N')
+    </insert>
 </mapper>

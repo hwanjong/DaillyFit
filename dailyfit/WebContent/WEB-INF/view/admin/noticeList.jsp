@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ include file="adminHeader.jsp"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -18,40 +19,21 @@
 	</tr>
 	</thead>
 	<tbody>
+	<c:forEach var="notice" items="${model.boardList}">
 	<tr>
-		<td>1</td><td>공지사항1</td><td>2015-08-10</td>
+		<td>${notice.boardNum}</td><td>${notice.title}</td><td>${notice.writeDate}</td>
 	</tr>
-	<tr>
-		<td>2</td><td>공지사항2</td><td>2015-08-09</td>
-	</tr>
-	<tr>
-		<td>3</td><td>공지사항3</td><td>2015-08-08</td>
-	</tr>
-	<tr>
-		<td>4</td><td>공지사항4</td><td>2015-08-07</td>
-		</tr>
-	<tr>
-		<td>5</td><td>공지사항5</td><td>2015-08-06</td>
-		</tr>
-	<tr>
-		<td>6</td><td>공지사항6</td><td>2015-08-05</td>
-		</tr>
-	<tr>
-		<td>7</td><td>공지사항7</td><td>2015-08-04</td>
-		</tr>
-	<tr>
-		<td>8</td><td>공지사항8</td><td>2015-08-03</td>
-		</tr>
-	<tr>
-		<td>9</td><td>공지사항9</td><td>2015-08-02</td>
-		</tr>
-	<tr>
-		<td>10</td><td>공지사항10</td><td>2015-08-01</td>
-		</tr>
-	<tr>
+	</c:forEach>	
 	</tbody>
 </table>
-<button class="glyphicon glyphicon-pencil">글쓰기</button>
+<form method="get" action="/dailyfit/admin/addNotice.ap">
+	<button class="glyphicon glyphicon-pencil" id="writeNotice">글쓰기</button>
+</form>
 </div>
 </body>
+<script>
+$("#writeNotice").click(function(){
+	$("#writeNotice").submit();
+});
+</script>
 </html>

@@ -1,5 +1,7 @@
 package dao;
 
+import java.util.ArrayList;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -24,6 +26,31 @@ public class InfoDAO {
 			session.close();
 		}
 		return board;
+	}
+	public void insertNotice(Board board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			mapper.insertNotice(board);
+			session.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			session.close();
+		}
+	}
+	public ArrayList<Board> getNotices(){
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<Board> boardList =null;
+		try{
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			boardList= mapper.noticeList();
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return boardList;
 	}
 	
 	public void updateEvent(Board board){

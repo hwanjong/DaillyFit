@@ -1,8 +1,11 @@
 package controller;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Board;
 import bean.User;
 import dao.InfoDAO;
 import hello.annotation.Mapping;
@@ -72,7 +75,10 @@ public class TestController {
 	@Mapping(url="/notice.ap")
 	ModelView notice(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/test/notice");
-		return new ModelView("/test/notice");
+		InfoDAO dao = new InfoDAO();
+		ArrayList<Board> boardList = dao.getNotices();
+		mv.setModel("boardList", boardList);
+		return mv;
 	}
 	
 }

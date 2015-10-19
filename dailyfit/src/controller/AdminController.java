@@ -183,7 +183,27 @@ public class AdminController {
 	@Mapping(url="/noticeList.ap")
 	ModelView noticeView(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/admin/noticeList");
-		
+		InfoDAO dao = new InfoDAO();
+		ArrayList<Board> boardList = dao.getNotices();
+		mv.setModel("boardList", boardList);
+		return mv;
+	}
+	@Mapping(url="/addNotice.ap")
+	ModelView addNotice(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/addNotice");		
+		return mv;
+	}
+	
+	@Mapping(url="/addNotice.ap",method="post")
+	ModelView addNoticePost(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("redirect:/dailyfit/admin/noticeList.ap");
+		InfoDAO dao = new InfoDAO();
+		Board board = new Board();
+		board.setTitle(request.getParameter("noticeTitle"));
+		board.setContents(request.getParameter("noticeContents"));
+		dao.insertNotice(board);
+//		ArrayList<Board> boardList = dao.getNotices();
+//		mv.setModel("boardList", boardList);
 		return mv;
 	}
 }
