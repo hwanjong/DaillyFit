@@ -185,14 +185,14 @@ function init() {
 
 function editRequest(currentWeight, goalWeight, height, power) {
 	$.ajax({
-		url : "/dailyfit/test/userInfoChange.ap",
+		url : "/dailyfit/user/userInfoChange.ap",
 		type : "POST",
 		data : {
 			"height" : height,
 			"targetPower" : power,
 			"targetWeight" : goalWeight,
 			"weight" : currentWeight,
-		}
+		}	
 	});
 	console.log("currentWeight : " + currentWeight);
 	console.log("typeof(currentWeight) : " + typeof (currentWeight));

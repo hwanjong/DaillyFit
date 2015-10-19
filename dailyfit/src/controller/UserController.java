@@ -63,34 +63,25 @@ public class UserController {
 	@Mapping(url="/goal.ap")
 	ModelView myGoal(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/myGoal");
-		User user = (User) request.getSession().getAttribute("user");
-		if(user != null)
-			return mv;
-		else
-			return new ModelView("login.ap");
+		User sessionUser = (User) request.getSession().getAttribute("user");
+		if(sessionUser==null) return new ModelView("/dailyfit/login");
+		InfoDAO dao = new InfoDAO();
+		User user = dao.getUser(sessionUser);
+		mv.setModel("user", user);
+		return mv;
 	}
 	
 	
-	@Mapping(url="/userInfoChange.ap", method="post")
-	ModelView ajaxRangeProduct(HttpServletRequest request,HttpServletResponse response){
+	@Mapping(url="/userInfoChange.ap", method="post",bean="bean.User")
+	ModelView ajaxRangeProduct(HttpServletRequest request,HttpServletResponse response,Object obj){
 		System.out.println("userInfoChange 요쳥");
 		ModelView mv = new ModelView("/myinfo/jsonView");
 		InfoDAO dao = new InfoDAO();
-		User updateTarget = new User();
+		User updateTarget = (User) obj;
+		System.out.println(updateTarget);
 		updateTarget.setUserId(((User)request.getSession().getAttribute("user")).getUserId());
-		updateTarget.setHeight(request.getParameter("height"));
-		updateTarget.setTargetPower(request.getParameter("targetPower"));
-		updateTarget.setTargetWeight(request.getParameter("targetWeight"));
-		updateTarget.setWeight(request.getParameter("weight"));
-		updateTarget.setPw(((User)request.getSession().getAttribute("user")).getPw());
 		dao.updateUser(updateTarget);
-		
-		updateTarget = dao.getUser(updateTarget);
-		request.getSession().setAttribute("myinfo", updateTarget);
-		//ArrayList<Shop> shopList = null;
-		//shopList= dao.getRangeShop(lat,lng,true);
-		//System.out.println("찾은갯수:"+shopList.size());		
-		//mv.setModel("shopList", shopList);
+		mv.setModel("user", updateTarget);
 		return mv;
 		
 	}
