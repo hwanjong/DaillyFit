@@ -5,7 +5,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import bean.Board;
 import bean.User;
+<<<<<<< HEAD
 import mapper.BoardMapper;
+=======
+>>>>>>> 82d6bb046153b72e0ccac837f582949dd84fda7f
 import mapper.UserMapper;
 import mybatis.config.MyBatisManager;
 
@@ -77,6 +80,21 @@ public class InfoDAO {
 			findUser=mapper.checkId(inputId);
 			System.out.println(findUser.getNicName());
 		}catch(Exception e){
+			return false;
+		}finally{
+			session.close();
+		}
+		return true;
+	}
+	
+	public boolean updateUser(User user){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			UserMapper mapper = session.getMapper(UserMapper.class);
+			mapper.updateUserInfo(user);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
 			return false;
 		}finally{
 			session.close();

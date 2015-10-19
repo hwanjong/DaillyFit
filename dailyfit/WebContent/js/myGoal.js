@@ -2,6 +2,7 @@ var isEdit = false;
 var preX = null, preY = null, curX = null, curY = null;
 var moveRate;
 var curDeg = 30;
+// var userId = '<%= session.getAttribute("userId")%>';
 function rotate(angle, elem, callback_fn, gap) {
 	var $elem = $(elem);
 	callback_fn(angle, $elem, gap);
@@ -115,11 +116,11 @@ function editBtnClickHandler(e) {
 				'<span class="goalsItem" id="userPower">'
 						+ $('#userPower').val() + '</span>');
 		isEdit = false;
-		var curWeight,goalWeight,height,power;
-		curWeight = parseFloat($("#currentWeigth").text().replace(" kg",""));
-		goalWeight = parseFloat($("#goalWeight").text().replace(" kg",""));
-		height=parseFloat($("#userHeight").text());
-		power=$("#userPower").text();		
+		var curWeight, goalWeight, height, power;
+		curWeight = parseFloat($("#currentWeigth").text().replace(" kg", ""));
+		goalWeight = parseFloat($("#goalWeight").text().replace(" kg", ""));
+		height = parseFloat($("#userHeight").text());
+		power = $("#userPower").text();
 		editRequest(curWeight, goalWeight, height, power);
 	} else {
 		$(".weightBG").attr("src", "../img/bg2.png");
@@ -131,10 +132,10 @@ function editBtnClickHandler(e) {
 				'<input type="number" class="goalsItem" id="userHeight" value="'
 						+ $('#userHeight').html() + '">');
 		$('#userPower').replaceWith(
-				'<select class="goalsItem" id="userPower">' +
-				selectOptionReturnToString($('#userPower').text())+
-				'</select>');
-		isEdit = true;
+				'<select class="goalsItem" id="userPower">'
+						+ selectOptionReturnToString($('#userPower').text())
+						+ '</select>');
+		isEdit = true;		
 	}
 }
 function selectOptionReturnToString(val) {
@@ -151,23 +152,55 @@ function selectOptionReturnToString(val) {
 		}
 	}
 }
-
+function spectrumDate(day) {
+	switch (day) {
+	case 1:
+		return "월"
+	case 2:
+		return "화"
+	case 3:
+		return "수"
+	case 4:
+		return "목"
+	case 5:
+		return "금"
+	case 6:
+		return "토"
+	default:
+		return "일"
+	}
+}
+function setDate() {
+	var date = new Date();
+	$("#dates").text(
+			date.getMonth() + 1 + "월 " + date.getDate() + "일 (" + spectrumDate(date.getDay()) + ") "+date.getHours() + ":" + date.getMinutes());
+}
 function init() {
 	rotate(30, ".weightNungum", initRotate);
 	changeWeight('#currentWeigth', initChanveWeightCallback);
 	changeWeight('#goalWeight', initChanveWeightCallback);
 	$("#editBtn").click(editBtnClickHandler);
-
+	setDate();
 }
 
 function editRequest(currentWeight, goalWeight, height, power) {
+	$.ajax({
+		url : "/dailyfit/test/userInfoChange.ap",
+		type : "POST",
+		data : {
+			"height" : height,
+			"targetPower" : power,
+			"targetWeight" : goalWeight,
+			"weight" : currentWeight,
+		}
+	});
 	console.log("currentWeight : " + currentWeight);
-	console.log("typeof(currentWeight) : " + typeof(currentWeight));
+	console.log("typeof(currentWeight) : " + typeof (currentWeight));
 	console.log("goalWeight : " + goalWeight);
-	console.log("typeof(goalWeight) : " + typeof(goalWeight));
+	console.log("typeof(goalWeight) : " + typeof (goalWeight));
 	console.log("height : " + height);
-	console.log("typeof(height) : " + typeof(height));
+	console.log("typeof(height) : " + typeof (height));
 	console.log("power : " + power);
-	console.log("typeof(power) : " + typeof(power));
+	console.log("typeof(power) : " + typeof (power));
 }
 $(window).load(init);
