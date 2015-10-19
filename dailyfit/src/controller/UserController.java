@@ -22,6 +22,11 @@ public class UserController {
 		ModelView mv = new ModelView("/myinfo/ticket");
 		return mv;
 	}
+	@Mapping(url="/ticketHistory.ap")
+	ModelView getTicketHistroy(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/myinfo/ticketHistory");
+		return mv;
+	}
 	
 	@Mapping(url="/buyRequest.ap",method="post")
 	ModelView doBuy(HttpServletRequest request,HttpServletResponse response){

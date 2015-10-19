@@ -146,19 +146,6 @@ a:hover{
 	font-size: 14px;
 }
 
-#footer {
-	white-space: nowrap;
-	width: 100%;
-	border: none;
-	bottom: 0px;
-}
-
-#footer img {
-	width: 15%;
-	margin: 0 5%;
-	white-space: normal;
-}
-
 .lh45 {
 	line-height: 45px;
 	margin: 0 3px;

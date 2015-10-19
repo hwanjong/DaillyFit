@@ -104,7 +104,18 @@ body {
 	font-size: 20px;
 	line-height: 4.2em;
 }
+#footer {
+	white-space: nowrap;
+	width: 100%;
+	border: none;
+	bottom: 0px;
+}
 
+#footer img {
+	width: 15%;
+	margin: 0 5%;
+	white-space: normal;
+}
 .left {
 	float: left;
 	margin: 0 10px;
