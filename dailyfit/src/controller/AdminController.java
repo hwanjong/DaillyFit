@@ -10,8 +10,10 @@ import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Board;
 import bean.Sale;
 import bean.Shop;
+import dao.InfoDAO;
 import dao.ShopDAO;
 import hello.annotation.Mapping;
 import hello.annotation.RootURL;
@@ -23,6 +25,25 @@ public class AdminController {
 	@Mapping(url="/searchGoogle.ap")
 	ModelView getSearchGooglePage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/admin/searchShopGoogle");
+		return mv;
+	}
+	@Mapping(url="/event.ap")
+	ModelView updateEvent(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/updateEvent");
+		InfoDAO dao = new InfoDAO();
+		Board board = dao.getEvent();
+		mv.setModel("board", board);
+		return mv;
+	}
+	@Mapping(url="/changeEvent.ap", method="post",bean="bean.Board")
+	ModelView changeEvent(HttpServletRequest request,HttpServletResponse response,Object obj){
+		ModelView mv = new ModelView("/jsonView");
+		Board board = (Board) obj;
+		System.out.println(board.getContents());
+		System.out.println(board.getTitle());
+		InfoDAO dao = new InfoDAO();
+		dao.updateEvent(board);
+		mv.setModel("check", "yes");
 		return mv;
 	}
 	

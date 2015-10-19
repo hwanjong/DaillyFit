@@ -37,7 +37,7 @@ function hideLoading() {
 			</a>
 				<ul class="dropdown-menu" role="menu">
 					<li role="presentation"><a
-						href="#">한줄이벤트등록</a></li>
+						href="/dailyfit/admin/event.ap">한줄이벤트등록</a></li>
 					<li role="presentation"><a
 					href="#">공지사항 관리</a></li>
 					<li role="presentation"><a

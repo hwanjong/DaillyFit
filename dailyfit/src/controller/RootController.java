@@ -7,6 +7,7 @@ import java.util.Comparator;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import bean.Board;
 import bean.Sale;
 import bean.Shop;
 import bean.User;
@@ -27,6 +28,9 @@ public class RootController {
 	@Mapping(url="/main.ap")
 	ModelView getMainPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/main");
+		InfoDAO dao = new InfoDAO();
+		Board board = dao.getEvent();
+		mv.setModel("board", board);
 		System.out.println("main요청");
 		return mv;
 	}

@@ -14,7 +14,6 @@
 		
 	function pageChange(pageNum) {
 		$(".eachTab").removeClass("activeBar");
-		
 		$(".eachContents").hide();
 		$("#"+pageNum).fadeIn(200);
 		$("."+pageNum).addClass("activeBar");
