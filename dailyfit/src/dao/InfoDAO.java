@@ -1,18 +1,44 @@
 package dao;
 
-import java.util.ArrayList;
-
-import mapper.UserMapper;
-import mybatis.config.MyBatisManager;
-
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import bean.Board;
 import bean.User;
+import mapper.BoardMapper;
+import mapper.UserMapper;
+import mybatis.config.MyBatisManager;
 
 public class InfoDAO {
 	public static SqlSessionFactory sqlSessionFactory = MyBatisManager.getInstance();
 	
+	public Board getEvent(){
+		SqlSession session = sqlSessionFactory.openSession();
+		Board board =null;
+		try{
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			board= mapper.curEvent();
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return board;
+	}
+	
+	public void updateEvent(Board board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			mapper.updateEvent(board);
+			session.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			session.close();
+		}
+	
+	}
 	public User getUser(User user){
 		SqlSession session = sqlSessionFactory.openSession();
 		User findUser =null;

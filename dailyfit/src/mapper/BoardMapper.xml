@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BoardMapper">
+    <resultMap type="Board" id="boardMap">
+		<id column="board_num" property="boardNum" />
+		<id column="write_date" property="writeDate" />
+		<id column="board_type" property="boardType" />
+	</resultMap>
+	
+    <update id="updateEvent" parameterType="Board">
+        update board set title=#{title}, contents=#{contents} where board_type='E'
+    </update>
+    <select id="curEvent" resultMap="boardMap" resultType="Board">
+        select * from board where board_type = 'E'
+    </select>
+</mapper>

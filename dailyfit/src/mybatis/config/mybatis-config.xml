@@ -23,5 +23,6 @@
 		<mapper resource="mapper/ShopMapper.xml" />
 		<mapper resource="mapper/SaleMapper.xml" />
 		<mapper resource="mapper/BuyMapper.xml" />
+		<mapper resource="mapper/BoardMapper.xml" />
 	</mappers>
 </configuration>

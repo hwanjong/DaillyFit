@@ -42,11 +42,11 @@ $(document).ready(function(){
 </div>
 <div data-role="footer" id="footer" data-position="fixed"
 		data-tap-toggle="false" class="jqm-footer">
-		<img src="/dailyfit/img/icon_1_active.png" onclick="location.href='main.ap'"> 
+		<img src="/dailyfit/img/icon_1_active.png" onclick="location.href='/dailyfit/main.ap'"> 
 		<img
 			src="/dailyfit/img/icon_2.png" onclick="menuBar()"> <img
 			src="/dailyfit/img/icon_3.png"> <img
-			src="/dailyfit/img/icon_4.png" onclick="location.href='mypage.ap'">
+			src="/dailyfit/img/icon_4.png" onclick="location.href='/dailyfit/mypage.ap'">
 </div>
 	<!-- /footer -->
 </body>

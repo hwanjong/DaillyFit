@@ -197,9 +197,9 @@ var paging = 1;
 				<p id="event" class="m1"
 					style="color: rgb(231, 76, 60); text-align: center;">
 					<span class="glyphicon glyphicon-volume-up left"></span>
-					<b style="margin-left: -50px;">OPEN 이벤트!</b></p>
+					<b style="margin-left: -50px;">${model.board.title}</b></p>
 				<p id="event" class="m1" style="color: #333; text-align: center;">
-					5만원 정액권 충전하면 10,000포인트 적립?! <img src="/dailyfit/img/temp_money.PNG">
+					${model.board.contents }<img src="/dailyfit/img/temp_money.PNG">
 				</p>
 				<div id="daily">
 					
