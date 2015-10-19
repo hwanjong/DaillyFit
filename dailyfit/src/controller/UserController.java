@@ -71,8 +71,8 @@ public class UserController {
 		return mv;		
 	}
 	
-	
-	@Mapping(url="/infoChange.ap",method="post",bean="bean.User")
+
+	@Mapping(url="/infoChange.ap", method="post", bean="bean.User")
 	ModelView setAjaxInfoChange(HttpServletRequest request,HttpServletResponse response,Object obj){
 		System.out.println("userInfoChange 요쳥");
 		ModelView mv = new ModelView("/myinfo/jsonView");

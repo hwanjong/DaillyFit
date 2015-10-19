@@ -12,7 +12,7 @@
 <link href="/dailyfit/css/myGoal.css" rel="stylesheet">
 <link rel="stylesheet"
 	href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="../js/myGoal.js"></script>
+<script src="/dailyfit/js/myGoal.js"></script>
 
 </head>
 <body>
