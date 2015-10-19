@@ -1,0 +1,24 @@
+@CHARSET "UTF-8";
+
+.table{
+	width:60%;
+}
+thead tr th{
+	text-align: center;
+}
+
+tbody>tr>td:first-child {
+	text-align:center;
+}
+tbody>tr>td:nth-child(2) {
+	padding-left:7%;
+}
+tbody>tr>td:last-child {
+	text-align:center;
+}
+button{
+	float:right;
+	margin-right:22%;
+	font-size:112%;
+	padding:3px;
+}

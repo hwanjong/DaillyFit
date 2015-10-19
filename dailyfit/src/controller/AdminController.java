@@ -159,4 +159,10 @@ public class AdminController {
 
 		return mv;
 	}
+	@Mapping(url="/noticeList.ap")
+	ModelView noticeView(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/noticeList");
+		
+		return mv;
+	}
 }
