@@ -1,0 +1,59 @@
+@CHARSET "UTF-8";
+
+#contents {
+	font-size: 14px;
+	height: 100%;
+	font-family: HanSans;
+	text-shadow: none;
+}
+
+.eachTab {
+	width: 33.3%;
+	line-height: 2.4em;
+	vertical-align: top;
+	text-align: center;
+	font-size: 16px;
+	font-weight: 600;
+	font-family: HanSans;
+	display: inline-block;
+	white-space: normal;
+}
+.eachTab:hover {
+	cursor: pointer;
+}
+
+.activeBar {
+	border-bottom: 5px solid #6ECDE1;
+}
+
+.tabWrap {
+	white-space: nowrap;
+	line-height: 0.5em;
+}
+
+.ticket{
+	margin : 2em 0em;
+	border: 1px groove #F5F5F5;
+	background-color: white;
+}
+.ticket div{
+	padding: 5px 10px;
+	 
+}
+.day{
+	border-bottom:1px groove #F5F5F5;
+	background-color : #F9F9F9;
+}
+.sale{
+	border-bottom:1px groove #F5F5F5;
+}
+.amount{
+	text-align: right;
+	line-height: 0.5em;
+	white-space: nowrap;
+}
+.amount button{
+	width: 30%; 
+	border-color: #059 !important;
+	background-color: white !important;
+}

@@ -57,13 +57,13 @@
 			<span class = "fa fa-smile-o"></span>
 			<span>포인트샵</span>
 		</div>
-		<div>
+		<div onclick="location.href='user/useTicket.ap'">
 			<span class = "fa fa-star"></span>
 			<span>쿠폰사용</span>
 		</div>
-		<div>
+		<div onclick="location.href='user/ticketHistory.ap'">
 			<span class = "fa fa-cart-arrow-down"></span>
-			<span>구매내역</span>
+			<span>후기등록</span>
 		</div>
 		<div>
 			<span class = "fa fa-sliders"></span>
