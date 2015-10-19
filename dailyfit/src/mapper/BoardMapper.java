@@ -9,4 +9,7 @@ public interface BoardMapper {
 	ArrayList<Board> noticeList();
 	void insertNotice(Board board);
 	Board curEvent();
+	Board getNotice(Board Board);
+	void updateNotice(Board board);
+	void deleteNotice(Board board);
 }

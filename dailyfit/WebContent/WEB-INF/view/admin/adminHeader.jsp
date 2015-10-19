@@ -39,7 +39,7 @@ function hideLoading() {
 					<li role="presentation"><a
 						href="/dailyfit/admin/event.ap">한줄이벤트등록</a></li>
 					<li role="presentation"><a
-					href="#">공지사항 관리</a></li>
+					href="/dailyfit/admin/noticeList.ap">공지사항 관리</a></li>
 					<li role="presentation"><a
 					href="#">1:1문의 답변</a></li>
 					<li role="presentation"><a

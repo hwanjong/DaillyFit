@@ -18,8 +18,17 @@
     <select id="noticeList" resultMap="boardMap" resultType="Board">
     	select * from board where board_type = 'N' order by board_num desc
     </select>
+    <select id="getNotice" resultMap="boardMap" resultType="Board" parameterType="Board">
+    	select * from board where board_num = #{boardNum}
+    </select>
     <insert id="insertNotice" parameterType="Board">
     	insert into board (title, contents, write_date, board_type)
     	values (#{title}, #{contents}, curdate(), 'N')
     </insert>
+    <update id="updateNotice" parameterType="Board">
+    	update board set title=#{title}, contents=#{contents} where board_num=#{boardNum}
+    </update>
+    <delete id="deleteNotice" parameterType="Board">
+    	delete from board where board_num = #{boardNum}
+    </delete>
 </mapper>
