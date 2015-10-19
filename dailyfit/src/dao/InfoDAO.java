@@ -5,10 +5,7 @@ import org.apache.ibatis.session.SqlSessionFactory;
 
 import bean.Board;
 import bean.User;
-<<<<<<< HEAD
 import mapper.BoardMapper;
-=======
->>>>>>> 82d6bb046153b72e0ccac837f582949dd84fda7f
 import mapper.UserMapper;
 import mybatis.config.MyBatisManager;
 
