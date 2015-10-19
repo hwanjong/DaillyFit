@@ -194,6 +194,42 @@ public class AdminController {
 		return mv;
 	}
 	
+	@Mapping(url="/updateNotice.ap",method="post")
+	ModelView updateNoticeContents(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("redirect:/dailyfit/admin/noticeList.ap");
+		InfoDAO dao = new InfoDAO();
+		Board updateTarget = new Board();
+		updateTarget.setBoardNum(request.getParameter("noticeNo"));
+		updateTarget.setTitle(request.getParameter("noticeTitle"));
+		updateTarget.setContents(request.getParameter("noticeContents"));
+		dao.updateNotice(updateTarget);
+		
+		return mv;
+	}
+	
+	@Mapping(url="/deleteNotice.ap",method="post")
+	ModelView deleteNoticeContents(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("redirect:/dailyfit/admin/noticeList.ap");
+		InfoDAO dao = new InfoDAO();
+		Board deleteTarget = new Board();
+		System.out.println(request.getParameter("no"));
+		deleteTarget.setBoardNum(request.getParameter("no"));
+		dao.deleteNotice(deleteTarget);
+		
+		return mv;
+	}
+	
+	@Mapping(url="/readNotice.ap",method="post")
+	ModelView readNoticeContents(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/noticeUpdate");
+		InfoDAO dao = new InfoDAO();
+		Board target = new Board();
+		target.setBoardNum(request.getParameter("no"));
+		target = dao.getNotice(target);
+		mv.setModel("noticeTarget", target);
+		return mv;
+	}
+	
 	@Mapping(url="/addNotice.ap",method="post")
 	ModelView addNoticePost(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("redirect:/dailyfit/admin/noticeList.ap");

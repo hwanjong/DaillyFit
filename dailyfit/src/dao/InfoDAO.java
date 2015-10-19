@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+import org.eclipse.jdt.internal.compiler.parser.ParserBasicInformation;
 
 import bean.Board;
 import bean.User;
@@ -27,11 +28,36 @@ public class InfoDAO {
 		}
 		return board;
 	}
+	public void deleteNotice(Board board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			mapper.deleteNotice(board);
+			session.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			session.close();
+		}
+	}
 	public void insertNotice(Board board){
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			BoardMapper mapper = session.getMapper(BoardMapper.class);
 			mapper.insertNotice(board);
+			session.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			session.close();
+		}
+	}
+	
+	public void updateNotice(Board board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			mapper.updateNotice(board);
 			session.commit();
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -51,6 +77,20 @@ public class InfoDAO {
 			session.close();
 		}
 		return boardList;
+	}
+	
+	public Board getNotice(Board target){
+		SqlSession session = sqlSessionFactory.openSession();		
+		Board board= new Board();
+		try{
+			BoardMapper mapper = session.getMapper(BoardMapper.class);			
+			board= mapper.getNotice(target);
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return board;
 	}
 	
 	public void updateEvent(Board board){
