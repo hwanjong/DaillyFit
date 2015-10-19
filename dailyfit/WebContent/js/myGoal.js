@@ -190,7 +190,6 @@ function editRequest(currentWeight, goalWeight, height, power) {
 		"targetWeight" : goalWeight,
 		"weight" : currentWeight,
 	},function(data){
-		alert("수정완료");
 	},"json");
 	
 

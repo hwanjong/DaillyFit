@@ -31,13 +31,13 @@
 		<div id="dates">10월 12일 (월) 23:04</div>
 		<div class="weight" align="center">
 			<img class="weightBG" id="currentWeightBG" src="../img/bg.png">
-			<p class="weightNum" id="currentWeigth">${user.weight}kg</p>
+			<p class="weightNum" id="currentWeigth">${model.curUser.weight}kg</p>
 			<img class="weightNungum" id="currentNungum" src="../img/nungum.png">
 			<p class="current">현재</p>
 		</div>
 		<div id="goalsItemDiv" align=center>
-			<span class="goalsItem" id="userHeight">${user.height }</span> <span
-				id="userPower" class="goalsItem">${user.targetPower }</span>
+			<span class="goalsItem" id="userHeight">${model.curUser.height }</span> <span
+				id="userPower" class="goalsItem">${model.curUser.targetPower }</span>
 		</div>
 		<div id="goalsItemLabelDiv" align=center>
 			<span class="goalsItemLabel">키(cm)</span> <span
@@ -45,7 +45,7 @@
 		</div>
 		<div class="weight" align="center">
 			<img class="weightBG" id="goalWeightBG" src="../img/bg.png">
-			<p class="weightNum" id="goalWeight">${user.targetWeight }kg</p>
+			<p class="weightNum" id="goalWeight">${model.curUser.targetWeight }kg</p>
 			<img class="weightNungum" id="goalNungum" src="../img/nungum.png">
 			<p class="current">목표</p>
 		</div>

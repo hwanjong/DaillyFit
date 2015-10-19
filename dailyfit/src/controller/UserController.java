@@ -67,7 +67,7 @@ public class UserController {
 		if(sessionUser==null) return new ModelView("/dailyfit/login");
 		InfoDAO dao = new InfoDAO();
 		User user = dao.getUser(sessionUser);
-		mv.setModel("user", user);
+		mv.setModel("curUser", user);		
 		return mv;		
 	}
 	
