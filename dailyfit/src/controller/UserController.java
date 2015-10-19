@@ -10,6 +10,7 @@ import bean.Sale;
 import bean.User;
 import dao.InfoDAO;
 import dao.ShopDAO;
+import dao.TicketDAO;
 import hello.annotation.Mapping;
 import hello.annotation.RootURL;
 import hello.mv.ModelView;
@@ -20,8 +21,32 @@ public class UserController {
 	@Mapping(url="/useTicket.ap")
 	ModelView getTicketPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/ticket");
+		User user = (User) request.getSession().getAttribute("user");
+		TicketDAO dao = new TicketDAO();
+		ArrayList<Sale> buyList = dao.getBuyList(user);
+		mv.setModel("buyList", buyList);
+		for(Sale sale : buyList){
+			System.out.println(sale.getSaleName());
+		}
 		return mv;
 	}
+	
+	@Mapping(url="/useRequest.ap",method="post")
+	ModelView useRequest(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("durlemfdjdha");
+		ModelView mv = new ModelView("/myinfo/jsonView");
+		mv.setModel("registed", "no");
+		if(request.getSession().getAttribute("user") ==null)	return mv;
+
+		String saleId = request.getParameter("saleId");
+		TicketDAO dao = new TicketDAO();
+		if(dao.updateUse(saleId)){
+			mv.setModel("check", "yes");
+			System.out.println("update성공");
+		}
+		return mv;
+	}
+	
 	@Mapping(url="/ticketHistory.ap")
 	ModelView getTicketHistroy(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/ticketHistory");
@@ -33,7 +58,6 @@ public class UserController {
 		ModelView mv = new ModelView("redirect:/dailyfit/mypage.ap");
 		
 		ShopDAO dao = new ShopDAO();
-		String shopNum = request.getParameter("shopNum");
 		User user = (User) request.getSession().getAttribute("user");
 		
 		if(user==null) return new ModelView("redirect:/dailyfit/main.ap");
