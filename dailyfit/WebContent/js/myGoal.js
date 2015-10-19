@@ -184,16 +184,15 @@ function init() {
 }
 
 function editRequest(currentWeight, goalWeight, height, power) {
-	$.ajax({
-		url : "/dailyfit/user/userInfoChange.ap",
-		type : "POST",
-		data : {
-			"height" : height,
-			"targetPower" : power,
-			"targetWeight" : goalWeight,
-			"weight" : currentWeight,
-		}	
-	});
+	$.post("/dailyfit/user/infoChange.ap",{
+		"height" : height,
+		"targetPower" : power,
+		"targetWeight" : goalWeight,
+		"weight" : currentWeight,
+	},function(data){
+		alert("수정완료");
+	},"json");
+	
 	console.log("currentWeight : " + currentWeight);
 	console.log("typeof(currentWeight) : " + typeof (currentWeight));
 	console.log("goalWeight : " + goalWeight);
