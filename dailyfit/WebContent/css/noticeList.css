@@ -22,3 +22,9 @@ button{
 	font-size:112%;
 	padding:3px;
 }
+#noticeLabel{
+	font-size: 2em;
+    margin-left: 5.5em;
+    margin-top: 0.5em;
+    margin-bottom: 1em;
+}

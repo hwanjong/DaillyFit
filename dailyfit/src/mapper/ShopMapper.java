@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import org.apache.ibatis.annotations.Param;
 
-import bean.Sale;
 import bean.Shop;
 
 public interface ShopMapper {
@@ -17,5 +16,7 @@ public interface ShopMapper {
 	void deleteShop(@Param("shopNum")String shopNum);
 	void addShop(Shop shop);
 	Shop getShopInfo(@Param("shopNum")String shopNum);
+	void addShopMainUrl(Shop shop);
+	void addShopSubImgUrl(@Param("subUrl")String subUrl,@Param("shopNum")int shopNum);
 	int lastIndex();
 }

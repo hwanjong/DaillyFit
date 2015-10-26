@@ -25,7 +25,7 @@ if(request.getMethod().equals("POST")){
 	String encType = "UTF-8";
 	MultipartRequest multipartRequest
 	= new MultipartRequest(request, saveDir, maxSize, encType, new DefaultFileRenamePolicy());    
-    File file = multipartRequest.getFile("file");
+    //File file = multipartRequest.getFile("file");
 }
 %>
 </body>

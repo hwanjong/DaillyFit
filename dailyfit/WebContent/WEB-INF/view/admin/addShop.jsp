@@ -138,7 +138,7 @@ function getLocation(){
 			</div>
 		</div>
 		
-		<div class="form-group">
+		<!-- <div class="form-group">
 			<label class="col-sm-2 control-label">대표 사진</label>
 			<div class="col-sm-10">
 				<input type="text" name="mainImgUrl" value="o" style="display: none;" >
@@ -154,7 +154,7 @@ function getLocation(){
 				<input type="file" style="padding-bottom: 10px;" accept="image/*">
 			</div>
 		</div>
-		
+		 -->
 		<div id="btnDiv" style="text-align: center; padding: 30px 0px;">
 			<button type="button" class="btn btn-lg" onclick="regist();">등록</button>
 			<button type="button" class="btn btn-lg">취소</button>

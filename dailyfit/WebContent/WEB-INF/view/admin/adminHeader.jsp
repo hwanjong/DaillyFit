@@ -43,7 +43,7 @@ function hideLoading() {
 					<li role="presentation"><a
 					href="#">1:1문의 답변</a></li>
 					<li role="presentation"><a
-					href="#">광고제휴신청 응답</a></li>
+					href="/dailyfit/admin/questionAD.ap">광고제휴문의</a></li>
 					
 				</ul></li>
 
@@ -53,7 +53,7 @@ function hideLoading() {
 			</a>
 				<ul class="dropdown-menu" role="menu">
 					<li role="presentation"><a href="/dailyfit/admin/addShop.ap">신규헬스장등록</a></li>
-					<li role="presentation"><a href="#">헬스장사진등록</a></li>
+					<li role="presentation"><a href="/dailyfit/admin/addImage.ap">헬스장사진등록</a></li>
 					<li role="presentation"><a href="/dailyfit/admin/delShop.ap">기존헬스장삭제</a></li>
 				</ul></li>
 			<li role="presentation" class="dropdown" class="active"><a

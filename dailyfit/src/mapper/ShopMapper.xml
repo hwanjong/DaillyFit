@@ -49,7 +49,14 @@
 		insert into shop_list(shop_name,lat,lng,address,tel,main_img_url,shop_nicname,special_item) values(#{shopName},#{lat},#{lng},#{address},#{tel},#{mainImgUrl},#{shopNicname},#{special})
 	</insert>
 	
+	<update id="addShopMainUrl" parameterType="Shop">
+		update shop_list set MAIN_IMG_URL= #{mainImgUrl} WHERE SHOP_NUM=#{shopNum};
+	</update>
+	
 	<select id="lastIndex" resultType="int">
 		select LAST_INSERT_ID()
 	</select>
+	<insert id="addShopSubImgUrl">
+		insert into shop_images (SHOP_NUM, FILE_PATH) VALUES (#{shopNum}, #{subUrl});
+	</insert>
 </mapper>

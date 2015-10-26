@@ -33,6 +33,7 @@
 </div>
 </body>
 <script>
+
 function post(path, params, method) {
     method = method || "post"; // Set method to post by default if not specified.
 

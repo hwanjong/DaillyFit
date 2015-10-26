@@ -89,6 +89,19 @@ public class AdminController {
 		ModelView mv = new ModelView("/admin/delShop");
 		return mv;
 	}
+	
+	@Mapping(url="/addImage.ap")
+	ModelView getAddImagePage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/addImage");
+		return mv;
+	}
+	
+	@Mapping(url="/addImage.ap", method="post")
+	ModelView getAddImagePagePost(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("imagePost 요청");
+		ModelView mv = new ModelView("/admin/addImage");
+		return mv;
+	}
 	@Mapping(url="/requestLoaction.ap", method="post")
 	ModelView getLoation(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/locationJson");
@@ -240,6 +253,35 @@ public class AdminController {
 		dao.insertNotice(board);
 //		ArrayList<Board> boardList = dao.getNotices();
 //		mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/questionOneByOne.ap")
+	ModelView questionOneByOneView(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/questionOneByOne");
+//		InfoDAO dao = new InfoDAO();
+//		ArrayList<Board> boardList = dao.getNotices();
+//		mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/questionAD.ap")
+	ModelView questionADView(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/questionAD");
+		InfoDAO dao = new InfoDAO();
+		ArrayList<Board> boardList = dao.getQuestionAD();
+		mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/readAD.ap",method="post")
+	ModelView readAD(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/readAD");
+		InfoDAO dao = new InfoDAO();
+		Board target = new Board();
+		target.setBoardNum(request.getParameter("no"));
+		target = dao.getNotice(target);
+		mv.setModel("noticeTarget", target);
 		return mv;
 	}
 }

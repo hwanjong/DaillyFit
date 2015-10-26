@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id='contents'>
-<label id="noticeLabel">공지사항</label>
+<label id="noticeLabel">광고 제휴 문의</label>
 <table class="table table-striped" align="center">
 	<thead>
 	<tr>
@@ -20,16 +20,13 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach var="notice" items="${model.boardList}">
+	<c:forEach var="AD" items="${model.boardList}">
 	<tr class="noticeItems">
-		<td>${notice.boardNum}</td><td>${notice.title}</td><td>${notice.writeDate}</td>
+		<td>${AD.boardNum}</td><td>${AD.title}</td><td>${AD.writeDate}</td>
 	</tr>
 	</c:forEach>	
 	</tbody>
 </table>
-<form method="get" action="/dailyfit/admin/addNotice.ap">
-	<button class="glyphicon glyphicon-pencil" id="writeNotice">글쓰기</button>
-</form>
 </div>
 </body>
 <script>
@@ -61,7 +58,7 @@ $("#writeNotice").click(function(){
 	$("#writeNotice").submit();
 });
 $(".noticeItems").click(function(e){
-	post("/dailyfit/admin/readNotice.ap",{no : $(e.currentTarget).children().first().text()});	
+	post("/dailyfit/admin/readAD.ap",{no : $(e.currentTarget).children().first().text()});	
 });
 </script>
 </html>

@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+body{
+	overflow: hidden;
+}
+#questionLabel{
+	padding: 3%;
+    font-size: 150%;
+    font-weight: bold;
+    border-bottom-color: #EEE;
+    border-top-color: #AAA;
+    border-top-width: 1px;
+    border-bottom-style: outset;
+    border-top-style: outset;
+    margin: 3%;
+    border-bottom-width: 2px;
+    text-align: center;
+    color: #666;
+    margin-bottom: 10%;
+}
+
+.control-label{
+	display: block;
+    margin: 0 0 .4em;
+    width: 20%;
+    text-align: right;
+    float: left;
+    padding-top: 3%;
+}
+.col-sm-10{
+	width: 73%;
+    float: left;
+    margin-right: 2%;
+}
+
+#qContent{
+	height:18em !important;
+}
+.editformBtn{
+	width:20% !important;
+	margin-left: 12%;
+}
+#btnDiv{
+	padding:0px !important;	
+}

@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<div id="profileContents">
-		<div onclick="location.href='test/upload.ap'">
+		<div>
 			<span class = "fa fa-smile-o"></span>
 			<span>포인트샵</span>
 		</div>
@@ -69,26 +69,27 @@
 			<span class = "fa fa-sliders"></span>
 			<span>목표설정</span>
 		</div>		
-		<div>
+		<!-- <div>
 			<span class = "fa fa-gear"></span>
 			<span>설정</span>
-		</div>
+		</div>-->
 		<div onclick="location.href='user/notice.ap'">
 			<span class = "fa fa-question-circle"></span>
 			<span>공지사항</span>
 		</div>
-		<div>
+		<div onclick="location.href='user/question.ap'">
 			<span class = "fa fa-lock"></span>
 			<span>1:1 문의</span>
 		</div>
-		<div>
+		<div onclick="location.href='user/questionAD.ap'">
 			<span class = "fa fa-phone"></span>
 			<span>광고 제휴문의</span>
 		</div>
-		<div>
+		<!--  <div>
 			<span class = "fa fa-users"></span>
 			<span>친구초대하기</span>
 		</div>
+		-->
 		<div onclick="location.href='/dailyfit/logout.ap'">
 			<span class = "fa fa-lock"></span>
 			<span>로그아웃</span>
