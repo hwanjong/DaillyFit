@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class Sale implements Serializable{
 	int shopNum;
 	String ShopName;
+	String mainImgUrl;
 	int saleId;
 	
 	String saleType;
@@ -18,6 +19,7 @@ public class Sale implements Serializable{
 	int useCount;
 	String buyId;
 	String buyTime;
+	
 	
 	public Sale(){
 		
@@ -104,6 +106,12 @@ public class Sale implements Serializable{
 	}
 	public void setUseCount(int useCount) {
 		this.useCount = useCount;
+	}
+	public String getMainImgUrl() {
+		return mainImgUrl;
+	}
+	public void setMainImgUrl(String mainImgUrl) {
+		this.mainImgUrl = mainImgUrl;
 	}
 	
 }

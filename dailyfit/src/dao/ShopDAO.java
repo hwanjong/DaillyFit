@@ -263,4 +263,14 @@ public class ShopDAO {
 		}
 		return null;
 	}
+	public void deleteSubImg(String shopNum){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			mapper.deleteShopSubImg(shopNum);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }

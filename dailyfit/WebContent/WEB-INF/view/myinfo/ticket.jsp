@@ -74,7 +74,7 @@
 					</div>
 					<div class="sale">
 						<p><span class="glyphicon glyphicon-home"></span> ${buy.shopName }</p>
-						<p><img src="/dailyfit/img/shop3_1.png" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
+						<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						
 					</div>
 					<div class="amount">
@@ -97,7 +97,7 @@
 					</div>
 					<div class="sale">
 						<p><span class="glyphicon glyphicon-home"></span> ${buy.shopName }</p>
-						<p><img src="/dailyfit/img/shop3_1.png" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
+						<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						
 					</div>
 					<div class="amount">
@@ -119,7 +119,7 @@
 						</div>
 						<div class="sale">
 							<p><span class="glyphicon glyphicon-home"></span> ${buy.shopName }</p>
-							<p><img src="/dailyfit/img/shop3_1.png" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
+							<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						</div>
 						<div class="amount">
 							<div style="text-align: left;"><input id="${buy.buyId }" class="input" type="text" placeholder="후기입력" lang="20"></div>

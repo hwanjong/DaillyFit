@@ -68,4 +68,8 @@
 		select post from buy_list where shop_num = #{shopNum}
 	</select>
 	
+	<delete id="deleteShopSubImg">
+	    delete from shop_images where shop_num=#{shopNum}
+	</delete>
+	
 </mapper>

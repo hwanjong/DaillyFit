@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import bean.Sale;
+import bean.Shop;
 import bean.User;
 import mapper.BuyMapper;
 import mapper.ShopMapper;
@@ -25,7 +26,10 @@ public class TicketDAO {
 			else if(sale.getSaleType().equals("C")) sale.setSaleName(sale.getTypeAmount()+"회 이용권");
 			else if(sale.getSaleType().equals("M")) sale.setSaleName(sale.getTypeAmount()+"개월 이용권");
 			else sale.setSaleName(sale.getTypeAmount()+"회 PT권");
-			sale.setShopName(shopMapper.getShopinfo(Integer.toString(sale.getShopNum())).getShopName());
+			Shop shop = shopMapper.getShopinfo(Integer.toString(sale.getShopNum()));
+			sale.setShopName(shop.getShopName());
+			System.out.println(shop.getMainImgUrl());
+			sale.setMainImgUrl(shop.getMainImgUrl().split("wtpwebapps")[1]);
 		}
 		session.close();
 		return buyList;

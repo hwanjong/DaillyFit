@@ -21,4 +21,5 @@ public interface ShopMapper {
 	int lastIndex();
 	ArrayList<String> getShopImgList(String shopNum);
 	ArrayList<String> getPostList(String shopNum);
+	void deleteShopSubImg(String shopNum);
 }
