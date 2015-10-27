@@ -13,6 +13,20 @@
 function cancleEdit(){
 	location.href="question.ap"
 }
+
+function regist(){
+	if( $("#noticeTitle").val()==""||$("#qContent").val()==""){
+		alert("필수정보 누락");
+	}else{
+		$.post("/dailyfit/user/insertOneByOneQuest.ap",{
+			title : $("#noticeTitle").val(),
+			contents :$("#qContent").val() 
+		},function(data){
+			alert("등록하였습니다.");
+			location.href="/dailyfit/mypage.ap"
+		},"json");
+	}
+}
 </script>
 </head>
 <body>

@@ -44,9 +44,7 @@ function hideLoading() {
 					href="#">1:1문의 답변</a></li>
 					<li role="presentation"><a
 					href="/dailyfit/admin/questionAD.ap">광고제휴문의</a></li>
-					
 				</ul></li>
-
 			<li role="presentation" class="dropdown" class="active"><a
 				class="dropdown-toggle" data-toggle="dropdown" href="#"
 				role="button" aria-expanded="false">헬스장관리 <span class="caret"></span>
@@ -75,9 +73,7 @@ function hideLoading() {
 					<li role="presentation"><a
 					href="/dailyfit/admin/searchGoogle.ap">Google데이터 등록</a></li>
 				</ul></li>
-
 		</ul>
 	</div>
-
 </body>
 </html>

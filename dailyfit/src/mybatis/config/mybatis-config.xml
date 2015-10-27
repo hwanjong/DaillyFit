@@ -24,5 +24,6 @@
 		<mapper resource="mapper/SaleMapper.xml" />
 		<mapper resource="mapper/BuyMapper.xml" />
 		<mapper resource="mapper/BoardMapper.xml" />
+		<mapper resource="mapper/OneByOneBoardMapper.xml" />
 	</mappers>
 </configuration>

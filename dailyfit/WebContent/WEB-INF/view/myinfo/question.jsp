@@ -42,9 +42,25 @@
 	</div>
 	
 	<button id="editQuestion" onclick="editQ()">글쓰기</button>
-	<div id="questionLabel">1:1 문의</div>
-	
-	<div class="panel-group" id="accordion">		
+	<div id="questionLabel">1:1 문의</div>	
+	<div class="panel-group" id="accordion">
+			<c:forEach var ="qboard" items="${model.boardList }">
+				<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">
+						<a data-toggle="collapse" data-parent="#accordion"
+							aria-hidden="false" href="#${qboard.userQuestionBoardNum }" class="collapsed">
+							<span class="glyphicon glyphicon-menu-right"></span>${qboard.title}
+						</a>
+					</h4>
+				</div>
+				<div id="${qboard.userQuestionBoardNum }" class="panel-collapse collapse">
+					<div class="panel-body">${qboard.contents }</div>
+				</div>
+			</div>
+			</c:forEach>
+	</div>
+	<!-- <div class="panel-group" id="accordion">		
 			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
@@ -71,10 +87,10 @@
 				<div id="2" class="panel-collapse collapse">
 					<div class="panel-body">
 						<div>답변이 달렸어요</div>
-						<div>reply --> 오예 </div>
+						<div>reply 오예 </div>
 					</div>
 				</div>
-			</div>		
-	</div>
+			</div> 	
+	</div>-->	
 </body>
 </html>
