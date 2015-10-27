@@ -31,6 +31,7 @@ public class CheckController {
 		ModelView mv = new ModelView("/shopJson");
 		ShopDAO dao = new ShopDAO();
 		String shopName = request.getParameter("shopName");
+		//shopName="트레보";
 		ArrayList<Shop> shopList = dao.getShopListByName(shopName);
 		mv.setModel("shopList", shopList);
 		return mv;

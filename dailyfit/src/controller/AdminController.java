@@ -89,6 +89,19 @@ public class AdminController {
 		ModelView mv = new ModelView("/admin/delShop");
 		return mv;
 	}
+	
+	@Mapping(url="/addImage.ap")
+	ModelView getAddImagePage(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/addImage");
+		return mv;
+	}
+	
+	@Mapping(url="/addImage.ap", method="post")
+	ModelView getAddImagePagePost(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("imagePost 요청");
+		ModelView mv = new ModelView("/admin/addImage");
+		return mv;
+	}
 	@Mapping(url="/requestLoaction.ap", method="post")
 	ModelView getLoation(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/locationJson");

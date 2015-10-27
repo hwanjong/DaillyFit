@@ -53,7 +53,7 @@ function hideLoading() {
 			</a>
 				<ul class="dropdown-menu" role="menu">
 					<li role="presentation"><a href="/dailyfit/admin/addShop.ap">신규헬스장등록</a></li>
-					<li role="presentation"><a href="#">헬스장사진등록</a></li>
+					<li role="presentation"><a href="/dailyfit/admin/addImage.ap">헬스장사진등록</a></li>
 					<li role="presentation"><a href="/dailyfit/admin/delShop.ap">기존헬스장삭제</a></li>
 				</ul></li>
 			<li role="presentation" class="dropdown" class="active"><a

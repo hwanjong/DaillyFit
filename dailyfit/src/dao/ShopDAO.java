@@ -194,4 +194,36 @@ public class ShopDAO {
 		}
 		return true;
 	}
+	
+	public boolean addShopMainUrl(Shop shop){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			mapper.addShopMainUrl(shop);
+			session.commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			session.close();
+		}
+		return true;
+	}
+	
+	public boolean addShopSubImgUrl(String url,int id){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			mapper.addShopSubImgUrl(url,id);
+			session.commit();
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}finally{
+			session.close();
+		}
+		return true;
+	}
 }
