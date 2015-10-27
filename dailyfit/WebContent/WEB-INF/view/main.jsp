@@ -175,7 +175,7 @@ var paging = 1;
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
 			onclick="javascript:history.go(-1)"></span> <span> Daily FIT</span> <span
 			class="glyphicon glyphicon-option-horizontal right"
-			aria-hidden="true" onclick="alert('거리순&가격순보기준비중입니다.')"></span> <span
+			aria-hidden="true" onclick="menuBar()"></span> <span
 			class="glyphicon glyphicon-search right" aria-hidden="true"
 			onclick="three();"></span>
 

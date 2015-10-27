@@ -4,13 +4,19 @@ import java.io.Serializable;
 
 public class Sale implements Serializable{
 	int shopNum;
+	String ShopName;
 	int saleId;
+	
 	String saleType;
 	String typeAmount;
 	String salePrice;
 	String saleName;
+	
 	int availability;
 	String userId;
+	int waitCount;
+	String buyId;
+	String buyTime;
 	
 	public Sale(){
 		
@@ -67,6 +73,30 @@ public class Sale implements Serializable{
 	}
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+	public int getWaitCount() {
+		return waitCount;
+	}
+	public void setWaitCount(int waitCount) {
+		this.waitCount = waitCount;
+	}
+	public String getBuyId() {
+		return buyId;
+	}
+	public void setBuyId(String buyId) {
+		this.buyId = buyId;
+	}
+	public String getBuyTime() {
+		return buyTime;
+	}
+	public void setBuyTime(String buyTime) {
+		this.buyTime = buyTime;
+	}
+	public String getShopName() {
+		return ShopName;
+	}
+	public void setShopName(String shopName) {
+		ShopName = shopName;
 	}
 	
 }
