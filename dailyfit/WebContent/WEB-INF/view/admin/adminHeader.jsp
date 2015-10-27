@@ -43,7 +43,7 @@ function hideLoading() {
 					<li role="presentation"><a
 					href="#">1:1문의 답변</a></li>
 					<li role="presentation"><a
-					href="#">광고제휴신청 응답</a></li>
+					href="/dailyfit/admin/questionAD.ap">광고제휴문의</a></li>
 					
 				</ul></li>
 

@@ -1,0 +1,27 @@
+@CHARSET "UTF-8";
+
+#questionLabel{
+	padding: 3%;
+    font-size: 150%;
+    font-weight: bold;
+    border-bottom-color: #EEE;
+    border-top-color: #AAA;
+    border-top-width: 1px;
+    border-bottom-style: outset;
+    border-top-style: outset;
+    margin: 3%;
+    border-bottom-width: 2px;
+    text-align: center;
+    color: #666;
+}
+
+.glyphicon {
+	margin-right:3%;
+}
+#editQuestion{
+    float: right;
+    font-size: 50%;
+    width: 15%;
+    margin-top: 6%;
+    margin-right: 5%;
+}

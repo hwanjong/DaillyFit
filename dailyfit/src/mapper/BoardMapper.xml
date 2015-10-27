@@ -31,4 +31,11 @@
     <delete id="deleteNotice" parameterType="Board">
     	delete from board where board_num = #{boardNum}
     </delete>
+    <insert id="insertQestion" parameterType="Board">
+    	insert into board (title, contents, write_date, board_type)
+    	values (#{title}, #{contents}, curdate(), 'A')
+    </insert>
+    <select id="ADList" resultMap="boardMap" resultType="Board">
+    	select * from board where board_type = 'A' order by board_num desc
+    </select>
 </mapper>

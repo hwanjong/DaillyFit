@@ -255,4 +255,33 @@ public class AdminController {
 //		mv.setModel("boardList", boardList);
 		return mv;
 	}
+	
+	@Mapping(url="/questionOneByOne.ap")
+	ModelView questionOneByOneView(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/questionOneByOne");
+//		InfoDAO dao = new InfoDAO();
+//		ArrayList<Board> boardList = dao.getNotices();
+//		mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/questionAD.ap")
+	ModelView questionADView(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/questionAD");
+		InfoDAO dao = new InfoDAO();
+		ArrayList<Board> boardList = dao.getQuestionAD();
+		mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/readAD.ap",method="post")
+	ModelView readAD(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/admin/readAD");
+		InfoDAO dao = new InfoDAO();
+		Board target = new Board();
+		target.setBoardNum(request.getParameter("no"));
+		target = dao.getNotice(target);
+		mv.setModel("noticeTarget", target);
+		return mv;
+	}
 }

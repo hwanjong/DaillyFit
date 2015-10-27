@@ -33,7 +33,6 @@ public class UserController {
 	
 	@Mapping(url="/useRequest.ap",method="post")
 	ModelView useRequest(HttpServletRequest request,HttpServletResponse response){
-		System.out.println("durlemfdjdha");
 		ModelView mv = new ModelView("/myinfo/jsonView");
 		mv.setModel("registed", "no");
 		if(request.getSession().getAttribute("user") ==null)	return mv;
@@ -117,4 +116,40 @@ public class UserController {
 		mv.setModel("boardList", boardList);
 		return mv;
 	}
+	
+	@Mapping(url="/question.ap")
+	ModelView questionOnebyOne(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/myinfo/question");
+		//InfoDAO dao = new InfoDAO();
+		//ArrayList<Board> boardList = dao.getNotices();
+		//mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/editQuestion.ap")
+	ModelView editQuestionOnebyOne(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/myinfo/editQuestion");
+		//InfoDAO dao = new InfoDAO();
+		//ArrayList<Board> boardList = dao.getNotices();
+		//mv.setModel("boardList", boardList);
+		return mv;
+	}
+	
+	@Mapping(url="/questionAD.ap")
+	ModelView questionAd(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/myinfo/questionAD");
+		return mv;
+	}
+	@Mapping(url="/addQuesAD.ap",method="post")
+	ModelView addQuesAd(HttpServletRequest request,HttpServletResponse response){
+		System.out.println("requestAD");
+		ModelView mv = new ModelView("/myinfo/jsonView");
+		InfoDAO dao = new InfoDAO();
+		Board board = new Board();
+		board.setTitle(request.getParameter("title"));
+		board.setContents(request.getParameter("contents"));
+		dao.insertQestion(board);
+		return mv;
+	}
+	
 }

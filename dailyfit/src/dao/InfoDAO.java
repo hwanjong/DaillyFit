@@ -165,5 +165,33 @@ public class InfoDAO {
 		}
 		return true;
 	}
+	
+	public void insertQestion(Board board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			mapper.insertQestion(board);
+			session.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			session.close();
+		}
+	}
+	
+	public ArrayList<Board> getQuestionAD(){
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<Board> boardList =null;
+		try{
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+			boardList= mapper.ADList();
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return boardList;
+	}
+	
 
 }
