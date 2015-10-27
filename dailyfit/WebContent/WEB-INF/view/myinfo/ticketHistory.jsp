@@ -5,27 +5,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--  googleMap -->
 <link href="/dailyfit/css/ticket.css" rel="stylesheet">
 <script type="text/javascript">
-
-//나중에 분명히 자바스크립트 조작으로 정보수정결제가 일어날수있음!! 잊지말기
-	
-		
-	function pageChange(pageNum) {
-		$(".eachTab").removeClass("activeBar");
-		$(".eachContents").hide();
-		$("#"+pageNum).fadeIn(200);
-		$("."+pageNum).addClass("activeBar");
+	function updateReport(buyId){
+		var postText = $("#"+buyId).val();
+		$.post("/dailyfit/user/updatePost.ap",{
+			buyId:buyId,
+			post:postText
+		},function(data){
+			alert("후기등록성공");
+		},"json");
 	}
-	
-	
-	$(document).ready(function() {
-	});
 </script>
 </head>
 <body>
-<c:set var="shop" value="${model.shop}"/>
 	<div id="headBar" data-role="header" data-position="fixed"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
@@ -34,9 +27,9 @@
 			onclick="search();"></span>
 
 	</div>
-	<div id="contents" role="main" style="overflow: hidden; margin: 3%;">
+	<div id="contents" role="main" style="margin: 3%;">
 		<div class="font f12 b">
-			<c:forEach var="buy" items="${buyList}">
+			<c:forEach var="buy" items="${model.buyList}">
 				<c:if test="${buy.useCount != 0}">
 					<div class="ticket">
 						<div class="day">

@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--  googleMap -->
 <link href="/dailyfit/css/ticket.css" rel="stylesheet">
 <script type="text/javascript">
 
@@ -29,16 +28,6 @@
 			else{
 				alert("부적합한접근");
 			}
-		},"json");
-	}
-	
-	function updateReport(buyId){
-		var postText = $("#"+buyId).val();
-		$.post("/dailyfit/user/updatePost.ap",{
-			buyId:buyId,
-			post:postText
-		},function(data){
-			alert("후기등록성공");
 		},"json");
 	}
 	
@@ -122,7 +111,7 @@
 							<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						</div>
 						<div class="amount">
-							<span class="left"><span style="color: red;">완료수량</span> <span style="color: #059;">${buy.useCount }개</span></span>
+							<span ><span style="color: red;">완료수량</span> <span style="color: #059;">${buy.useCount }개</span></span>
 						</div>
 					</div>
 				</c:if>

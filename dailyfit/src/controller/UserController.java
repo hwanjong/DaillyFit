@@ -77,9 +77,6 @@ public class UserController {
 		TicketDAO dao = new TicketDAO();
 		ArrayList<Sale> buyList = dao.getBuyList(user);
 		mv.setModel("buyList", buyList);
-		for(Sale sale : buyList){
-			System.out.println(sale.getSaleName());
-		}
 		return mv;
 	}
 	
