@@ -23,6 +23,7 @@ public class UserController {
 	ModelView getTicketPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/ticket");
 		User user = (User) request.getSession().getAttribute("user");
+		if(user==null) return new ModelView("/login");
 		TicketDAO dao = new TicketDAO();
 		ArrayList<Sale> buyList = dao.getBuyList(user);
 		mv.setModel("buyList", buyList);
@@ -71,6 +72,14 @@ public class UserController {
 	@Mapping(url="/ticketHistory.ap")
 	ModelView getTicketHistroy(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/ticketHistory");
+		User user = (User) request.getSession().getAttribute("user");
+		if(user==null) return new ModelView("/login");
+		TicketDAO dao = new TicketDAO();
+		ArrayList<Sale> buyList = dao.getBuyList(user);
+		mv.setModel("buyList", buyList);
+		for(Sale sale : buyList){
+			System.out.println(sale.getSaleName());
+		}
 		return mv;
 	}
 	

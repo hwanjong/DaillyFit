@@ -110,7 +110,7 @@
 		</div>
 	
 		<div id="three" class="eachContents font f12 b" style="display: none;">
-		<c:forEach var="buy" items="${buyList}">
+			<c:forEach var="buy" items="${buyList}">
 				<c:if test="${buy.useCount != 0}">
 					<div class="ticket">
 						<div class="day">
@@ -122,9 +122,7 @@
 							<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						</div>
 						<div class="amount">
-							<div style="text-align: left;"><input id="${buy.buyId }" class="input" type="text" placeholder="후기입력" lang="20"></div>
 							<span class="left"><span style="color: red;">완료수량</span> <span style="color: #059;">${buy.useCount }개</span></span>
-							<span style="text-align: right; padding: 10px;"><button class="btn" style="width: 50%;" onclick="updateReport('${buy.buyId}')">후기등록</button></span>
 						</div>
 					</div>
 				</c:if>
