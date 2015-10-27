@@ -31,17 +31,22 @@ public class TicketDAO {
 		return buyList;
 	}
 
-	public boolean updateUse(String saleId) {
+	public boolean updateUse(String buyId,int state) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			BuyMapper mapper = session.getMapper(BuyMapper.class);
-			Sale sale = mapper.getBuyInfo(saleId);
-			if(sale.getAvailability() > sale.getWaitCount()){
-				mapper.countUpWaitCount(sale.getWaitCount()+1,saleId);
+			Sale sale = mapper.getBuyInfo(buyId);
+			if(state==1){
+				if(sale.getAvailability() > sale.getWaitCount()){
+					mapper.countUpWaitCount(sale.getWaitCount()+1,buyId);
+					session.commit();
+				}else{
+					return false;
+				}
+			}else if(state==2){
+				mapper.countDownWaitCount(buyId);
 				session.commit();
-			}else{
-				return false;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -49,6 +54,18 @@ public class TicketDAO {
 			return false;
 		}
 		return true;
+	}
+
+	public void updatePost(String buyId, String post) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			BuyMapper mapper = session.getMapper(BuyMapper.class);
+			mapper.updatePost(buyId,post);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

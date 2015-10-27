@@ -19,4 +19,6 @@ public interface ShopMapper {
 	void addShopMainUrl(Shop shop);
 	void addShopSubImgUrl(@Param("subUrl")String subUrl,@Param("shopNum")int shopNum);
 	int lastIndex();
+	ArrayList<String> getShopImgList(String shopNum);
+	ArrayList<String> getPostList(String shopNum);
 }

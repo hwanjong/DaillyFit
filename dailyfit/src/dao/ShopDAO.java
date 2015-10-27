@@ -111,8 +111,15 @@ public class ShopDAO {
 			ShopMapper mapper = session.getMapper(ShopMapper.class);
 			if(product) shopList=  mapper.getRangeProduct(lat,lng);
 			else shopList=  mapper.getRangeShop(lat,lng);
-
-
+			
+			//imgUrl split 작업
+			for(Shop shop: shopList){
+				String imgUrl = shop.getMainImgUrl();
+				if(imgUrl!=null){
+					shop.setMainImgUrl(imgUrl.split("wtpwebapps")[1]);
+					System.out.println(shop.getMainImgUrl());
+				}
+			}
 			System.out.println("찾은 shop갯수 : "+shopList.size());
 		}catch(Exception e){
 			e.printStackTrace();
@@ -225,5 +232,35 @@ public class ShopDAO {
 			session.close();
 		}
 		return true;
+	}
+	public ArrayList<String> getImgList(String shopNum) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<String> imgList = null;
+		ArrayList<String> parsingList = new ArrayList<String>();
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			imgList=mapper.getShopImgList(shopNum);
+			for(String str : imgList){
+				parsingList.add(str.split("wtpwebapps")[1]);
+			}
+			return parsingList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
+	}
+	public ArrayList<String> getPostList(String shopNum) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<String> postList = null;
+		try{
+			ShopMapper mapper = session.getMapper(ShopMapper.class);
+			postList=mapper.getPostList(shopNum);
+			return postList;
+		}catch(Exception e){
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

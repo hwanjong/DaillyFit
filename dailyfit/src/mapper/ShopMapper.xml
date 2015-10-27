@@ -59,4 +59,13 @@
 	<insert id="addShopSubImgUrl">
 		insert into shop_images (SHOP_NUM, FILE_PATH) VALUES (#{shopNum}, #{subUrl});
 	</insert>
+	
+	<select id="getShopImgList" resultType="String">
+		select file_path from shop_images where shop_num = #{shopNum}
+	</select>
+	
+	<select id="getPostList" resultType="String">
+		select post from buy_list where shop_num = #{shopNum}
+	</select>
+	
 </mapper>

@@ -7,6 +7,7 @@
 		<id column="user_id" property="userId" />
 		<id column="sale_id" property="saleId" />
 		<id column="wait_count" property="waitCount" />
+		<id column="use_count" property="useCount" />
 		<id column="shop_num" property="shopNum" />
 		<id column="buy_id" property="buyId" />
 		<id column="buy_time" property="buyTime" />
@@ -24,10 +25,18 @@
     </select>
     
     <select id="getBuyInfo" resultMap="buyMap" resultType="Sale">
-        select * from buy_list where sale_id = #{saleId}
+        select * from buy_list where buy_id = #{buyId}
     </select>
     
     <update id="countUpWaitCount">
-        update buy_list set wait_count = #{upCount} where sale_id = #{saleId}
+        update buy_list set wait_count = #{upCount} where buy_id = #{buyId}
     </update>
+    
+    <update id="countDownWaitCount">
+        update buy_list set wait_count = 0 where buy_id = #{buyId}
+    </update>
+    <update id="updatePost">
+        update buy_list set post = #{post} where buy_id = #{buyId}
+    </update>
+    
 </mapper>

@@ -15,6 +15,7 @@ public class Sale implements Serializable{
 	int availability;
 	String userId;
 	int waitCount;
+	int useCount;
 	String buyId;
 	String buyTime;
 	
@@ -97,6 +98,12 @@ public class Sale implements Serializable{
 	}
 	public void setShopName(String shopName) {
 		ShopName = shopName;
+	}
+	public int getUseCount() {
+		return useCount;
+	}
+	public void setUseCount(int useCount) {
+		this.useCount = useCount;
 	}
 	
 }
