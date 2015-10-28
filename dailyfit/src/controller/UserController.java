@@ -24,6 +24,7 @@ public class UserController {
 	ModelView getTicketPage(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/ticket");
 		User user = (User) request.getSession().getAttribute("user");
+		if(user==null) return new ModelView("/login");
 		TicketDAO dao = new TicketDAO();
 		ArrayList<Sale> buyList = dao.getBuyList(user);
 		mv.setModel("buyList", buyList);
@@ -39,18 +40,44 @@ public class UserController {
 		mv.setModel("registed", "no");
 		if(request.getSession().getAttribute("user") ==null)	return mv;
 
-		String saleId = request.getParameter("saleId");
+		String buyId = request.getParameter("buyId");
+		int state = Integer.parseInt(request.getParameter("state"));
+		//state : 1 = useCoupon, 2 = collectCoupon 
+		 
 		TicketDAO dao = new TicketDAO();
-		if(dao.updateUse(saleId)){
+		if(dao.updateUse(buyId,state)){
 			mv.setModel("check", "yes");
 			System.out.println("update성공");
 		}
+		
 		return mv;
 	}
+	
+	@Mapping(url="/updatePost.ap",method="post")
+	ModelView updatePost(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/myinfo/jsonView");
+		mv.setModel("registed", "no");
+		if(request.getSession().getAttribute("user") ==null)	return mv;
+
+		String buyId = request.getParameter("buyId");
+		String post= request.getParameter("post");
+
+		TicketDAO dao = new TicketDAO();
+		dao.updatePost(buyId,post);
+		mv.setModel("check", "yes");
+		
+		return mv;
+	}
+	
 	
 	@Mapping(url="/ticketHistory.ap")
 	ModelView getTicketHistroy(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/ticketHistory");
+		User user = (User) request.getSession().getAttribute("user");
+		if(user==null) return new ModelView("/login");
+		TicketDAO dao = new TicketDAO();
+		ArrayList<Sale> buyList = dao.getBuyList(user);
+		mv.setModel("buyList", buyList);
 		return mv;
 	}
 	

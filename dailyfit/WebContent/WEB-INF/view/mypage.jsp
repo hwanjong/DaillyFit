@@ -53,7 +53,7 @@
 		</div>
 	</div>
 	<div id="profileContents">
-		<div>
+		<div onclick="alert('에스크로 결제서비스 심사중입니다.')">
 			<span class = "fa fa-smile-o"></span>
 			<span>포인트샵</span>
 		</div>

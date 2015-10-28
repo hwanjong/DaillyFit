@@ -28,7 +28,7 @@ var paging = 1;
 			var shopList = data.shopList;
 			for (var i in shopList) {
 				if(shopList[i]=="")continue;
-				var htmlCode ='<div class="item" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="/dailyfit/img/shop1_item2.jpg"><div class="itemTitle"><p class="m1">'+shopList[i].shopName+'</p><span class="subTitle">1회 이용권 '+shopList[i].dprice+'원</span><span class="post">후기 0개</span></div><div class="distance">'+shopList[i].distance+'km</div></div>"';
+				var htmlCode ='<div class="item" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="'+shopList[i].mainImgUrl+'"><div class="itemTitle"><p class="m1">'+shopList[i].shopName+'</p><span class="subTitle">1회 이용권 '+shopList[i].dprice+'원</span><span class="post">후기 0개</span></div><div class="distance">'+shopList[i].distance+'km</div></div>"';
 				$("#daily").append(htmlCode);
 			}
 		},"json");
@@ -55,7 +55,7 @@ var paging = 1;
 					var imgUrl = shopList[i].mainImgUrl;
 					//제휴 먼저표시
 
-					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="/dailyfit/img/shop3_3.JPG" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
+					var htmlCode ='<div class="premium" onclick="location.href=\'shop.ap?shopNum='+shopList[i].shopNum+'\'"><img src="'+shopList[i].mainImgUrl+'" style="width: 100%; height: 100%;"><p class="left f18">'+shopList[i].shopName+'</p><p class="right bold">'+shopList[i].distance+'km</p></div>';
 					$("#twoContents").append(htmlCode);
 				}
 			}

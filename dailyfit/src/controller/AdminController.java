@@ -68,6 +68,7 @@ public class AdminController {
 	ModelView registShop(HttpServletRequest request,HttpServletResponse response,Object bean){
 		ModelView mv = new ModelView("/admin/addShop");
 		Shop shop = (Shop) bean;
+		System.out.println(shop.getMainImgUrl());
 		ArrayList<Sale> saleList = new ArrayList<Sale>();
 		for(String str : request.getParameterValues("checked")){
 			if(str.equals("option1")){

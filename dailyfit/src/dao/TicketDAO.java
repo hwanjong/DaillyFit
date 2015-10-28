@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import bean.Sale;
+import bean.Shop;
 import bean.User;
 import mapper.BuyMapper;
 import mapper.ShopMapper;
@@ -25,23 +26,31 @@ public class TicketDAO {
 			else if(sale.getSaleType().equals("C")) sale.setSaleName(sale.getTypeAmount()+"회 이용권");
 			else if(sale.getSaleType().equals("M")) sale.setSaleName(sale.getTypeAmount()+"개월 이용권");
 			else sale.setSaleName(sale.getTypeAmount()+"회 PT권");
-			sale.setShopName(shopMapper.getShopinfo(Integer.toString(sale.getShopNum())).getShopName());
+			Shop shop = shopMapper.getShopinfo(Integer.toString(sale.getShopNum()));
+			sale.setShopName(shop.getShopName());
+			System.out.println(shop.getMainImgUrl());
+			sale.setMainImgUrl(shop.getMainImgUrl().split("wtpwebapps")[1]);
 		}
 		session.close();
 		return buyList;
 	}
 
-	public boolean updateUse(String saleId) {
+	public boolean updateUse(String buyId,int state) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			BuyMapper mapper = session.getMapper(BuyMapper.class);
-			Sale sale = mapper.getBuyInfo(saleId);
-			if(sale.getAvailability() > sale.getWaitCount()){
-				mapper.countUpWaitCount(sale.getWaitCount()+1,saleId);
+			Sale sale = mapper.getBuyInfo(buyId);
+			if(state==1){
+				if(sale.getAvailability() > sale.getWaitCount()){
+					mapper.countUpWaitCount(sale.getWaitCount()+1,buyId);
+					session.commit();
+				}else{
+					return false;
+				}
+			}else if(state==2){
+				mapper.countDownWaitCount(buyId);
 				session.commit();
-			}else{
-				return false;
 			}
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -49,6 +58,18 @@ public class TicketDAO {
 			return false;
 		}
 		return true;
+	}
+
+	public void updatePost(String buyId, String post) {
+		// TODO Auto-generated method stub
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			BuyMapper mapper = session.getMapper(BuyMapper.class);
+			mapper.updatePost(buyId,post);
+			session.commit();
+		}catch(Exception e){
+			e.printStackTrace();
+		}
 	}
 
 }

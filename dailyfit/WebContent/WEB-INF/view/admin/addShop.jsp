@@ -137,11 +137,12 @@ function getLocation(){
 				</div>
 			</div>
 		</div>
+		<input type="text" name="mainImgUrl" value="/wtpwebapps/dailyfit/img/shop1_item2.jpg" style="display: none;" >
 		
 		<!-- <div class="form-group">
 			<label class="col-sm-2 control-label">대표 사진</label>
 			<div class="col-sm-10">
-				<input type="text" name="mainImgUrl" value="o" style="display: none;" >
+				<input type="text" name="mainImgUrl" value="/wtpwebapps/dailyfit/img/13958/mainImage.jpg" style="display: none;" >
 				<input type="file"  placeholder="트레보" accept="image/*">
 			</div>
 		</div>

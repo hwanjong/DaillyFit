@@ -5,7 +5,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-<!--  googleMap -->
 <link href="/dailyfit/css/ticket.css" rel="stylesheet">
 <script type="text/javascript">
 
@@ -19,9 +18,10 @@
 		$("."+pageNum).addClass("activeBar");
 	}
 	
-	function useRequest(saleId){
+	function useRequest(buyId,state){
 		$.post("/dailyfit/user/useRequest.ap",{
-			saleId :saleId
+			buyId :buyId,
+			state:state
 		},function(data){
 			if(data.registed=="yes")
 				location.reload();
@@ -30,7 +30,6 @@
 			}
 		},"json");
 	}
-	
 	
 	$(document).ready(function() {
 	});
@@ -64,13 +63,13 @@
 					</div>
 					<div class="sale">
 						<p><span class="glyphicon glyphicon-home"></span> ${buy.shopName }</p>
-						<p><img src="/dailyfit/img/shop3_1.png" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
+						<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						
 					</div>
 					<div class="amount">
 						<span class="left"><span style="color: red;">사용가능</span> <span style="color: #059;">${buy.availability - buy.waitCount }개</span></span>
-						<button class="btn" onclick="useRequest(${buy.saleId})">사용신청</button>
-						<button class="btn">환불신청</button>
+						<button class="btn" onclick="useRequest(${buy.buyId},1)">사용신청</button>
+						<!-- <button class="btn">환불신청</button> -->
 					</div>
 				</div>
 			</c:if>
@@ -87,12 +86,12 @@
 					</div>
 					<div class="sale">
 						<p><span class="glyphicon glyphicon-home"></span> ${buy.shopName }</p>
-						<p><img src="/dailyfit/img/shop3_1.png" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
+						<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
 						
 					</div>
 					<div class="amount">
 						<span class="left"><span style="color: red;">신청수량</span> <span style="color: #059;">${buy.waitCount }개 대기중</span></span>
-						<button class="btn">쿠폰회수</button>
+						<button class="btn" onclick="useRequest(${buy.buyId},2)">쿠폰회수</button>
 					</div>
 				</div>
 				</c:if>
@@ -100,20 +99,23 @@
 		</div>
 	
 		<div id="three" class="eachContents font f12 b" style="display: none;">
-			<div class="ticket">
-				<div class="day">
-					<span> 2015. 06. 06 </span>
-					<span style="float: right;"><a>주문정보>></a></span>
-				</div>
-				<div class="sale">
-					<p><span class="glyphicon glyphicon-home"></span> 헬스대통령</p>
-					<p><img src="/dailyfit/img/shop3_1.png" width="100px;"> <span style="vertical-align:top; ">3개월 이용권  120000원</span></p>
-					
-				</div>
-				<div class="amount">
-					<button class="btn" style="width: 100%;">후기등록</button>
-				</div>
-			</div>
+			<c:forEach var="buy" items="${buyList}">
+				<c:if test="${buy.useCount != 0}">
+					<div class="ticket">
+						<div class="day">
+							<span> ${buy.buyTime }  </span>
+						<span style="float: right;"><a>주문정보>></a></span>
+						</div>
+						<div class="sale">
+							<p><span class="glyphicon glyphicon-home"></span> ${buy.shopName }</p>
+							<p><img src="${buy.mainImgUrl }" width="100px;"> <span style="vertical-align:top; ">${buy.saleName } ${buy.salePrice }원</span></p>
+						</div>
+						<div class="amount">
+							<span ><span style="color: red;">완료수량</span> <span style="color: #059;">${buy.useCount }개</span></span>
+						</div>
+					</div>
+				</c:if>
+			</c:forEach>
 		</div>
 	</div>
 </body>

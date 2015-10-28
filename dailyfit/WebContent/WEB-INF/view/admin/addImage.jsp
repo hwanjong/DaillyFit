@@ -151,7 +151,10 @@ if(request.getMethod().equals("POST")){
     String originFileName = "";    
     String fileExtend = "";
     String fileSize = "";
+    String shopId=multipartRequest.getParameter("shopId");
     int fileNo=0;
+    ShopDAO dao = new ShopDAO();
+	dao.deleteSubImg(shopId);    
 	while(fileNames.hasMoreElements()){
 		fileInput = (String)fileNames.nextElement();
 		fileName = multipartRequest.getFilesystemName(fileInput);
@@ -165,9 +168,9 @@ if(request.getMethod().equals("POST")){
 			if (newFile.exists()) newFile.delete();
 			
 			file.renameTo(newFile);				
-			ShopDAO dao = new ShopDAO();
+			dao = new ShopDAO();
 			Shop shop = new Shop();
-			shop.setShopNum(Integer.parseInt(multipartRequest.getParameter("shopId")));
+			shop.setShopNum(Integer.parseInt(shopId));
 			System.out.println(newFile.getPath());
 			shop.setMainImgUrl(newFile.getPath().replaceAll("\\\\", "/"));
 			dao.addShopMainUrl(shop);				
@@ -179,8 +182,7 @@ if(request.getMethod().equals("POST")){
 			if (newFile.exists()) newFile.delete();
 				file.renameTo(newFile);
 			System.out.println("SubPageUpload : " + fileNo);
-			ShopDAO dao = new ShopDAO();
-			int shopNum = Integer.parseInt(multipartRequest.getParameter("shopId"));
+			int shopNum = Integer.parseInt(shopId);
 			String subUrl = newFile.getPath().replaceAll("\\\\", "/");
 			dao.addShopSubImgUrl(subUrl, shopNum);
 			

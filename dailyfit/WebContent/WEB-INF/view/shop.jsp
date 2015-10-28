@@ -137,22 +137,22 @@
 		<div id="carousel-example-generic" class="carousel slide"
 			style="height: 180px; top:-1px;" data-ride="carousel">
 			<!-- Indicators -->
+			<%int num=0; %>
 			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<c:forEach var="imgUrl" items="${model.imgList}">
+					<li data-target="#carousel-example-generic" <%if(num==0){ %><%= "class=active" %> <% }%> data-slide-to="<%=num++%>"></li>
+				</c:forEach>
 			</ol>
 
 			<!-- Wrapper for slides -->
+			<%int num2=0; %>
 			<div class="carousel-inner" style="height: 100%;" role="listbox">
-				<div class="item" style="height: 180px;">
-					<img src="/dailyfit/img/shop3_2.png" height="180px" alt="...">
-					<div class="carousel-caption"></div>
-				</div>
-				<div class="item active" style="height: 180px;">
-					<img src="/dailyfit/img/shop3_1.png" height="180px" alt="...">
-					<div class="carousel-caption"></div>
-				</div>
+				<c:forEach var="imgUrl" items="${model.imgList}">
+					<div class="item <%if(num2==0){ %><%= "active" %> <% } num2++;%>" style="height: 180px;">
+						<img src="${imgUrl}" height="180px" alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+				</c:forEach>
 			</div>
 
 			<!-- Controls -->
@@ -181,8 +181,13 @@
 		<div id="one" class="eachContents shopCustom">
 		<b>* 최근 이용 고객</b><br/>
 			<div style="width: 100%; padding:10px; overflow: auto; white-space: nowrap; ">
-				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
-				<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+			<c:forEach var="post" items="${model.postList}">
+				<img style="display: inline; width: 15%;" class="img-circle" src="/dailyfit/img/channy.PNG">
+			</c:forEach>
+				<!-- 
+					<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+					<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+				 -->
 		</div>
 		<b class="f15">* 상품 리스트</b><br/>
 		<ul data-role="listview" style="margin : 0px 0px 10px 0px; ">
@@ -208,6 +213,16 @@
 		</div>
 			
 		<div id="three" class="eachContents font f12 b" style="display: none;">
+		<c:forEach var="post" items="${model.postList }">
+			<div class="alert alert-info" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/channy.PNG" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">${post }</div> 
+			</div>
+		</c:forEach>
+		<!-- 
+		
 			<div class="alert alert-success" role="alert">
 				<div style="width: 20%; display: inline-block;">
 	  				<img src="/dailyfit/img/sunny.png" width="100%;" class="img-circle">
@@ -234,7 +249,7 @@
 	  			</div>
   				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">어제 여기서 또 번호따였어....남자들아 제발 나좀 내버려둬ㅠㅠㅠㅠ</div> 
 			</div>
-			
+		 -->
 		</div>
 		<div id="void"></div>
 	</div>

@@ -51,8 +51,15 @@ public class RootController {
 			else if(sale.getSaleType().equals("M")) sale.setSaleName(sale.getTypeAmount()+"개월 이용권(세트)");
 			else if(sale.getSaleType().equals("P")) sale.setSaleName(sale.getTypeAmount()+"회 피티권");
 		}
+		ArrayList<String> imgList = dao.getImgList(shopNum);
+		System.out.println(imgList);
+		//일단은 후기 글만받음. 사진이랑 정보는 나중에 연결
+		ArrayList<String> postList = dao.getPostList(shopNum);
+		System.out.println(postList.size());
 		mv.setModel("shop", shop);
 		mv.setModel("saleList", saleList);
+		mv.setModel("imgList", imgList);
+		mv.setModel("postList", postList);
 		return mv;
 	}
 	@Mapping(url="/mypage")
@@ -89,7 +96,6 @@ public class RootController {
 		calDistance(shopList, lat, lng);
 		mv.setModel("shopList", shopList);
 		return mv;
-		
 	}
 	@Mapping(url="/rangeShop.ap",method="post")
 	ModelView ajaxRangeShop(HttpServletRequest request,HttpServletResponse response){
