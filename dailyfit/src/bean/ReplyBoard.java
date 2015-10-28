@@ -1,28 +1,21 @@
 package bean;
 
 public class ReplyBoard {
-	int userQuestionBoardNum;
-	int replyNum;
-	String title;
+	String userQuestionBoardNum;
+	String replyNum;
 	String contents;
 	String writeDate;
-	public int getUserQuestionBoardNum() {
+	public String getUserQuestionBoardNum() {
 		return userQuestionBoardNum;
 	}
-	public void setUserQuestionBoardNum(int userQuestionBoardNum) {
+	public void setUserQuestionBoardNum(String userQuestionBoardNum) {
 		this.userQuestionBoardNum = userQuestionBoardNum;
 	}
-	public int getReplyNum() {
+	public String getReplyNum() {
 		return replyNum;
 	}
-	public void setReplyNum(int replyNum) {
+	public void setReplyNum(String replyNum) {
 		this.replyNum = replyNum;
-	}
-	public String getTitle() {
-		return title;
-	}
-	public void setTitle(String title) {
-		this.title = title;
 	}
 	public String getContents() {
 		return contents;

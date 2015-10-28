@@ -7,8 +7,22 @@ public class QuestionBoard {
 	String contents;
 	String writeDate;
 	String isReply;
+	String reple;
+	
 	public String getUserQuestionBoardNum() {
 		return userQuestionBoardNum;
+	}
+	public String getIsReply() {
+		return isReply;
+	}
+	public void setIsReply(String isReply) {
+		this.isReply = isReply;
+	}
+	public String getReple() {
+		return reple;
+	}
+	public void setReple(String reple) {
+		this.reple = reple;
 	}
 	public void setUserQuestionBoardNum(String userQuestionBoardNum) {
 		this.userQuestionBoardNum = userQuestionBoardNum;

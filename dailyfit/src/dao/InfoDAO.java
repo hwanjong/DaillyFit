@@ -8,9 +8,11 @@ import org.eclipse.jdt.internal.compiler.parser.ParserBasicInformation;
 
 import bean.Board;
 import bean.QuestionBoard;
+import bean.ReplyBoard;
 import bean.User;
 import mapper.BoardMapper;
 import mapper.OneByOneBoardMapper;
+import mapper.ReplyBoardMapper;
 import mapper.UserMapper;
 import mybatis.config.MyBatisManager;
 
@@ -205,19 +207,86 @@ public class InfoDAO {
 		}finally{
 			session.close();
 		}
-	}
-	
-	public ArrayList<QuestionBoard> getQuestionList(String userID){
+	}	
+	public ArrayList<QuestionBoard> getQuestionList(){
 		SqlSession session = sqlSessionFactory.openSession();
 		ArrayList<QuestionBoard> boardList =null;
 		try{
 			OneByOneBoardMapper mapper = session.getMapper(OneByOneBoardMapper.class);
-			boardList= mapper.quesList(userID);
+			boardList= mapper.quesList();
 		}catch(Exception e){
 			return null;
 		}finally{
 			session.close();
 		}
 		return boardList;
+	}
+	public ArrayList<QuestionBoard> getQuestionListByUserId(String userID){
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<QuestionBoard> boardList =null;
+		try{
+			OneByOneBoardMapper mapper = session.getMapper(OneByOneBoardMapper.class);
+			boardList= mapper.quesListByUserId(userID);
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return boardList;
+	}
+	public QuestionBoard getQuestion(String no){
+		SqlSession session = sqlSessionFactory.openSession();
+		QuestionBoard board = null;
+		try{
+			OneByOneBoardMapper mapper = session.getMapper(OneByOneBoardMapper.class);
+			board= mapper.quesItem(Integer.parseInt(no));
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return board;
+	}
+	
+	public void insertReply(ReplyBoard board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			ReplyBoardMapper mapper = session.getMapper(ReplyBoardMapper.class);
+			mapper.insertReple(board);
+			session.commit();
+		}catch(Exception e){
+			return;
+		}finally{
+			session.close();
+		}
+		return;
+	}
+	
+	public void updateRecieveRelpy(String no){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			OneByOneBoardMapper mapper = session.getMapper(OneByOneBoardMapper.class);
+			mapper.updateRecieveRelpy(Integer.parseInt(no));
+			session.commit();
+		}catch(Exception e){
+			return;
+		}finally{
+			session.close();
+		}
+		return;
+	}
+	
+	public ReplyBoard getReplyByBoardNo(String boardNo){
+		SqlSession session = sqlSessionFactory.openSession();
+		ReplyBoard board = null;
+		try{
+			ReplyBoardMapper mapper = session.getMapper(ReplyBoardMapper.class);
+			board= mapper.getRipleByNo(Integer.parseInt(boardNo));
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return board;
 	}
 }

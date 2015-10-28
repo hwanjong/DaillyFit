@@ -12,7 +12,7 @@
 </head>
 <body>
 <div id='contents'>
-<label id="noticeLabel">공지사항</label>
+<label id="noticeLabel">1:1 문의</label>
 <table class="table table-striped" align="center">
 	<thead>
 	<tr>
@@ -20,9 +20,9 @@
 	</tr>
 	</thead>
 	<tbody>
-	<c:forEach var="notice" items="${model.boardList}">
+	<c:forEach var="board" items="${model.boardList}">
 	<tr class="noticeItems">
-		<td>${notice.boardNum}</td><td>${notice.title}</td><td>${notice.writeDate}</td>
+		<td>${board.userQuestionBoardNum}</td><td>${board.title}</td><td>${board.writeDate}</td>
 	</tr>
 	</c:forEach>	
 	</tbody>
@@ -62,7 +62,7 @@ $("#writeNotice").click(function(){
 	$("#writeNotice").submit();
 });
 $(".noticeItems").click(function(e){
-	post("/dailyfit/admin/readNotice.ap",{no : $(e.currentTarget).children().first().text()});	
+	post("/dailyfit/admin/readQuestion.ap",{no : $(e.currentTarget).children().first().text()});	
 });
 </script>
 </html>

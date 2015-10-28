@@ -27,38 +27,46 @@
 									.addClass("glyphicon-menu-right");
 						});
 			});
-	function editQ(){
-		location.href="editQuestion.ap";
+	function editQ() {
+		location.href = "editQuestion.ap";
 	}
 </script>
 </head>
 <body>
-	<div id="headBar" data-role="header" data-position="fixed" data-tap-toggle="false" class="jqm-header font">
+	<div id="headBar" data-role="header" data-position="fixed"
+		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
 			onclick="javascript:history.go(-1)"></span> <span id="title"
 			style="margin-left: -50px;">DAILY FIT</span> <span
 			class="glyphicon glyphicon-option-horizontal right"
 			aria-hidden="true" onclick="alert('거리순&가격순보기준비중입니다.')"></span>
 	</div>
-	
+
 	<button id="editQuestion" onclick="editQ()">글쓰기</button>
-	<div id="questionLabel">1:1 문의</div>	
+	<div id="questionLabel">1:1 문의</div>
 	<div class="panel-group" id="accordion">
-			<c:forEach var ="qboard" items="${model.boardList }">
-				<div class="panel panel-default">
+		<c:forEach var="qboard" items="${model.boardList }">
+			<div class="panel panel-default">
 				<div class="panel-heading">
 					<h4 class="panel-title">
 						<a data-toggle="collapse" data-parent="#accordion"
-							aria-hidden="false" href="#${qboard.userQuestionBoardNum }" class="collapsed">
-							<span class="glyphicon glyphicon-menu-right"></span>${qboard.title}
+							aria-hidden="false" href="#${qboard.userQuestionBoardNum }"
+							class="collapsed"> <span
+							class="glyphicon glyphicon-menu-right"></span>${qboard.title}
 						</a>
 					</h4>
 				</div>
-				<div id="${qboard.userQuestionBoardNum }" class="panel-collapse collapse">
-					<div class="panel-body">${qboard.contents }</div>
+				<div id="${qboard.userQuestionBoardNum }"
+					class="panel-collapse collapse">
+					<div class="panel-body">${qboard.contents }
+					<br/>
+					<c:if test="${qboard.reple !=null }">
+						<span class="glyphicon glyphicon-arrow-right"></span>${qboard.reple }
+					</c:if>
+					</div>
 				</div>
 			</div>
-			</c:forEach>
+		</c:forEach>
 	</div>
 	<!-- <div class="panel-group" id="accordion">		
 			<div class="panel panel-default">
@@ -91,6 +99,6 @@
 					</div>
 				</div>
 			</div> 	
-	</div>-->	
+	</div>-->
 </body>
 </html>

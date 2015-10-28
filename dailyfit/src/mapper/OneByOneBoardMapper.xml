@@ -13,7 +13,19 @@
     	insert into user_question_board (user_id, title, contents, write_date)
     	values (#{userID},#{title}, #{contents}, curdate());
     </insert>
-    <select id="quesList" resultType="QuestionBoard" resultMap="boardMap">
-    	select * from dailyfit.user_question_board where user_ID=#{userID}
+    <select id="quesListByUserId" resultType="QuestionBoard" resultMap="boardMap">
+    	select * from user_question_board where user_ID=#{userID}
     </select>    
+    
+    <select id="quesList" resultType="QuestionBoard" resultMap="boardMap">
+    	select * from user_question_board where is_reply is null order by user_question_board_num desc;
+    </select>
+        
+    <select id="quesItem" resultType="QuestionBoard" resultMap="boardMap">
+    	select * from user_question_board where user_question_board_num = #{boardNo};
+    </select>
+    
+    <update id="updateRecieveRelpy">
+    	update user_question_board set is_reply = 'o' where user_question_board_num = #{boardNo}
+    </update>    
 </mapper>

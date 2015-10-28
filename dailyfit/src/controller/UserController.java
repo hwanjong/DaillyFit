@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import bean.Board;
 import bean.QuestionBoard;
+import bean.ReplyBoard;
 import bean.Sale;
 import bean.User;
 import dao.InfoDAO;
@@ -123,7 +124,15 @@ public class UserController {
 		ModelView mv = new ModelView("/myinfo/question");
 		InfoDAO dao = new InfoDAO();
 		String uid = ((User)request.getSession().getAttribute("user")).getUserId();
-		ArrayList<QuestionBoard> boardList = dao.getQuestionList(uid);
+		ArrayList<QuestionBoard> boardList = dao.getQuestionListByUserId(uid);
+		
+		for(QuestionBoard b : boardList){
+			if(b.getIs_reply()!=null && b.getIs_reply().equals("o")){
+				ReplyBoard board = null;
+				board = dao.getReplyByBoardNo(b.getUserQuestionBoardNum());
+				b.setReple(board.getContents());
+			}
+		}
 		mv.setModel("boardList", boardList);
 		return mv;
 	}

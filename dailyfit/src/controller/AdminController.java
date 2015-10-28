@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Board;
+import bean.QuestionBoard;
+import bean.ReplyBoard;
 import bean.Sale;
 import bean.Shop;
 import dao.InfoDAO;
@@ -259,9 +261,9 @@ public class AdminController {
 	@Mapping(url="/questionOneByOne.ap")
 	ModelView questionOneByOneView(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/admin/questionOneByOne");
-//		InfoDAO dao = new InfoDAO();
-//		ArrayList<Board> boardList = dao.getNotices();
-//		mv.setModel("boardList", boardList);
+		InfoDAO dao = new InfoDAO();
+		ArrayList<QuestionBoard> boardList = dao.getQuestionList();
+		mv.setModel("boardList", boardList);		
 		return mv;
 	}
 	
@@ -286,4 +288,28 @@ public class AdminController {
 	}
 	
 	
+	
+	@Mapping(url="/readQuestion.ap",method="post")
+	ModelView readQuestionContents(HttpServletRequest request,HttpServletResponse response){		
+		ModelView mv = new ModelView("/admin/readQuestion");
+		InfoDAO dao = new InfoDAO();
+		QuestionBoard target = null;
+		String no = request.getParameter("no");
+		target = dao.getQuestion(no);
+		mv.setModel("target", target);
+		return mv;
+	}
+	
+	@Mapping(url="/insertReply.ap",method="post")
+	ModelView insertRep(HttpServletRequest request,HttpServletResponse response){		
+		System.out.println("insertReply 진입");
+		ModelView mv = new ModelView("redirect:/dailyfit/admin/questionOneByOne.ap");
+		InfoDAO dao = new InfoDAO();
+		ReplyBoard target = new ReplyBoard();
+		target.setContents(request.getParameter("replyContent"));
+		target.setUserQuestionBoardNum(request.getParameter("noticeNo"));
+		dao.insertReply(target);
+		dao.updateRecieveRelpy(request.getParameter("noticeNo"));
+		return mv;
+	}
 }
