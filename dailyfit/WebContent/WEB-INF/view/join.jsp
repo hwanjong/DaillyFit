@@ -27,8 +27,6 @@ var state =0;
 function login(){
 	$("#loginForm").submit();
 }
-
-
 function next(){
 	$("#message").html("");
 	if(state==0){

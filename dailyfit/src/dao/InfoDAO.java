@@ -7,8 +7,10 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.eclipse.jdt.internal.compiler.parser.ParserBasicInformation;
 
 import bean.Board;
+import bean.QuestionBoard;
 import bean.User;
 import mapper.BoardMapper;
+import mapper.OneByOneBoardMapper;
 import mapper.UserMapper;
 import mybatis.config.MyBatisManager;
 
@@ -192,6 +194,30 @@ public class InfoDAO {
 		}
 		return boardList;
 	}
+	public void insertOneByOneQestion(QuestionBoard board){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			OneByOneBoardMapper mapper = session.getMapper(OneByOneBoardMapper.class);
+			mapper.insertBoard(board);
+			session.commit();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally{
+			session.close();
+		}
+	}
 	
-
+	public ArrayList<QuestionBoard> getQuestionList(String userID){
+		SqlSession session = sqlSessionFactory.openSession();
+		ArrayList<QuestionBoard> boardList =null;
+		try{
+			OneByOneBoardMapper mapper = session.getMapper(OneByOneBoardMapper.class);
+			boardList= mapper.quesList(userID);
+		}catch(Exception e){
+			return null;
+		}finally{
+			session.close();
+		}
+		return boardList;
+	}
 }

@@ -6,6 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import bean.Board;
+import bean.QuestionBoard;
 import bean.Sale;
 import bean.User;
 import dao.InfoDAO;
@@ -120,9 +121,10 @@ public class UserController {
 	@Mapping(url="/question.ap")
 	ModelView questionOnebyOne(HttpServletRequest request,HttpServletResponse response){
 		ModelView mv = new ModelView("/myinfo/question");
-		//InfoDAO dao = new InfoDAO();
-		//ArrayList<Board> boardList = dao.getNotices();
-		//mv.setModel("boardList", boardList);
+		InfoDAO dao = new InfoDAO();
+		String uid = ((User)request.getSession().getAttribute("user")).getUserId();
+		ArrayList<QuestionBoard> boardList = dao.getQuestionList(uid);
+		mv.setModel("boardList", boardList);
 		return mv;
 	}
 	
@@ -135,11 +137,6 @@ public class UserController {
 		return mv;
 	}
 	
-	@Mapping(url="/questionAD.ap")
-	ModelView questionAd(HttpServletRequest request,HttpServletResponse response){
-		ModelView mv = new ModelView("/myinfo/questionAD");
-		return mv;
-	}
 	@Mapping(url="/addQuesAD.ap",method="post")
 	ModelView addQuesAd(HttpServletRequest request,HttpServletResponse response){
 		System.out.println("requestAD");
@@ -149,6 +146,21 @@ public class UserController {
 		board.setTitle(request.getParameter("title"));
 		board.setContents(request.getParameter("contents"));
 		dao.insertQestion(board);
+		return mv;
+	}
+	@Mapping(url="/questionAD.ap")
+	ModelView questionAd(HttpServletRequest request,HttpServletResponse response){
+		ModelView mv = new ModelView("/myinfo/questionAD");
+		return mv;
+	}
+	@Mapping(url="/insertOneByOneQuest.ap",method="post",bean="bean.QuestionBoard")
+	ModelView insertQuestionFromUser(HttpServletRequest request,HttpServletResponse response,Object obj){
+		System.out.println("insertOneByoneQues 진입");
+		ModelView mv = new ModelView("/jsonView");
+		InfoDAO dao = new InfoDAO();
+		QuestionBoard board = (QuestionBoard) obj;
+		board.setUserID(((User)request.getSession().getAttribute("user")).getUserId());
+		dao.insertOneByOneQestion(board);
 		return mv;
 	}
 	
