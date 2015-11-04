@@ -173,7 +173,7 @@ var paging = 1;
 	<div id="headBar" data-role="header" data-position="fixed" style="display: none;"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
-			onclick="javascript:history.go(-1)"></span> <span> Daily FIT</span> <span
+			onclick="javascript:history.go(-1)"></span> <span> DAYFIT</span> <span
 			class="glyphicon glyphicon-option-horizontal right"
 			aria-hidden="true" onclick="menuBar()"></span> <span
 			class="glyphicon glyphicon-search right" aria-hidden="true"

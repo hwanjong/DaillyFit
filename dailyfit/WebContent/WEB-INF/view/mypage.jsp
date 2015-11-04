@@ -18,7 +18,7 @@
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
 			onclick="javascript:history.go(-1)"></span> <span id="title"
-			style="margin-left: -50px;">DAILY FIT</span> <span
+			style="margin-left: -50px;">DAYFIT</span> <span
 			class="glyphicon glyphicon-option-horizontal right"
 			aria-hidden="true" onclick="alert('거리순&가격순보기준비중입니다.')"></span>
 	</div>

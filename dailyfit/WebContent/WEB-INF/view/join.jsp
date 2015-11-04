@@ -87,7 +87,7 @@ function next(){
 <div id="headBar" data-role="header" data-position="fixed"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
-			onclick="javascript:history.go(-1)"></span> <span id="title" style="margin-left: -50px;">DAILY FIT</span> 
+			onclick="javascript:history.go(-1)"></span> <span id="title" style="margin-left: -50px;">DAYFIT</span> 
 </div>
 
 <div id="formPage" class="font">
