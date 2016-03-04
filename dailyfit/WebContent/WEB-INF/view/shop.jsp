@@ -70,13 +70,8 @@
 	var markerList = [];
 	var lat,lng;
 	function initialize() {
-<<<<<<< HEAD
-		var lat = '37.557549';
-		var lng = '127.00764';
-=======
 		lat = '${model.shop.lat}';
 		lng = '${model.shop.lng}';
->>>>>>> 198bd5bb2dbee86ee4ec5ef43f001fe2b111ac39
 		var mapOptions = {
 			center : new google.maps.LatLng(lat, lng),
 			zoom : 15,
