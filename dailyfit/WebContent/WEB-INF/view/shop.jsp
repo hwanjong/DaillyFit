@@ -67,7 +67,7 @@
 	var markerList = [];
 	function initialize() {
 		var lat = '37.557549';
-		var lng = '127.00764'
+		var lng = '127.00764';
 		var mapOptions = {
 			center : new google.maps.LatLng(lat, lng),
 			zoom : 13,
