@@ -9,6 +9,13 @@ body {
 	margin: 1px;
 }
 
+.f20 {
+	font-size: 20px;
+}
+
+.f19 {
+	font-size: 19px;
+}
 .f18 {
 	font-size: 18px;
 }
@@ -28,7 +35,9 @@ body {
 .f14 {
 	font-size: 14px;
 }
-
+.f13{
+	font-size: 13px;
+}
 .f12 {
 	font-size: 12px;
 }
@@ -38,8 +47,7 @@ body {
 }
 
 .line {
-	margin: 3px 2em;
-	border-bottom: 1px groove;
+	border-bottom: 1px solid  white;
 }
 
 .font {
@@ -51,11 +59,11 @@ body {
 	width: 100%;
 	height:100%;
 	color: white;
-	padding-top:20%;
+	top:-40px;
+	padding-top:25%;
 	background-color: #6ECDE1;
 	text-align: center;
 	position: fixed;
-	top: 40px;
 	z-index: 100;
 	font-size:1.3em;
 	font-weight: bold;
@@ -96,7 +104,18 @@ body {
 	font-size: 20px;
 	line-height: 4.2em;
 }
+#footer {
+	white-space: nowrap;
+	width: 100%;
+	border: none;
+	bottom: 0px;
+}
 
+#footer img {
+	width: 15%;
+	margin: 0 5%;
+	white-space: normal;
+}
 .left {
 	float: left;
 	margin: 0 10px;

@@ -1,15 +1,12 @@
 package mapper;
 
-import java.util.ArrayList;
-
-import org.apache.ibatis.annotations.Param;
-
 import bean.User;
 
 public interface UserMapper {
 	User getUserInfo(User user);
 	User checkId(String id);
 	void insertUser(User user);
+	void updateUserInfo(User user);
 //	void insertShopUser(User user);
 //	User getUserInfoLogin(User user);
 //	User getUserInfo(String userId);

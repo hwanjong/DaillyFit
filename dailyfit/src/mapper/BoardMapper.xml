@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BoardMapper">
+    <resultMap type="Board" id="boardMap">
+		<id column="board_num" property="boardNum" />
+		<id column="write_date" property="writeDate" />
+		<id column="board_type" property="boardType" />
+	</resultMap>
+	
+    <update id="updateEvent" parameterType="Board">
+        update board set title=#{title}, contents=#{contents} where board_type='E'
+    </update>
+    <select id="curEvent" resultMap="boardMap" resultType="Board">
+        select * from board where board_type = 'E'
+    </select>
+    <select id="noticeList" resultMap="boardMap" resultType="Board">
+    	select * from board where board_type = 'N' order by board_num desc
+    </select>
+    <select id="getNotice" resultMap="boardMap" resultType="Board" parameterType="Board">
+    	select * from board where board_num = #{boardNum}
+    </select>
+    <insert id="insertNotice" parameterType="Board">
+    	insert into board (title, contents, write_date, board_type)
+    	values (#{title}, #{contents}, curdate(), 'N')
+    </insert>
+    <update id="updateNotice" parameterType="Board">
+    	update board set title=#{title}, contents=#{contents} where board_num=#{boardNum}
+    </update>
+    <delete id="deleteNotice" parameterType="Board">
+    	delete from board where board_num = #{boardNum}
+    </delete>
+    <insert id="insertQestion" parameterType="Board">
+    	insert into board (title, contents, write_date, board_type)
+    	values (#{title}, #{contents}, curdate(), 'A')
+    </insert>
+    <select id="ADList" resultMap="boardMap" resultType="Board">
+    	select * from board where board_type = 'A' order by board_num desc
+    </select>
+</mapper>

@@ -7,7 +7,9 @@
 	font-family: HanSans;
 	text-shadow: none;
 }
-
+a:hover{
+	text-decoration: none;
+}
 .activeBar {
 	border-bottom: 5px solid #6ECDE1;
 }
@@ -37,6 +39,10 @@
 	cursor: pointer;
 }
 
+.eachContents{
+	width:100%; 
+	padding:0 10px; 
+}
 .item {
 	position: relative;
 	clear: both;
@@ -67,15 +73,16 @@
 
 .shop {
 	clear: both;
-	height: 65px;
+	height: 100px;
 	vertical-align: middle;
 	text-align: left;
-	text-indent: 30px;
 	font-weight: 600;
-	font-size: 17px;
-	padding: 5px;
+	font-size: 18px;
+	padding: 20px;
 	background-image: url('/dailyfit/img/shop_back.PNG');
+	background-size: 100% 100px;
 	width: 100%;
+	color: black;
 }
 
 .shop span {
@@ -137,19 +144,6 @@
 	left: 70%;
 	margin-right: 20px;
 	font-size: 14px;
-}
-
-#footer {
-	white-space: nowrap;
-	width: 100%;
-	border: none;
-	bottom: 0px;
-}
-
-#footer img {
-	width: 15%;
-	margin: 0 5%;
-	white-space: normal;
 }
 
 .lh45 {

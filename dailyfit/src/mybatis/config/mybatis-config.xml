@@ -20,5 +20,11 @@
 	</environments>
 	<mappers>
 		<mapper resource="mapper/UserMapper.xml" />
+		<mapper resource="mapper/ShopMapper.xml" />
+		<mapper resource="mapper/SaleMapper.xml" />
+		<mapper resource="mapper/BuyMapper.xml" />
+		<mapper resource="mapper/BoardMapper.xml" />
+		<mapper resource="mapper/OneByOneBoardMapper.xml" />
+		<mapper resource="mapper/ReplyBoardMapper.xml" />
 	</mappers>
 </configuration>

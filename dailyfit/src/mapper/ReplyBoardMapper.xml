@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ReplyBoardMapper">
+    <resultMap type="ReplyBoard" id="replyBoardMap">
+		<id column="user_question_board_num" property="userQuestionBoardNum" />
+		<id column="reply_num" property="replyNum" />
+		<id column="write_date" property="writeDate" />
+	</resultMap>
+	
+	<insert id="insertReple" parameterType="ReplyBoard">
+		insert into reply_board(user_question_board_num,contents,write_date) values(#{userQuestionBoardNum},#{contents},curdate());
+	</insert>
+	
+	<select id="getRipleByNo" resultMap="replyBoardMap">
+		select * from reply_board where user_question_board_num=#{boardNo}
+	</select>   
+</mapper>

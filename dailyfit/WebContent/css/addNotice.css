@@ -1,0 +1,10 @@
+@CHARSET "UTF-8";
+
+button{
+	margin-left: 3%;
+    margin-right: 3%;
+    width: 10%;
+}
+#btnDiv{
+	margin-left:10%;
+}

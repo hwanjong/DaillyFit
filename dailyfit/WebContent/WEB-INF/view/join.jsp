@@ -27,8 +27,6 @@ var state =0;
 function login(){
 	$("#loginForm").submit();
 }
-
-
 function next(){
 	$("#message").html("");
 	if(state==0){
@@ -66,7 +64,7 @@ function next(){
 		},"json");
 		
 	}else if(state==2){
-		if($("#age").val()=="" || $("#height").val()=="" || $("#weight").val()==""){
+		if($("#age").val()=="" || $("#height").val()=="" || $("#weight").val()==""||$("#targetWeight").val()==""){
 			$("#message").html("모든정보를 기입하세요.");
 			return;
 		}
@@ -75,8 +73,8 @@ function next(){
 		$("#nextBtn").html("Complete");
 		state=3;
 	}else if(state==3){
-		if($("#targetWeight").val()==""){
-			$("#message").html("모든정보를 기입하세요.");
+		if($("#passCode").val().length!=4){
+			$("#message").html("인증코드는 4자리 숫자입니다.");
 			return;
 		}
 		alert("회원가입완료!!");
@@ -89,7 +87,7 @@ function next(){
 <div id="headBar" data-role="header" data-position="fixed"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
-			onclick="javascript:history.go(-1)"></span> <span id="title" style="margin-left: -50px;">DAILY FIT</span> 
+			onclick="javascript:history.go(-1)"></span> <span id="title" style="margin-left: -50px;">DAYFIT</span> 
 </div>
 
 <div id="formPage" class="font">
@@ -108,7 +106,9 @@ function next(){
 	</div>
 	<form id="joinForm" action="join.ap" method="post" data-ajax="false">
 		<div id="stepOne" style="display: none;">
-			<div class="formGroup" style="margin-top: 25%;">
+			<div class="formGroup" style="margin-top: 20%;">
+				<h4 style="color: white;">계정정보</h4>
+				<p class="line"></p>
 				<input id="userId" type="text" name="userId" placeholder="식별ID">
 				<input id="pw1" type="password" name="pw" placeholder="비밀번호">
 				<input id="pw2" type="password" placeholder="비밀번호 확인">
@@ -122,7 +122,10 @@ function next(){
 			</div>
 		</div>
 		<div id="stepTwo" style="display: none;">
-			<div class="formGroup font" style="margin-top: 25%;">
+		
+			<div class="formGroup font" style="margin-top: 10%;">
+				<h4 style="color: white;">기본정보</h4>
+				<p class="line"></p>
 				<span class="title">성 별</span>
 				<input id="m" type="radio" style="margin-left: 10px;" data-role="none" name="gender" value="m" checked="checked"><label data-role="none" class="font" for="m" style="display: inline-block; font-size:14px; margin-right: 20px;">남</label>
 				<input id="w" type="radio" data-role="none" name="gender" value="w"><label data-role="none" class="font" for="w" style="display: inline-block; font-size:14px; ">여</label>
@@ -130,15 +133,25 @@ function next(){
 				<span class="title">나 이</span><input id="age" name="age" type="number"><br/>
 				<span class="title">신 장</span><input id="height" name="height" type="number"><br/>
 				<span class="title">체 중</span><input id="weight" name="weight" type="number"><br/>
+				
+				<h4 style="color: white; margin-top: 5%;">목표정보</h4>
+				<p class="line"></p>
+				<span class="title">목표 체중</span><input id="targetWeight" name="targetWeight" type="number"><br/>
+				<span class="title">운동 강도</span>
+				<select name="targetPower"><option>강</option><option>보통</option><option>약</option> </select><br/>
 			</div>
+			
 		
 		</div>
 		
 		<div id="stepThree" style="display: none;">
 			<div class="formGroup font" style="margin-top: 25%;">
-				<span class="title">목표 체중</span><input id="targetWeight" name="targetWeight" type="number"><br/>
-				<span class="title">운동 강도</span>
-				<select name="targetPower"><option>강하게</option><option>보통</option><option>약하게</option> </select><br/>
+				<h4 style="color: white;">인증코드</h4>
+				<p class="line"></p>
+				<span class="title">인증암호</span><input id="passCode" name="passCode" type="number"><br/>
+				<p style="color: white;">
+				쿠폰 사용을 위한 인증 암호입니다. <br/>4자리 숫자를 입력해주세요.
+				</p>
 			</div>
 		
 		</div>

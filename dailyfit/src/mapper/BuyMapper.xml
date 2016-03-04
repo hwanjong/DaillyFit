@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.BuyMapper">
+    <resultMap type="Sale" id="buyMap">
+		<id column="user_id" property="userId" />
+		<id column="sale_id" property="saleId" />
+		<id column="wait_count" property="waitCount" />
+		<id column="use_count" property="useCount" />
+		<id column="shop_num" property="shopNum" />
+		<id column="buy_id" property="buyId" />
+		<id column="buy_time" property="buyTime" />
+		<id column="sale_type" property="saleType" />
+		<id column="type_amount" property="typeAmount" />
+		<id column="sale_price" property="salePrice" />
+	</resultMap>
+	
+    <insert id="addBuy" parameterType="Sale">
+        insert into buy_list (user_id,sale_id,availability,shop_num,buy_time) values(#{userId},#{saleId},#{availability},#{shopNum},curdate())
+    </insert>
+    
+    <select id="getBuyListByUser" resultMap="buyMap" resultType="Sale">
+        select * from buy_list inner join sale_list on buy_list.sale_id = sale_list.sale_id where user_id = #{userId} 
+    </select>
+    
+    <select id="getBuyInfo" resultMap="buyMap" resultType="Sale">
+        select * from buy_list where buy_id = #{buyId}
+    </select>
+    
+    <update id="countUpWaitCount">
+        update buy_list set wait_count = #{upCount} where buy_id = #{buyId}
+    </update>
+    
+    <update id="countDownWaitCount">
+        update buy_list set wait_count = 0 where buy_id = #{buyId}
+    </update>
+    <update id="updatePost">
+        update buy_list set post = #{post} where buy_id = #{buyId}
+    </update>
+    
+</mapper>

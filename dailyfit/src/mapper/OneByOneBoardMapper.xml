@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="mapper.OneByOneBoardMapper">
+    <resultMap type="QuestionBoard" id="boardMap">
+		<id column="user_question_board_num" property="userQuestionBoardNum" />		
+		<id column="user_ID" property="userID" />
+		<id column="write_date" property="writeDate" />
+		<id column="is_reply" property="isReply" />
+	</resultMap>   
+    <insert id="insertBoard" parameterType="QuestionBoard">
+    	insert into user_question_board (user_id, title, contents, write_date)
+    	values (#{userID},#{title}, #{contents}, curdate());
+    </insert>
+    <select id="quesListByUserId" resultType="QuestionBoard" resultMap="boardMap">
+    	select * from user_question_board where user_ID=#{userID}
+    </select>    
+    
+    <select id="quesList" resultType="QuestionBoard" resultMap="boardMap">
+    	select * from user_question_board where is_reply is null order by user_question_board_num desc;
+    </select>
+        
+    <select id="quesItem" resultType="QuestionBoard" resultMap="boardMap">
+    	select * from user_question_board where user_question_board_num = #{boardNo};
+    </select>
+    
+    <update id="updateRecieveRelpy">
+    	update user_question_board set is_reply = 'o' where user_question_board_num = #{boardNo}
+    </update>    
+</mapper>

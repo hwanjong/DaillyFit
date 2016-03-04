@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.SaleMapper">
+	<resultMap type="Sale" id="saleMap">
+		<id column="shop_num" property="shopNum" />
+		<id column="sale_id" property="saleId" />
+		<id column="sale_type" property="saleType" />
+		<id column="type_amount" property="typeAmount" />
+		<id column="sale_price" property="salePrice" />
+	</resultMap>
+	<insert id="addSaleProduct" parameterType="Sale">
+		insert into sale_list(shop_num, sale_type, type_amount, sale_price) values(#{shopNum},#{saleType},#{typeAmount},#{salePrice})
+	</insert>
+	<select id="getSaleList" resultType="Sale" resultMap="saleMap">
+	    select * from sale_list where shop_num = #{shopNum}
+	</select>
+	
+	<select id="getSaleItem" resultType="Sale" resultMap="saleMap">
+	    select * from sale_list where sale_id = #{saleId}
+	</select>
+	
+</mapper>

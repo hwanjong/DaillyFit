@@ -41,13 +41,6 @@
 			}
 		});
 		$("#totalPrice").text(sum+" 원");
-		
-	}
-	
-	function buyRequest(){
-		alert("주문이완료되었습니다.(결제대행사이동)");
-		//window.location.reload(true);
-		window.location.href='main.ap';
 	}
 		
 	function pageChange(pageNum) {
@@ -62,15 +55,32 @@
 		$("."+pageNum).addClass("activeBar");
 	}
 	
+	function buy(){
+		if('${user}' == ''){
+			alert("로그인후이용가능");
+			window.location.href='mypage.ap';
+		}else{
+			alert("주문이완료되었습니다.");
+			$("#buyRequest").submit();
+		}
+	}
+	
 	var map;
 	var infoWindow;
 	var markerList = [];
+	var lat,lng;
 	function initialize() {
+<<<<<<< HEAD
 		var lat = '37.557549';
 		var lng = '127.00764';
+=======
+		lat = '${model.shop.lat}';
+		lng = '${model.shop.lng}';
+>>>>>>> 198bd5bb2dbee86ee4ec5ef43f001fe2b111ac39
 		var mapOptions = {
 			center : new google.maps.LatLng(lat, lng),
-			zoom : 13,
+			zoom : 15,
+			draggable : false,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
 		map = new google.maps.Map(document.getElementById("map_canvas"),
@@ -91,9 +101,8 @@
 			anchor : new google.maps.Point(16, 32)
 		};
 		
-		var myLatLng = new google.maps.LatLng("37.557549",
-				"127.00764");
-		var name = "트레보스포츠";
+		var myLatLng = new google.maps.LatLng(lat,
+				lng);
 
 		var marker = new google.maps.Marker({
 			position : myLatLng,
@@ -120,34 +129,35 @@
 </script>
 </head>
 <body>
+<c:set var="shop" value="${model.shop}"/>
 	<div id="headBar" data-role="header" data-position="fixed"
 		data-tap-toggle="false" class="jqm-header font">
 		<span class="glyphicon glyphicon-chevron-left left" aria-hidden="true"
-			onclick="javascript:history.go(-1)"></span> <span> 스포애니(잠실점)</span> <span
+			onclick="javascript:history.go(-1)"></span> <span> ${shop.shopName}</span> <span
 			class="glyphicon glyphicon-search right" aria-hidden="true"
 			onclick="search();"></span>
 
 	</div>
-	<div id="contents" role="main" style="overflow: auto;">
+	<div id="contents" role="main" style="overflow: hidden;">
 		<div id="carousel-example-generic" class="carousel slide"
 			style="height: 180px; top:-1px;" data-ride="carousel">
 			<!-- Indicators -->
+			<%int num=0; %>
 			<ol class="carousel-indicators">
-				<li data-target="#carousel-example-generic" data-slide-to="0"
-					class="active"></li>
-				<li data-target="#carousel-example-generic" data-slide-to="1"></li>
+				<c:forEach var="imgUrl" items="${model.imgList}">
+					<li data-target="#carousel-example-generic" <%if(num==0){ %><%= "class=active" %> <% }%> data-slide-to="<%=num++%>"></li>
+				</c:forEach>
 			</ol>
 
 			<!-- Wrapper for slides -->
+			<%int num2=0; %>
 			<div class="carousel-inner" style="height: 100%;" role="listbox">
-				<div class="item" style="height: 180px;">
-					<img src="/dailyfit/img/shop3_2.png" height="180px" alt="...">
-					<div class="carousel-caption"></div>
-				</div>
-				<div class="item active" style="height: 180px;">
-					<img src="/dailyfit/img/shop3_1.png" height="180px" alt="...">
-					<div class="carousel-caption"></div>
-				</div>
+				<c:forEach var="imgUrl" items="${model.imgList}">
+					<div class="item <%if(num2==0){ %><%= "active" %> <% } num2++;%>" style="height: 180px;">
+						<img src="${imgUrl}" height="180px" alt="...">
+						<div class="carousel-caption"></div>
+					</div>
+				</c:forEach>
 			</div>
 
 			<!-- Controls -->
@@ -161,32 +171,90 @@
 				<span class="sr-only">Next</span>
 			</a>
 		</div>
-	</div>
-
-	<!--Tab area -->
-	<div class="tabWrap">
-		<div class="eachTab tripleTab one activeBar " onclick="pageChange('one')">판매상품</div>
-		<div class="eachTab tripleTab two" onclick="pageChange('two')">업체정보</div>
-		<div class="eachTab tripleTab three " onclick="pageChange('three')">Q&A</div>
-	</div>
-	<div id="contents">
-		<div id="one" class="eachContents shopCustom">
-		<img src="/dailyfit/img/sample.jpg">
-		<img src="/dailyfit/img/sample2.jpg">
-		(샘플통짜이미지)
+		<div id="specialItem" style="padding: 10px; text-align: right; border-bottom : groove 1px;">
+			<p class="font f19 b" style="margin-bottom: 3px; padding-left:5px; text-align: left;">[${shop.shopNicname }]</p>
+			<p class="font f19 b" style="margin-bottom: 3px; text-align: right;">${shop.shopName }</p>
+			<p style="clear: both; margin-bottom: 3px; "><span class="font f12 b" style="color: gray; padding-right: 5px;">1회 이용권</span> <span class="font f17 b" style="color: gray;">${shop.dprice } 원</span></p>
 		</div>
-		<div id="two" class="eachContents font f15" style="width:100%; padding:0 10px; display: none;">
+
+		<!--Tab area -->
+		<div class="tabWrap">
+			<div class="eachTab tripleTab one activeBar " onclick="pageChange('one')">판매상품</div>
+			<div class="eachTab tripleTab two" onclick="pageChange('two')">업체정보</div>
+			<div class="eachTab tripleTab three " onclick="pageChange('three')">후기</div>
+		</div>
+		<div id="one" class="eachContents shopCustom">
+		<b>* 최근 이용 고객</b><br/>
+			<div style="width: 100%; padding:10px; overflow: auto; white-space: nowrap; ">
+			<c:forEach var="post" items="${model.postList}">
+				<img style="display: inline; width: 15%;" class="img-circle" src="/dailyfit/img/channy.PNG">
+			</c:forEach>
+				<!-- 
+					<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+					<img style="display: inline; width: 80%;" src="/dailyfit/img/user_log.PNG">
+				 -->
+		</div>
+		<b class="f15">* 상품 리스트</b><br/>
+		<ul data-role="listview" style="margin : 0px 0px 10px 0px; ">
+			<c:forEach var="product" items="${model.saleList }">
+			<li>
+				<b class="left f13">${product.saleName }</b>
+				<b class="right f17">${product.salePrice } 원</b></li>
+			</c:forEach>
+		</ul>
+		<b>* 유의사항</b><br/>
+		<br>
+		</div>
+		<div id="two" class="eachContents font f15" style="display: none;">
+			
+						
 			<b>* 주소 및 위치</b><br/>
-			<div id="map_canvas" style="width: 100%; height: 250px;"></div>
+			<div id="map_canvas" style="width: 100%; height: 150px;"></div>
 			
 			<p class="f14">
-			주소 : 서울특별시 중구 장충동 445번지<br/>
-			연락처 : 02) 458-0578<br/>
+			주소 : ${shop.address }<br/>
+			연락처 : ${shop.tel }<br/>
 			</p>
 		</div>
 			
-		<div id="three" class="eachContents font f18 b" style="display: none;">
-			이부분 얘기해봐야함 (서버쪽설계문제)<br/>
+		<div id="three" class="eachContents font f12 b" style="display: none;">
+		<c:forEach var="post" items="${model.postList }">
+			<div class="alert alert-info" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/channy.PNG" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">${post }</div> 
+			</div>
+		</c:forEach>
+		<!-- 
+		
+			<div class="alert alert-success" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/sunny.png" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">옆에서 런닝뛰던 훈훈제복남님 언제오시나요 &gt;_&lt; 보고싶어요♡</div> 
+			</div>
+			<div class="alert alert-info" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/channy.PNG" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">피티쌤이 정말이쁩니다 헤헷 또가고싶은 헬스장!!!</div> 
+			</div>
+			
+			<div class="alert alert-success" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/junny.png" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">초콜릿 좋아요♥♥♥♥ (다욧트언제하지...)</div> 
+			</div>
+			
+			<div class="alert alert-info" role="alert">
+				<div style="width: 20%; display: inline-block;">
+	  				<img src="/dailyfit/img/jinny.PNG" width="100%;" class="img-circle">
+	  			</div>
+  				<div style="width: 75%; padding-left:10px; height:100%; vertical-align:middle; display: inline-block; color: black;">어제 여기서 또 번호따였어....남자들아 제발 나좀 내버려둬ㅠㅠㅠㅠ</div> 
+			</div>
+		 -->
 		</div>
 		<div id="void"></div>
 	</div>
@@ -198,17 +266,18 @@
 			<span class="glyphicon glyphicon-chevron-down"
 				style="line-height: 2em; font-size: 15px; width: 100%; text-align: center; border-top: 1px groove; background-color: #fff;" onclick="orderDown()"></span>
 				<select id="selectOption" onchange="addOption()">
-					<option id="1" value="1">일일권 4400 원</option>
-					<option id="2" value="2">특-일일권 5500 원</option>
-					<option id="3" value="3">한달권 120000 원</option>
-					<option id="4" value="4">연간회원권 400000 원</option>
+				<option value="-">===========</option>
+				<c:forEach var="product" items="${model.saleList }">
+					<option value="${product.saleId }">${product.saleName} ${product.salePrice} 원</option>
+				</c:forEach>
 				</select>
+			<form id="buyRequest" action="/dailyfit/user/buyRequest.ap" method="post" data-ajax="false">
+			<input style="display: none;" name="shopNum" value="${shop.shopNum }">
 			<table class="table" id="buyTable" style="background-color: white; margin: 0px; width: 100%" >
 				<tbody id="buyList">
-					<tr class="1" style="display: none;"><td>일일권 4400 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">4400</td></tr>
-					<tr class="2" style="display: none;"><td>특-일일권 5500 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">5500</td></tr>
-					<tr class="3" style="display: none;"><td>한달권 120000 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">120000</td></tr>
-					<tr class="4" style="display: none;"><td>연간회원권 400000 원</td><td><select class="amount" onchange="recalculate()"><option>1</option><option>2</option><option>3</option></select></td><td class="price" style="display:none; ">400000</td></tr>
+				<c:forEach var="product" items="${model.saleList }">
+					<tr class="${product.saleId }" style="display: none;"><td>${product.saleName } ${product.salePrice } 원<input data-role="none" style="display: none;" name="saleList" value="${product.saleId }"></td><td><select class="amount" name="${product.saleId }" onchange="recalculate()"><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></td><td class="price" style="display:none; ">${product.salePrice }</td></tr>
+				</c:forEach>
 				</tbody>
 				<tfoot>
 				<tr>
@@ -217,8 +286,9 @@
 				</tr>
 				</tfoot>
 			</table>
+			</form>
 			<button class="btn left font" style="color:#6ECDE1; background-color: #fff; ">장바구니 담기</button>
-			<button class="btn right font" onclick='alert("결제페이지로이동합니다.")'>즉시구매</button>				
+			<button class="btn right font" onclick='buy()'>즉시구매</button>				
 		</div>
 	</div>
 </body>

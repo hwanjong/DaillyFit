@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.ShopMapper">
+	<resultMap type="Shop" id="shopInfoMap">
+		<id column="shop_num" property="shopNum" />
+		<id column="shop_name" property="shopName" />
+		<id column="product_url" property="productUrl" />
+		<id column="main_img_url" property="mainImgUrl" />
+		<id column="shop_nicname" property="shopNicname" />
+		<id column="sale_price" property="dprice" />
+	</resultMap>
+	<select id="getShopInfo" resultType="Shop" resultMap="shopInfoMap">
+	    select * from shop_list where shop_num = #{shopNum}
+	    
+	</select>
+	<select id="getAllShop" resultType="Shop" resultMap="shopInfoMap">
+		select * FROM shop_list where lat = 0
+	</select>
+	
+	<update id="updateLocateInfo" parameterType="Shop">
+	    update shop_list set lat=#{lat}, lng=#{lng} where shop_num=#{shopNum}
+	</update>
+	
+	<select id="getRangeShop" resultType="Shop" resultMap="shopInfoMap">
+		select * from shop_list where lat
+		between #{lat}-0.03 and #{lat}+0.03 and lng between #{lng}-0.075
+		and #{lng}+0.075
+	</select>
+	<select id="getRangeProduct" resultType="Shop" resultMap="shopInfoMap">
+		select * from shop_list natural join sale_list where lat
+		between #{lat}-0.03 and #{lat}+0.03 and lng between #{lng}-0.075
+		and #{lng}+0.075 and sale_type = 'D'
+	</select>
+	<select id="getShopinfo" resultType="Shop" resultMap="shopInfoMap">
+		select * from shop_list where shop_num = #{shopNum}
+	</select>
+	
+	<select id="getShopSearchList" resultType="Shop" resultMap="shopInfoMap">
+	    SELECT * FROM shop_list where shop_name like concat('%',#{shopName},'%')
+	</select>
+	
+	<delete id="deleteShop">
+	    delete from shop_list where shop_num=#{shopNum}
+	</delete>
+	
+	<insert id="addShop" parameterType="Shop">
+		insert into shop_list(shop_name,lat,lng,address,tel,main_img_url,shop_nicname,special_item) values(#{shopName},#{lat},#{lng},#{address},#{tel},#{mainImgUrl},#{shopNicname},#{special})
+	</insert>
+	
+	<update id="addShopMainUrl" parameterType="Shop">
+		update shop_list set MAIN_IMG_URL= #{mainImgUrl} WHERE SHOP_NUM=#{shopNum};
+	</update>
+	
+	<select id="lastIndex" resultType="int">
+		select LAST_INSERT_ID()
+	</select>
+	<insert id="addShopSubImgUrl">
+		insert into shop_images (SHOP_NUM, FILE_PATH) VALUES (#{shopNum}, #{subUrl});
+	</insert>
+	
+	<select id="getShopImgList" resultType="String">
+		select file_path from shop_images where shop_num = #{shopNum}
+	</select>
+	
+	<select id="getPostList" resultType="String">
+		select post from buy_list where shop_num = #{shopNum}
+	</select>
+	
+	<delete id="deleteShopSubImg">
+	    delete from shop_images where shop_num=#{shopNum}
+	</delete>
+	
+</mapper>

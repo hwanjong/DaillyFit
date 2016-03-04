@@ -1,73 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ include file="adminHeader.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<!-- meta name="viewport" content="initial-scale=1.0, user-scalable=no" -->
 <meta charset="utf-8">
-<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
-
-<style>
-html,body{
-	width: 90%;
-	height: 90%;
-	margin: auto;
-	padding: 0px;
-}
-
-#map-canvas {
-	width: 90%;
-	height: 10px;
-	padding: 0px;
-}
-
-.controls {
-	margin-top: 16px;
-	border: 1px solid transparent;
-	border-radius: 2px 0 0 2px;
-	box-sizing: border-box;
-	-moz-box-sizing: border-box;
-	height: 32px;
-	outline: none;
-	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
-
-#pac-input {
-	background-color: #fff;
-	padding: 0 11px 0 13px;
-	width: 400px;
-	font-family: Roboto;
-	font-size: 15px;
-	font-weight: 300;
-	text-overflow: ellipsis;
-}
-
-#pac-input:focus {
-	border-color: #4d90fe;
-	margin-left: -1px;
-	padding-left: 14px; /* Regular padding-left + 1. */
-	width: 401px;
-}
-
-.pac-container {
-	font-family: Roboto;
-}
-
-#type-selector {
-	color: #fff;
-	background-color: #4d90fe;
-	padding: 5px 11px 0px 11px;
-}
-
-#type-selector label {
-	font-family: Roboto;
-	font-size: 13px;
-	font-weight: 300;
-}
-}
-</style>
-<title>관리자페이지-헬스장추가</title>
+<link href="/dailyfit/css/searchGoogle.css" rel="stylesheet">
 <script
 	src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 <script>
@@ -132,11 +71,10 @@ html,body{
 								var phone = place.formatted_phone_number;
 								$("#wrap")
 										.append(
-												'<input type="text" name="shopName" value="'+name+'">'
-														+ '<input type="text" name="shopLat" value="'+latt+'">'
-														+ '<input type="text" name="shopLng" value="'+lngg+'">'
-														+ '<input type="text" name="phone" value="'+phone+'">'
-														+ '<input type="text" name="shopAddress" value="'+address+'"><br>');
+												'<input type="checkbox"> <input type="text" name="shopName" value="'+name+'">'
+														+ '<input type="text" name="shopLat" size="6" value="'+latt+'">'
+														+ '<input type="text" name="shopLng" size="6" value="'+lngg+'">'
+														+ '<input type="text" name="shopAddress" size= "40" value="'+address+'"><br>');
 
 								markers.push(marker);
 
@@ -157,7 +95,7 @@ html,body{
 
 	function buttonClick() {
 		$("#map-canvas").animate({
-			height : '60%'
+			height : '300px'
 		});
 		var address = $("#address").val();
 		var geocoder = new google.maps.Geocoder();
@@ -182,19 +120,21 @@ html,body{
 </style>
 </head>
 <body>
-<h1>헬스오 관리자페이지 (미제휴 헬스장 등록)</h1>
+<div id="contents">
+	<h3>미제휴 헬스장 등록 페이지</h3>
 	찾을 지역
-	<input id="address" type="text" placeholder="address Box">
+	<input id="address" type="text"  placeholder="address Box">
 	<button type="button" class="btn" onclick='buttonClick();'>검색</button>
 	<input id="pac-input" class="controls" type="text"
 		placeholder="Search Box">
 	<div id="map-canvas"></div>
 	<form action="searchGoogle.ap" method="post">
-		<div id="wrap" style="overflow: auto;">
+		<div id="wrap" style="overflow: auto; margin-top: 20px;">
 			<i class="icon-ok"></i> <span style="font-size: 15pt;"> 검색된 헬스장</span>
-			<button type="submit">구글데이터를 데일리핏헬스장으로 등록</button>
+			<button type="button" class="btn">선택된 데이터 데일리핏 등록</button>
 			<hr style="border: 1px solid;">
 		</div>
 	</form>
+</div>
 </body>
 </html>

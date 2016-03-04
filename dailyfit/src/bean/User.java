@@ -13,6 +13,8 @@ public class User implements Serializable{
 	String weight;
 	String targetWeight;
 	String targetPower;
+	String passCode;
+	
 	public String getUserId() {
 		return userId;
 	}
@@ -66,6 +68,12 @@ public class User implements Serializable{
 	}
 	public void setTargetPower(String targetPower) {
 		this.targetPower = targetPower;
+	}
+	public String getPassCode() {
+		return passCode;
+	}
+	public void setPassCode(String passCode) {
+		this.passCode = passCode;
 	}
 
 }
